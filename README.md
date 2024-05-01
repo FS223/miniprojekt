@@ -30,6 +30,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Nady [@Iskuzmi](https://github.com/Iskuzmi)
 
 **Dokumentation:** [Pflichtenheft](./Dokumentation/Mini-Pflichtenhefte/Datenbank.md)
+
 **Implementierung:** [Datenbank](./Implementierung/Datenbank/README.md)
 
 ### Kundenverwaltung
@@ -40,6 +41,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Robert
 
 **Dokumentation:** [Pflichtenheft](./Dokumentation/Mini-Pflichtenhefte/Kundenverwaltung.md)
+
 **Implementierung:** [Kundenverwaltung](./Implementierung/Kundenverwaltung/README.md)
 
 ### Auswertung Nutzerdaten
@@ -50,6 +52,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Daniel
 
 **Dokumentation:** [Pflichtenheft](./Dokumentation/Mini-Pflichtenhefte/Auswertung%20Nutzerdaten.md)
+
 **Implementierung:** [Auswertung Nutzerdaten](./Implementierung/Auswertung/README.md)
 
 ### Kursverwaltung
@@ -60,6 +63,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Dominik
 
 **Dokumentation:** [Pflichtenheft](./Dokumentation/Mini-Pflichtenhefte/Kundenverwaltung.md)
+
 **Implementierung:** [Kursverwaltung](./Implementierung/Kursverwaltung/README.md)
 
 ---
