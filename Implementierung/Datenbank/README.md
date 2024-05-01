@@ -19,7 +19,7 @@ Die Datenbank wird mit PostgreSQL realisiert. Die Datenbank wird auf einem eigen
 
 ### Datenbankmodell
 
-Das Datenbankmodell wird mit Prisma realisiert. Hierbei handelt es sich um ein ORM (Object-Relational Mapping) Tool, das die Datenbankstruktur in einer `schema.prisma` Datei definiert. Aus dieser Datei ([[prisma/schema.prisma]]) wird dann das Datenbankmodell generiert.
+Das Datenbankmodell wird mit Prisma realisiert. Hierbei handelt es sich um ein ORM (Object-Relational Mapping) Tool, das die Datenbankstruktur in einer `schema.prisma` Datei definiert. Aus dieser Datei ([schema.prisma](./prisma/schema.prisma)) wird dann das Datenbankmodell generiert.
 
 #### Prisma Editor
 
