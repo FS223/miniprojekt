@@ -1,0 +1,87 @@
+datasource db {
+  provider = "postgresql"
+
+  url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Account {
+  id           String  @id @default(uuid())
+  user         User?   @relation(fields: [userId], references: [id])
+  userId       String? @unique
+  benutzername String  @unique
+  email        String  @unique
+  passwort     String
+}
+
+model User {
+  id             String          @id @default(uuid())
+  account        Account?
+  vorname        String
+  nachname       String?
+  geburtstag     DateTime?       @db.Date
+  geschlecht     Geschlecht?
+  anschrift      Anschrift?      @relation(fields: [anschriftId], references: [id], onDelete: Cascade)
+  anschriftId    String?         @unique
+  iban           String          @db.VarChar(34)
+  bild           String?
+  rolle          Rolle?          @default(KUNDE)
+  mitgliedstatus Mitgliedstatus?
+  Kurs           Kurs[]
+}
+
+model Anschrift {
+  id         String  @id @default(uuid())
+  land       String
+  plz        String
+  ort        String
+  strasse    String
+  hausnummer String
+  zusatz     String?
+  users      User[]
+}
+
+enum Geschlecht {
+  MAENNLICH
+  WEIBLICH
+  DIVERS
+}
+
+enum Rolle {
+  ADMIN
+  PERSONAL
+  KUNDE
+}
+
+enum Mitgliedstatus {
+  BRONZE
+  SILBER
+  GOLD
+  PLATINUM
+}
+
+model Kurs {
+  id            String   @id @unique @default(uuid())
+  bezeichnung   String
+  beschreibung  String?
+  kursLeiter    String //TODO Soll ein Mitarbeiter sein, aus der Mitarbeitertabelle
+  kursLeiterId  String
+  teilnehmer    User[]
+  minTeilnehmer Int      @default(0)
+  maxTeilnehmer Int      @default(16)
+  preis         Decimal  @default(0.00) @db.Decimal(10, 2)
+  dauer         Int      @default(45)
+  termine       Termin[]
+}
+
+model Termin {
+  id          String   @id @unique @default(uuid())
+  startZeit   DateTime @default(now())
+  dauer       Int      @default(45)
+  bezeichnung String?
+  Kurs        Kurs?    @relation(fields: [kursId], references: [id])
+  kursId      String?
+}

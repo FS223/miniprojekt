@@ -1,0 +1,7 @@
+# Editor Settings
+.vscode
+
+# Node.js
+node_modules
+# Keep environment variables out of version control
+.env
