@@ -1,87 +1,111 @@
+// Datenbankanbindung
 datasource db {
   provider = "postgresql"
-
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
+// Client-Generator
 generator client {
   provider = "prisma-client-js"
 }
 
-model Account {
-  id           String  @id @default(uuid())
-  user         User?   @relation(fields: [userId], references: [id])
-  userId       String? @unique
-  benutzername String  @unique
-  email        String  @unique
-  passwort     String
-}
-
-model User {
-  id             String          @id @default(uuid())
-  account        Account?
-  vorname        String
-  nachname       String?
-  geburtstag     DateTime?       @db.Date
-  geschlecht     Geschlecht?
-  anschrift      Anschrift?      @relation(fields: [anschriftId], references: [id], onDelete: Cascade)
-  anschriftId    String?         @unique
-  iban           String          @db.VarChar(34)
-  bild           String?
-  rolle          Rolle?          @default(KUNDE)
-  mitgliedstatus Mitgliedstatus?
-  Kurs           Kurs[]
-}
-
-model Anschrift {
-  id         String  @id @default(uuid())
+// Anschriftmodell
+model anschrift {
+  id         Int      @id @unique @default(autoincrement())
   land       String
   plz        String
   ort        String
   strasse    String
   hausnummer String
-  zusatz     String?
-  users      User[]
+  zusatz     String
+  person     person[]
+
+  @@unique([land, plz, ort, strasse, hausnummer, zusatz])
 }
 
-enum Geschlecht {
+// Accountmodell
+model account {
+  id           Int    @id @unique @default(autoincrement())
+  benutzername String @unique
+  email        String @unique
+  passwort     String
+  rolle        rolle  @default(KUNDE)
+  person       person @relation(fields: [personId], references: [id])
+  personId     Int    @unique
+}
+
+// Personmodell
+model person {
+  id           Int          @id @unique @default(autoincrement())
+  vorname      String
+  nachname     String
+  geburtsdatum DateTime     @db.Date
+  geschlecht   geschlecht   @default(DIVERS)
+  anschrift    anschrift    @relation(fields: [anschriftId], references: [id])
+  anschriftId  Int
+  account      account?
+  kunde        kunde?
+  mitarbeiter  mitarbeiter?
+
+  @@unique([vorname, nachname, geburtsdatum, geschlecht, anschriftId])
+}
+
+// Kunde
+model kunde {
+  id       Int     @id @unique @default(autoincrement())
+  person   person? @relation(fields: [personId], references: [id])
+  personId Int?    @unique
+  iban     String? @unique @db.VarChar(38)
+  bild     String?
+  kurse    kurs[]
+}
+
+// Mitarbeiter
+model mitarbeiter {
+  id       Int     @id @unique @default(autoincrement())
+  person   person? @relation(fields: [personId], references: [id])
+  personId Int?    @unique
+  kurse    kurs[]
+}
+
+// Kursverwaltung
+model kurs {
+  id            Int         @id @unique @default(autoincrement())
+  bezeichnung   String
+  beschreibung  String?
+  teilnehmer    kunde[]
+  kursLeiter    mitarbeiter @relation(fields: [kursLeiterId], references: [id])
+  kursLeiterId  Int
+  minTeilnehmer Int         @default(0)
+  maxTeilnehmer Int         @default(16)
+  preis         Decimal     @default(0.00)
+  dauer         Int         @default(45)
+  termine       termin[]
+
+  @@unique([bezeichnung, kursLeiterId, minTeilnehmer, maxTeilnehmer, preis, dauer])
+}
+
+// Terminmodell
+model termin {
+  id           Int      @id @unique @default(autoincrement())
+  bezeichnung  String
+  beschreibung String?
+  startZeit    DateTime @default(now())
+  dauer        Int      @default(45)
+  kurs         kurs?    @relation(fields: [kursId], references: [id])
+  kursId       Int?
+}
+
+// Geschlecht
+enum geschlecht {
   MAENNLICH
   WEIBLICH
   DIVERS
 }
 
-enum Rolle {
-  ADMIN
+// Rolle des Benutzers
+enum rolle {
+  ADMINISTRATOR
   PERSONAL
   KUNDE
-}
-
-enum Mitgliedstatus {
-  BRONZE
-  SILBER
-  GOLD
-  PLATINUM
-}
-
-model Kurs {
-  id            String   @id @unique @default(uuid())
-  bezeichnung   String
-  beschreibung  String?
-  kursLeiter    String //TODO Soll ein Mitarbeiter sein, aus der Mitarbeitertabelle
-  kursLeiterId  String
-  teilnehmer    User[]
-  minTeilnehmer Int      @default(0)
-  maxTeilnehmer Int      @default(16)
-  preis         Decimal  @default(0.00) @db.Decimal(10, 2)
-  dauer         Int      @default(45)
-  termine       Termin[]
-}
-
-model Termin {
-  id          String   @id @unique @default(uuid())
-  startZeit   DateTime @default(now())
-  dauer       Int      @default(45)
-  bezeichnung String?
-  Kurs        Kurs?    @relation(fields: [kursId], references: [id])
-  kursId      String?
 }
