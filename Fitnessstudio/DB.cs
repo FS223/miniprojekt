@@ -21,34 +21,30 @@ public static class DB
         }
     }
 
-    public async DataTable getData(String query) {
-        DataTable result = await ExecuteQuery(query);
-        return result;
-    }
+    // ============== Datenbankfunktionen ==============
+
+    public async DataTable getData(String query) { return await ExecuteQuery(query); }
+
+    public async void setData(String query) { await ExecuteQuery(query); }
+
+    public async void addData(String query) { await ExecuteQuery(query); }
 
     // ============== Kundenverwaltung ==============
 
     public async DataTable getKunden() {
-        string query = "SELECT * FROM kunde";
-        DataTable result = await ExecuteQuery(query);
-        return result;
+        return await getData("SELECT * FROM kunde");
     }
 
     // ==============  Kursverwaltung  ==============
 
     public async DataTable getKurse() {
-        string query = "SELECT * FROM kurs";
-        DataTable result = await ExecuteQuery(query);
-        return result;
+        return await getData("SELECT * FROM kurs");
     }
 
     // ==============   Datenanalyse   ==============
     
     public async DataTable getDaten() {
-        string query = "SELECT * FROM daten";
-        DataTable result = await ExecuteQuery(query);
-        return result;
+        return await getData("SELECT * FROM daten");
     }
-
     
 }
