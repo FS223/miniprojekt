@@ -21,3 +21,6 @@ C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\F
 C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\ref\Fitnessstudio.dll
 C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\Views\LoginView.g.cs
 C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\Views\LoginView.baml
+C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\Styles\ButtonStyles.baml
+C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\Styles\TextBoxStyles.baml
+C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\App.baml

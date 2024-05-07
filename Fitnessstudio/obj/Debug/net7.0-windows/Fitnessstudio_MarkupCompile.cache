@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\App.xaml
-21727942632
+4-875659962
 
 7-330253126
 198650335325
-MainWindow.xaml;Views\LoginView.xaml;
+MainWindow.xaml;Styles\ButtonStyles.xaml;Styles\TextBoxStyles.xaml;Views\LoginView.xaml;
 
 False
 

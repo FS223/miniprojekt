@@ -149,7 +149,7 @@
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
                         <TextBox.Background>
-                            <ImageBrush ImageSource="Images/user-icon.png" 
+                            <ImageBrush ImageSource="/Images/user-icon.png" 
                                         Stretch="None"
                                         AlignmentX="Left"/>
                         </TextBox.Background>
@@ -173,41 +173,19 @@
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
                         <PasswordBox.Background>
-                            <ImageBrush ImageSource="Images/key-icon.png"
+                            <ImageBrush ImageSource="/Images/key-icon.png"
                                         Stretch="None"
                                         AlignmentX="Left"/>
                         </PasswordBox.Background>
                     </PasswordBox>
-                    <Button x:Name="btnLogin"                          
-                            BorderThickness="0"
-                            Content="LOG IN"
-                            Foreground="White"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"                           
-                            Margin="0,50,0,0"
-                            Click="btnLogin_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#462AD8"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28AEED"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="150" Height="40"
-                                        CornerRadius="20"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+
+                    <!-- Login Button Style -->
+
+                    <Button x:Name="btnLogin"
+                        Style="{StaticResource LoginButtonStyle}"
+                        Click="btnLogin_Click"
+                        Margin="0,50,0,0"/>
+
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
