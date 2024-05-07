@@ -4,14 +4,9 @@ using System.Data;
 
 public static class DB
 {
-    private readonly string _connectionString;
+    private readonly string _connectionString = $"Host={host};Username={user};Password={pass};Database={database}";
 
-    private PostgresDatabase()
-    {
-        _connectionString = $"Host={host};Username={user};Password={pass};Database={database}";
-    }
-
-    private DataTable ExecuteQuery(string query)
+    private async DataTable ExecuteQuery(string query)
     {
         using (var connection = new NpgsqlConnection(_connectionString))
         {
@@ -26,18 +21,14 @@ public static class DB
         }
     }
 
-    public DataTable getData(String query) {
-        PostgresDatabase db = new PostgresDatabase();
-
-        DataTable result = db.ExecuteQuery(query);
+    public async DataTable getData(String query) {
+        DataTable result = await ExecuteQuery(query);
         return result;
     }
 
-    public DataTable getKursData() {
-        PostgresDatabase db = new PostgresDatabase();
-
+    public async DataTable getKursData() {
         string query = "SELECT * FROM kursverwaltung";
-        DataTable result = db.ExecuteQuery(query);
+        DataTable result = await ExecuteQuery(query);
         return result;
     }
 }
