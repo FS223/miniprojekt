@@ -32,9 +32,7 @@ public static class DB
     // ============== Kundenverwaltung ==============
 
     public async DataTable getKunden() {
-        string query = "SELECT * FROM kunde";
-        DataTable result = await ExecuteQuery(query);
-        return result;
+        return await getData("SELECT * FROM kunde");
     }
 
     // ==============  Kursverwaltung  ==============
@@ -43,17 +41,10 @@ public static class DB
         return await getData("SELECT * FROM kurs");
     }
 
-    public async DataTable getWas() {
-        return await getData("SELECT * FROM kurs");
-    }
-
     // ==============   Datenanalyse   ==============
     
     public async DataTable getDaten() {
-        string query = "SELECT * FROM daten";
-        DataTable result = await ExecuteQuery(query);
-        return result;
+        return await getData("SELECT * FROM daten");
     }
-
     
 }
