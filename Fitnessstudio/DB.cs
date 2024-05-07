@@ -26,9 +26,29 @@ public static class DB
         return result;
     }
 
-    public async DataTable getKursData() {
-        string query = "SELECT * FROM kursverwaltung";
+    // ============== Kundenverwaltung ==============
+
+    public async DataTable getKunden() {
+        string query = "SELECT * FROM kunde";
         DataTable result = await ExecuteQuery(query);
         return result;
     }
+
+    // ==============  Kursverwaltung  ==============
+
+    public async DataTable getKurse() {
+        string query = "SELECT * FROM kurs";
+        DataTable result = await ExecuteQuery(query);
+        return result;
+    }
+
+    // ==============   Datenanalyse   ==============
+    
+    public async DataTable getDaten() {
+        string query = "SELECT * FROM daten";
+        DataTable result = await ExecuteQuery(query);
+        return result;
+    }
+
+    
 }
