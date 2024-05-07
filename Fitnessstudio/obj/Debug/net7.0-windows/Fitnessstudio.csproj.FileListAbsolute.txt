@@ -24,3 +24,4 @@ C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\V
 C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\Styles\ButtonStyles.baml
 C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\Styles\TextBoxStyles.baml
 C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\App.baml
+C:\Users\Riyad\source\repos\miniprojekt\Fitnessstudio\obj\Debug\net7.0-windows\Styles\colorScheme.baml
