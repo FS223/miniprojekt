@@ -26,10 +26,17 @@ public static class DB
         }
     }
 
-    public DataTable getDummy() {
+    public DataTable getData(String query) {
         PostgresDatabase db = new PostgresDatabase();
 
-        string query = "SELECT * FROM dummy_table";
+        DataTable result = db.ExecuteQuery(query);
+        return result;
+    }
+
+    public DataTable getKursData() {
+        PostgresDatabase db = new PostgresDatabase();
+
+        string query = "SELECT * FROM kursverwaltung";
         DataTable result = db.ExecuteQuery(query);
         return result;
     }
