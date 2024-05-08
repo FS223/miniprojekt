@@ -1,4 +1,5 @@
-# [Projekt Fitnessstudio](https://github.com/orgs/FS223/projects/3)
+# [Board Fitnessstudio](https://github.com/orgs/FS223/projects/3)
+# [Wiki](https://github.com/FS223/miniprojekt/wiki)
 
 ## Grundidee
 
@@ -29,9 +30,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Maxi
 - Nady [@Iskuzmi](https://github.com/Iskuzmi)
 
-**Dokumentation:** [Pflichtenheft](./Dokumentation/Mini-Pflichtenhefte/Datenbank.md)
-
-**Implementierung:** [Datenbank](./Implementierung/Datenbank/README.md)
+**Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Datenbank)
 
 ### Kundenverwaltung
 
@@ -40,9 +39,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Moritz
 - Robert
 
-**Dokumentation:** [Pflichtenheft](./Dokumentation/Mini-Pflichtenhefte/Kundenverwaltung.md)
-
-**Implementierung:** [Kundenverwaltung](./Implementierung/Kundenverwaltung/README.md)
+**Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Kundenverwaltung)
 
 ### Auswertung Nutzerdaten
 
@@ -51,9 +48,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Jonas
 - Daniel
 
-**Dokumentation:** [Pflichtenheft](./Dokumentation/Mini-Pflichtenhefte/Auswertung%20Nutzerdaten.md)
-
-**Implementierung:** [Auswertung Nutzerdaten](./Implementierung/Auswertung/README.md)
+**Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Auswertung-Nutzerdaten)
 
 ### Kursverwaltung
 
@@ -62,9 +57,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Robin
 - Dominik
 
-**Dokumentation:** [Pflichtenheft](./Dokumentation/Mini-Pflichtenhefte/Kundenverwaltung.md)
-
-**Implementierung:** [Kursverwaltung](./Implementierung/Kursverwaltung/README.md)
+**Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Kursverwaltung)
 
 ---
 
