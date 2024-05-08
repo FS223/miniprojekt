@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "9sFTLDVpj9TNmRxbGg3B/pAlbk8fSJ+cotdDBBvO0suky2f8nKunxqIll82NwjcLmfxmBqjnlrOTyTrG7C8b8A==",
+  "dgSpecHash": "l6aqZFppu7Nq7AqI9M4lNrS40Q8IPAs22cTpi+HYOjKJVCNWGqoAat/zfyyK5tADNCnjuoh9/P0B9EJYcor+lg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marcel.kuhn\\Desktop\\miniprojekt\\Fitnessstudio\\Fitnessstudio.csproj",
+  "projectFilePath": "C:\\Users\\steven.mcgough\\Source\\Repos\\FS223\\miniprojekt\\Fitnessstudio\\Fitnessstudio.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\marcel.kuhn\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
-    "C:\\Users\\marcel.kuhn\\.nuget\\packages\\npgsql\\7.0.0\\npgsql.7.0.0.nupkg.sha512",
-    "C:\\Users\\marcel.kuhn\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\steven.mcgough\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\steven.mcgough\\.nuget\\packages\\npgsql\\7.0.0\\npgsql.7.0.0.nupkg.sha512",
+    "C:\\Users\\steven.mcgough\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

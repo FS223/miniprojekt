@@ -163,19 +163,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marcel.kuhn\\.nuget\\packages\\": {}
+    "C:\\Users\\steven.mcgough\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marcel.kuhn\\Desktop\\miniprojekt\\Fitnessstudio\\Fitnessstudio.csproj",
+      "projectUniqueName": "C:\\Users\\steven.mcgough\\Source\\Repos\\FS223\\miniprojekt\\Fitnessstudio\\Fitnessstudio.csproj",
       "projectName": "Fitnessstudio",
-      "projectPath": "C:\\Users\\marcel.kuhn\\Desktop\\miniprojekt\\Fitnessstudio\\Fitnessstudio.csproj",
-      "packagesPath": "C:\\Users\\marcel.kuhn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marcel.kuhn\\Desktop\\miniprojekt\\Fitnessstudio\\obj\\",
+      "projectPath": "C:\\Users\\steven.mcgough\\Source\\Repos\\FS223\\miniprojekt\\Fitnessstudio\\Fitnessstudio.csproj",
+      "packagesPath": "C:\\Users\\steven.mcgough\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\steven.mcgough\\Source\\Repos\\FS223\\miniprojekt\\Fitnessstudio\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\marcel.kuhn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\steven.mcgough\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
