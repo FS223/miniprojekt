@@ -16,9 +16,16 @@ namespace Fitnessstudio
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private Database database;
+        private UserHandler userHandler;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            database = new Database();
+            userHandler = new UserHandler();
         }
     }
 }
