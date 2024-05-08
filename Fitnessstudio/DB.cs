@@ -4,9 +4,9 @@ using System.Data;
 
 public static class DB
 {
-    private readonly string _connectionString = $"Host={host};Username={user};Password={pass};Database={database}";
+    private static readonly string _connectionString = $"{SQL_DATA}";
 
-    private async DataTable ExecuteQuery(string query)
+    private static DataTable ExecuteQuery(string query)
     {
         using (var connection = new NpgsqlConnection(_connectionString))
         {
@@ -23,28 +23,28 @@ public static class DB
 
     // ============== Datenbankfunktionen ==============
 
-    public async DataTable getData(String query) { return await ExecuteQuery(query); }
+    public static DataTable GetData(String query) { return ExecuteQuery(query); }
 
-    public async void setData(String query) { await ExecuteQuery(query); }
+    public static void SetData(String query) { ExecuteQuery(query); }
 
-    public async void addData(String query) { await ExecuteQuery(query); }
+    public static void AddData(String query) { ExecuteQuery(query); }
 
     // ============== Kundenverwaltung ==============
 
-    public async DataTable getKunden() {
-        return await getData("SELECT * FROM kunde");
+    public static DataTable GetKunden() {
+        return GetData("SELECT * FROM kunde");
     }
 
     // ==============  Kursverwaltung  ==============
 
-    public async DataTable getKurse() {
-        return await getData("SELECT * FROM kurs");
+    public static DataTable GetKurse() {
+        return GetData("SELECT * FROM kurs");
     }
 
     // ==============   Datenanalyse   ==============
     
-    public async DataTable getDaten() {
-        return await getData("SELECT * FROM daten");
+    public static DataTable GetDaten() {
+        return GetData("SELECT * FROM daten");
     }
     
 }
