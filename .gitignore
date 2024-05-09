@@ -2,7 +2,13 @@
 .vscode
 .vs
 Debug
+
 # Node.js
 node_modules
+
 # Keep environment variables out of version control
 .env
+
+# compiled output
+bin
+obj

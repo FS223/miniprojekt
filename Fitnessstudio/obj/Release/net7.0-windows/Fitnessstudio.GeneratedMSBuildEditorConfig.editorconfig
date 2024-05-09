@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Fitnessstudio
-build_property.ProjectDir = C:\Users\steven.mcgough\Source\Repos\FS223\miniprojekt\Fitnessstudio\
+build_property.ProjectDir = C:\Users\Steven\Source\Repos\FS223\miniprojekt\Fitnessstudio\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
