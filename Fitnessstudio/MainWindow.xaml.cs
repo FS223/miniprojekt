@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using DotNetEnv;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,16 +18,13 @@ namespace Fitnessstudio
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private DB database;
-        private Auth auth;
-
         public MainWindow()
         {
-            InitializeComponent();
-            database = new DB();
-            auth = new Auth();
+            var root = Directory.GetCurrentDirectory();
+            var dotenv = System.IO.Path.Combine(root, ".env");
+            Env.Load(dotenv);
 
+            InitializeComponent();
         }
     }
 }
