@@ -1,0 +1,53 @@
+﻿<Window x:Class="Fitnessstudio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fitnessstudio"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Title="MainWindow"  Height="350" Width="525">
+    <DockPanel>
+
+        <Grid DockPanel.Dock="Top" Height="100" Color="{StaticResource colorScheme.}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="\Images\LogoKraft.png" Grid.Column="0" Grid.Row="0" Height="100" Width="100"/>
+            <Label Content="HEADER" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+            <Grid Grid.Column="2" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="\Images\key-icon.png" Grid.Column="1" Grid.Row="0" Height="25" Width="25"/>
+                <Button Name="ButtonSettings" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Height="25" Width="25" Background="Transparent" BorderBrush="Transparent"></Button>
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="\Images\user-icon.png" Grid.Column="2" Grid.Row="0" Height="25" Width="25"/>
+                <Button Name= "ButtonAccount" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" Height="25" Width="25" Background="Transparent" BorderBrush="Transparent"></Button>
+            </Grid>
+           
+            
+        
+        </Grid>
+        <Grid DockPanel.Dock="Left" Width="150">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Name="ButtonHome" Content="Home" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Click="ButtonHome_Click"/>
+            <Button Name="ButtonStudio" Content="Studioübersicht" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Click="ButtonStudio_Click"/>
+            <Button Name="ButtonKunden" Content="Kundenverwaltung" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3" Click="ButtonKunden_Click"/>
+            <Button Name="ButtonKurse" Content="Kurse" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" Click="ButtonKurse_Click"/>
+
+        </Grid>
+        <Frame Name="FrameWithinGrid" Source="Pages/Home.xaml" NavigationUIVisibility="Hidden"/>
+    </DockPanel>
+</Window>
