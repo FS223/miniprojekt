@@ -1,6 +1,8 @@
-﻿using DotNetEnv;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,19 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Fitnessstudio
+namespace Fitnessstudio.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Kunden.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Kunden : Page
     {
-        public MainWindow()
+        public Kunden()
         {
-            var root = Directory.GetCurrentDirectory();
-            var dotenv = System.IO.Path.Combine(root, ".env");
-            Env.Load(dotenv);
-
             InitializeComponent();
         }
     }
