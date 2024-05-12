@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using DotNetEnv;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,6 +20,10 @@ namespace Fitnessstudio
     {
         public MainWindow()
         {
+            var root = Directory.GetCurrentDirectory();
+            var dotenv = System.IO.Path.Combine(root, ".env");
+            Env.Load(dotenv);
+
             InitializeComponent();
         }
     }
