@@ -11,7 +11,8 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        KeyDown="Window_KeyDown">
     <Border CornerRadius="12">
 
         <Border CornerRadius="10"                    
@@ -116,12 +117,12 @@
                             Margin="0,35,0,0">
                     <Image Source="/Images/Logo.png" 
                            Width="100" Height="100" Cursor=""/>
-                    <TextBlock Text="FS223"
+                    <TextBlock
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"><Run Language="en-gb" Text="Kraftklub"/></TextBlock>
                     <TextBlock Text=" Lorem ipsum dolor sit amet, consetetur nonumy eirmod sadipscing."
                                Foreground="LightGray"
                                FontSize="12"
@@ -178,14 +179,46 @@
                                         AlignmentX="Left"/>
                         </PasswordBox.Background>
                     </PasswordBox>
+                    <Label x:Name="lblError"
+                           Content="Invalid Username or Password"
+                           Foreground="Red"
+                           FontSize="12"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                           Visibility="Hidden"/>
 
-                    <!-- Login Button Style -->
-
-                    <Button x:Name="btnLogin"
-                        Style="{StaticResource LoginButtonStyle}"
-                        Click="btnLogin_Click"
-                        Margin="0,50,0,0"/>
-
+                    <Button x:Name="btnLogin"                          
+                            BorderThickness="0"
+                            Content="LOG IN"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"                           
+                            Margin="0,50,0,0"
+                            Click="btnLogin_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#462AD8"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0" Cursor="">

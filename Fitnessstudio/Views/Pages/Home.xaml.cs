@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +22,10 @@ namespace Fitnessstudio.Views
     {
         public Home()
         {
+            var root = Directory.GetCurrentDirectory();
+            var dotenv = System.IO.Path.Combine(root, ".env");
+            Env.Load(dotenv);
+
             InitializeComponent();
         }
     }
