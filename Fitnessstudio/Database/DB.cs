@@ -13,24 +13,7 @@ namespace Fitnessstudio
 
         public DB()
         {
-            var root = Directory.GetCurrentDirectory();
-            var dotenv = System.IO.Path.Combine(root, ".env");
-            Env.Load(dotenv);
-
-            _connectionString = Environment.GetEnvironmentVariable("TEST");
-
-            if (string.IsNullOrEmpty(_connectionString))
-            {
-                //throw new ArgumentNullException("TEST not found in .env");
-            }
-
-            _connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-            if (string.IsNullOrEmpty(_connectionString))
-            {
-                //throw new ArgumentNullException("CONNECTION_STRING not found in .env");
-            }
-
-            Trace.WriteLine("Connection string: " + _connectionString);
+            _connectionString = "Host=fs223.de;Username=<USERNAME>;Password=<PASSWORD>;Database=fitnessstudio";
         }
 
         public async Task<NpgsqlConnection> GetConnection()
