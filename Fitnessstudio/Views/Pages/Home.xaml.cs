@@ -22,10 +22,6 @@ namespace Fitnessstudio.Views
     {
         public Home()
         {
-            var root = Directory.GetCurrentDirectory();
-            var dotenv = System.IO.Path.Combine(root, ".env");
-            Env.Load(dotenv);
-
             InitializeComponent();
         }
     }
