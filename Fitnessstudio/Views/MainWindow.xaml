@@ -7,16 +7,18 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         Title="MainWindow"  Height="350" Width="525">
+    <Window.Resources>
+    </Window.Resources>
     <DockPanel>
 
-        <Grid DockPanel.Dock="Top" Height="100" Color="{StaticResource colorScheme.}">
+        <Grid DockPanel.Dock="Top" Height="100" Background="black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
-            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="\Images\LogoKraft.png" Grid.Column="0" Grid.Row="0" Height="100" Width="100"/>
-            <Label Content="HEADER" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Images/logokraft.png" Grid.Column="0" Grid.Row="0" Height="100" Width="100"/>
+            <Label Content="HEADER" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource titleColor1}" />
             <Grid Grid.Column="2" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -33,7 +35,7 @@
             
         
         </Grid>
-        <Grid DockPanel.Dock="Left" Width="150">
+        <Grid DockPanel.Dock="Left" Width="150" Background="black">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="50"/>
