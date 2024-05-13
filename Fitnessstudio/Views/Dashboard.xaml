@@ -90,6 +90,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonHome" Grid.Column="0" Grid.Row="1" Click="ButtonHome_Click">
@@ -111,7 +112,13 @@
                     <TextBlock  Style="{StaticResource TextBlockWhite}">Kundenverwaltung</TextBlock>
                 </StackPanel>
             </Button>
-            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonKurse" Grid.Column="0" Grid.Row="4" Click="ButtonKurse_Click">
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonKundenAdmin" Grid.Column="0" Grid.Row="4" Click="ButtonKundenAdmin_Click">
+                <StackPanel>
+                    <Image Source="\Images\group.png" Width="24"/>
+                    <TextBlock  Style="{StaticResource TextBlockWhite}">Adminverwaltung</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonKurse" Grid.Column="0" Grid.Row="5" Click="ButtonKurse_Click">
                 <StackPanel>
                     <Image Source="\Images\kurs.png" Width="24"/>
                     <TextBlock  Style="{StaticResource TextBlockWhite}">Kurse</TextBlock>

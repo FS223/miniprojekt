@@ -32,16 +32,7 @@
                     <DataGridTextColumn Header="AnschriftId" Binding="{Binding AnschriftId}" />
                 </DataGrid.Columns>
 
-                <DataGridTemplateColumn Header="Aktionen">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Edit" Click="Button_Edit"/>
-                                <Button Content="Delete" Click="Button_Delete"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
             </DataGrid>
         </Grid>
     </StackPanel>    
