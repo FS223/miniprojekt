@@ -40,12 +40,14 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Name="ButtonHome" Content="Home" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Click="ButtonHome_Click"/>
             <Button Name="ButtonStudio" Content="Studioübersicht" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Click="ButtonStudio_Click"/>
             <Button Name="ButtonKunden" Content="Kundenverwaltung" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3" Click="ButtonKunden_Click"/>
             <Button Name="ButtonKurse" Content="Kurse" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" Click="ButtonKurse_Click"/>
+            <Button Name="ButtonKundenAdmin" Content="KundenAdmin" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="5" Click="ButtonKundenAdmin_Click"/>
 
         </Grid>
         <Frame Name="FrameWithinGrid" Source="Pages/Home.xaml" NavigationUIVisibility="Hidden"/>
