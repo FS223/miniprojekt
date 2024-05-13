@@ -71,6 +71,38 @@ namespace Fitnessstudio
             return anschriften;
         }
 
+        public async Task<Anschrift?> GetAnschriftByID(int id)
+        {
+            // Get a connection from the DB instance
+            using (var conn = await db.GetConnection())
+            {
+                await using (var cmd = new NpgsqlCommand("SELECT * FROM anschrift WHERE id = @p1", conn))
+                {
+                    cmd.Parameters.AddWithValue("@p1", id);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return new Anschrift {
+                                Id = reader.GetInt32(reader.GetOrdinal("id")),
+                                Land = reader.GetString(reader.GetOrdinal("land")),
+                                Plz = reader.GetString(reader.GetOrdinal("plz")),
+                                Ort = reader.GetString(reader.GetOrdinal("ort")),
+                                Strasse = reader.GetString(reader.GetOrdinal("strasse")),
+                                Hausnummer = reader.GetString(reader.GetOrdinal("hausnummer")),
+                                Zusatz = reader.GetString(reader.GetOrdinal("zusatz"))
+                            };
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+
         public async Task<List<Account>> GetAccounts()
         {
             var accounts = new List<Account>();
