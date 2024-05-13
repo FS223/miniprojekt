@@ -16,6 +16,9 @@
     <Compile Update="Views\Pages\KundenAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Pages\KundenVerwaltung.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Styles\ButtonStyles.xaml">
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\KundenAdmin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\KundenVerwaltung.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
