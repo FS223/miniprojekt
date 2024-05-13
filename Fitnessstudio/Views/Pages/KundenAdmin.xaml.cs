@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fitnessstudio.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,25 +22,14 @@ namespace Fitnessstudio.Views.Pages
     /// </summary>
     public partial class KundenAdmin : Page
     {
-        public ObservableCollection<Person> Items { get; set; }
         public KundenAdmin()
         {
             InitializeComponent();
-            Items = new ObservableCollection<Person>();
-            GetPersonen();            
-            DataContext = this;
+            DataContext = new KundenAdminViewModel();
         }
 
 
-        private async void GetPersonen()
-        {
-            var databaseService = new DatabaseService();
-            List<Person> Personen = await databaseService.GetPersonen();
-            foreach (Person person in Personen)
-            {
-                Items.Add(person);
-            }
-        }
+        
 
         private void Button_Edit(object sender, RoutedEventArgs e)
         {

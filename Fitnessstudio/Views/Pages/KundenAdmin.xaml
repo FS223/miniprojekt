@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Fitnessstudio.Views.Pages"
+      xmlns:local="clr-namespace:Fitnessstudio.Views.Pages" xmlns:viewmodels="clr-namespace:Fitnessstudio.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:KundenAdminViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="KundenAdmin">
@@ -20,9 +21,9 @@
                 <ComboBoxItem Content="Option 3"/>
             </ComboBox>
             <Button Content="Neuen Kunden hinzufügen" Width="150" HorizontalAlignment="Right" Click="Button_NeuerKunde"/>
-        </StackPanel>        
+        </StackPanel>
         <Grid>
-            <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow">
+            <DataGrid ItemsSource="{Binding Path=Items}" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" Margin="0, 0, 100, 0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="-" Binding="{Binding Id}" />
                     <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}" />
@@ -30,10 +31,19 @@
                     <DataGridTextColumn Header="Geburtsdatum" Binding="{Binding Geburtsdatum}" />
                     <DataGridTextColumn Header="Geschlecht" Binding="{Binding Geschlecht}" />
                     <DataGridTextColumn Header="AnschriftId" Binding="{Binding AnschriftId}" />
-                </DataGrid.Columns>
-
-                
+                    <DataGridTemplateColumn Header="Aktionen">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Bearbeiten" Click="Button_Edit"/>
+                                    <Button Content="Löschen" Click="Button_Delete"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>                
             </DataGrid>
+            
         </Grid>
     </StackPanel>    
 </Page>
