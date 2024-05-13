@@ -67,6 +67,11 @@ namespace Fitnessstudio.Views
                 lblError.Content = "";
                 lblError.Visibility = Visibility.Hidden;
                 MessageBox.Show("Login successful!");
+                Dashboard dashboard = new Dashboard();
+                this.Visibility = Visibility.Hidden;
+                dashboard.WindowState = WindowState.Normal;
+                dashboard.Owner = this;
+                dashboard.Show();
             }
             else
             {

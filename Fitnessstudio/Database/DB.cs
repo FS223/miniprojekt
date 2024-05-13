@@ -13,7 +13,7 @@ namespace Fitnessstudio
 
         public DB()
         {
-            _connectionString = "Host=fs223.de;Username=USER;Password=PASS;Database=fitnessstudio";
+            _connectionString = "Host=db.fs223.de;Username=gruppe2;Password=FS223@Gruppe2!;Database=fitnessstudio";
         }
 
         public async Task<NpgsqlConnection> GetConnection()
