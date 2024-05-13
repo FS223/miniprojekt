@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,10 @@ namespace Fitnessstudio
             var connection = await db.GetConnection();
             using (connection)
             {
-                connection.Open();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
                 var command = new NpgsqlCommand("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'", connection);
                 using (var reader = command.ExecuteReader())
                 {
@@ -42,7 +46,10 @@ namespace Fitnessstudio
             var connection = await db.GetConnection();
             using (connection)
             {
-                await connection.OpenAsync();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
                 using (var command = new NpgsqlCommand("SELECT * FROM anschrift", connection))
                 using (var reader = await command.ExecuteReaderAsync())
                 {
@@ -70,7 +77,10 @@ namespace Fitnessstudio
             var connection = await db.GetConnection();
             using (connection)
             {
-                await connection.OpenAsync();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
                 using (var command = new NpgsqlCommand("SELECT * FROM account", connection))
                 using (var reader = await command.ExecuteReaderAsync())
                 {
@@ -97,23 +107,29 @@ namespace Fitnessstudio
             var connection = await db.GetConnection();
             using (connection)
             {
-                await connection.OpenAsync();
+                // Doppelte Connection
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
                 using (var command = new NpgsqlCommand("SELECT * FROM person", connection))
                 using (var reader = await command.ExecuteReaderAsync())
                 {
                     while (await reader.ReadAsync())
                     {
+                        Enum.TryParse(reader.GetString(reader.GetOrdinal("geschlecht")), out Geschlecht geschlecht);
                         persons.Add(new Person
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("id")),
                             Vorname = reader.GetString(reader.GetOrdinal("vorname")),
                             Nachname = reader.GetString(reader.GetOrdinal("nachname")),
                             Geburtsdatum = reader.GetDateTime(reader.GetOrdinal("geburtsdatum")),
-                            Geschlecht = (Geschlecht)reader.GetInt32(reader.GetOrdinal("geschlecht")),
+                            Geschlecht = geschlecht,
                             AnschriftId = reader.GetInt32(reader.GetOrdinal("anschriftId")),
-                            AccountId = reader.IsDBNull(reader.GetOrdinal("accountId")) ? null : reader.GetInt32(reader.GetOrdinal("accountId")),
-                            KundeId = reader.IsDBNull(reader.GetOrdinal("kundeId")) ? null : reader.GetInt32(reader.GetOrdinal("kundeId")),
-                            MitarbeiterId = reader.IsDBNull(reader.GetOrdinal("mitarbeiterId")) ? null : reader.GetInt32(reader.GetOrdinal("mitarbeiterId"))
+                            // Fehlende Datenbank Spalten, dadurch Exceptions....
+                            // AccountId = reader.IsDBNull(reader.GetOrdinal("accountId")) ? null : reader.GetInt32(reader.GetOrdinal("accountId")),
+                            // KundeId = reader.IsDBNull(reader.GetOrdinal("kundeId")) ? null : reader.GetInt32(reader.GetOrdinal("kundeId")),
+                            // MitarbeiterId = reader.IsDBNull(reader.GetOrdinal("mitarbeiterId")) ? null : reader.GetInt32(reader.GetOrdinal("mitarbeiterId"))
                         });
                     }
                 }
@@ -127,7 +143,10 @@ namespace Fitnessstudio
             var connection = await db.GetConnection();
             using (connection)
             {
-                await connection.OpenAsync();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
                 using (var command = new NpgsqlCommand("SELECT * FROM kunde", connection))
                 using (var reader = await command.ExecuteReaderAsync())
                 {
@@ -154,7 +173,10 @@ namespace Fitnessstudio
             var connection = await db.GetConnection();
             using (connection)
             {
-                await connection.OpenAsync();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
                 using (var command = new NpgsqlCommand("SELECT * FROM messung", connection))
                 using (var reader = await command.ExecuteReaderAsync())
                 {
@@ -183,7 +205,10 @@ namespace Fitnessstudio
             var connection = await db.GetConnection();
             using (connection)
             {
-                await connection.OpenAsync();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
                 using (var command = new NpgsqlCommand("SELECT * FROM mitarbeiter", connection))
                 using (var reader = await command.ExecuteReaderAsync())
                 {
@@ -206,7 +231,10 @@ namespace Fitnessstudio
             var connection = await db.GetConnection();
             using (connection)
             {
-                await connection.OpenAsync();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
                 using (var command = new NpgsqlCommand("SELECT * FROM kurs", connection))
                 using (var reader = await command.ExecuteReaderAsync())
                 {
