@@ -12,20 +12,20 @@ namespace Fitnessstudio.Models
         private int id;
         private string bezeichnung;
         private string beschreibung;
-        private Mitarbeiter kursLeiter;
+        private int kursLeiterId;
         private int minTeilnehmer = 0;
         private int maxTeilnehmer;
-        private double preis;
+        private decimal preis;
         private int dauer;
         private List<Termin> termine;
         private List<Kunde> teilnehmer;
 
-        public Kurs(int id, string bezeichnung, string? beschreibung, Mitarbeiter kursLeiter, int minTeilnehmer, int maxTeilnehmer, double preis, int dauer, List<Termin>? termine = null, List<Kunde>? teilnehmer = null) 
+        public Kurs(int id, string bezeichnung, string? beschreibung, int kursLeiterId, int minTeilnehmer, int maxTeilnehmer, decimal preis, int dauer, List<Termin>? termine = null, List<Kunde>? teilnehmer = null) 
         { 
             this.id = id;
             Bezeichnung = bezeichnung;
             Beschreibung = beschreibung;
-            KursLeiter = kursLeiter;
+            kursLeiterId = kursLeiterId;
             MinTeilnehmer = minTeilnehmer;
             MaxTeilnehmer = maxTeilnehmer;
             Preis = preis;
@@ -37,10 +37,10 @@ namespace Fitnessstudio.Models
         public int Id { get => id; }
         public string Bezeichnung { get => bezeichnung; set => bezeichnung = value; }
         public string Beschreibung { get => beschreibung; set => beschreibung = value; }
-        public Mitarbeiter KursLeiter { get => kursLeiter; set => kursLeiter = value; }
+        public int KursLeiterId { get => kursLeiterId; set => kursLeiterId = value; }
         public int MinTeilnehmer { get => minTeilnehmer; set => minTeilnehmer = value; }
         public int MaxTeilnehmer { get => maxTeilnehmer; set => maxTeilnehmer = value; }
-        public double Preis { get => preis; set => preis = value; }
+        public decimal Preis { get => preis; set => preis = value; }
         public int Dauer { get => dauer; set => dauer = value; }
         public List<Termin> Termine { get => termine; set => termine = value; }
         public List<Kunde> Teilnehmer { get => teilnehmer; set => teilnehmer = value; }
