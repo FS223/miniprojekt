@@ -68,18 +68,6 @@ namespace Fitnessstudio
         public int PersonId { get; set; }
     }
 
-    public class Kurs
-    {
-        public int Id { get; set; }
-        public string Bezeichnung { get; set; }
-        public string Beschreibung { get; set; }
-        public int KursLeiterId { get; set; }
-        public int MinTeilnehmer { get; set; }
-        public int MaxTeilnehmer { get; set; }
-        public decimal Preis { get; set; }
-        public int Dauer { get; set; }
-    }
-
     public enum Geschlecht
     {
         Maennlich,

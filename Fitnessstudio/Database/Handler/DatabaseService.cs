@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Fitnessstudio.Models;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -211,17 +212,18 @@ namespace Fitnessstudio
                 {
                     while (await reader.ReadAsync())
                     {
-                        kurse.Add(new Kurs
-                        {
-                            Id = reader.GetInt32(reader.GetOrdinal("id")),
-                            Bezeichnung = reader.GetString(reader.GetOrdinal("bezeichnung")),
-                            Beschreibung = reader.IsDBNull(reader.GetOrdinal("beschreibung")) ? null : reader.GetString(reader.GetOrdinal("beschreibung")),
-                            KursLeiterId = reader.GetInt32(reader.GetOrdinal("kursLeiterId")),
-                            MinTeilnehmer = reader.GetInt32(reader.GetOrdinal("minTeilnehmer")),
-                            MaxTeilnehmer = reader.GetInt32(reader.GetOrdinal("maxTeilnehmer")),
-                            Preis = reader.GetDecimal(reader.GetOrdinal("preis")),
-                            Dauer = reader.GetInt32(reader.GetOrdinal("dauer"))
-                        });
+                        kurse.Add(new Kurs(
+                            reader.GetInt32(reader.GetOrdinal("id")),
+                            reader.GetString(reader.GetOrdinal("bezeichnung")),
+                            reader.IsDBNull(reader.GetOrdinal("beschreibung")) ? null : reader.GetString(reader.GetOrdinal("beschreibung")),
+                            reader.GetInt32(reader.GetOrdinal("kursLeiterId")),
+                            reader.GetInt32(reader.GetOrdinal("minTeilnehmer")),
+                            reader.GetInt32(reader.GetOrdinal("maxTeilnehmer")),
+                            reader.GetDecimal(reader.GetOrdinal("preis")),
+                            reader.GetInt32(reader.GetOrdinal("dauer"))
+                            ));
+                        
+                       
                     }
                 }
             }

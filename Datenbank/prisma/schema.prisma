@@ -52,12 +52,14 @@ model person {
 
 // Kunde
 model kunde {
-  id       Int     @id @unique @default(autoincrement())
-  person   person? @relation(fields: [personId], references: [id])
-  personId Int?    @unique
-  iban     String? @unique @db.VarChar(38)
-  bild     String?
-  kurse    kurs[]
+  id             Int             @id @unique @default(autoincrement())
+  person         person?         @relation(fields: [personId], references: [id])
+  personId       Int?            @unique
+  iban           String?         @unique @db.VarChar(38)
+  bild           String?
+  mitgliedschaft mitgliedschaft?
+  kurse          kurs[]
+  zeitenBuchung  zeitenBuchung[]
 }
 
 // Mitarbeiter
@@ -85,6 +87,17 @@ model kurs {
   @@unique([bezeichnung, kursLeiterId, minTeilnehmer, maxTeilnehmer, preis, dauer])
 }
 
+// CheckIn / CheckOut
+model zeitenBuchung {
+  id       Int      @id @unique @default(autoincrement())
+  checkIn  DateTime @default(now())
+  checkOut DateTime @default(now())
+  kunde    kunde?   @relation(fields: [kundenId], references: [id])
+  kundenId Int?
+
+  @@unique([checkIn, checkOut, kundenId])
+}
+
 // Terminmodell
 model termin {
   id           Int      @id @unique @default(autoincrement())
@@ -108,4 +121,11 @@ enum rolle {
   ADMINISTRATOR
   PERSONAL
   KUNDE
+}
+
+enum mitgliedschaft {
+  BRONZE
+  SILBER
+  GOLD
+  PLATINUM
 }
