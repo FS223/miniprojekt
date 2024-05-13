@@ -85,6 +85,15 @@ model kurs {
   @@unique([bezeichnung, kursLeiterId, minTeilnehmer, maxTeilnehmer, preis, dauer])
 }
 
+// CheckIn / CheckOut
+model timeBooking {
+  id Int @id @unique @default(autoincrement())
+  checkIn DateTime @default(now())
+  checkOut DateTime @default(now()+50000)
+  kunde         kunde?    @relation(fields: [kundenId], references: [id])
+  kundenId       Int?
+}
+
 // Terminmodell
 model termin {
   id           Int      @id @unique @default(autoincrement())
