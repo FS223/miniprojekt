@@ -7,16 +7,60 @@
         mc:Ignorable="d"
         Title="Dashboard"
         WindowStartupLocation="CenterScreen" WindowState="Maximized" Height="1000" Width="1600">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="ButtonStyling">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockWhite">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Black"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="White"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <ControlTemplate x:Key="ButtonTemplate1" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
     <DockPanel>
 
-        <Grid DockPanel.Dock="Top" Height="100" Background="black">
+        <Grid DockPanel.Dock="Top" Height="100" Background="Black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
             <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Images/logokraft.png" Grid.Column="0" Grid.Row="0" Height="100" Width="100"/>
-            <Label Content="HEADER" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource titleColor1}" />
+            <Label Name="Header" Content="Dashboard" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Foreground="White" FontFamily="Arial" FontSize="30" FontWeight="Bold" />
             <Grid Grid.Column="2" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -24,10 +68,16 @@
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="\Images\key-icon.png" Grid.Column="1" Grid.Row="0" Height="25" Width="25"/>
-                <Button Name="ButtonSettings" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Height="25" Width="25" Background="Transparent" BorderBrush="Transparent"></Button>
-                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="\Images\user-icon.png" Grid.Column="2" Grid.Row="0" Height="25" Width="25"/>
-                <Button Name= "ButtonAccount" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" Height="25" Width="25" Background="Transparent" BorderBrush="Transparent"></Button>
+                <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonSettings" Grid.Column="1" Grid.Row="0">
+                    <StackPanel>
+                        <Image Source="\Images\settings.png" Width="24"/>
+                    </StackPanel>
+                </Button>
+                <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name= "ButtonAccount" Grid.Column="2" Grid.Row="0">
+                    <StackPanel>
+                        <Image Source="\Images\account.png" Width="24"/>
+                    </StackPanel>
+                </Button>
             </Grid>
 
 
@@ -40,14 +90,33 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Name="ButtonHome" Content="Home" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Click="ButtonHome_Click"/>
-            <Button Name="ButtonStudio" Content="Studioübersicht" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Click="ButtonStudio_Click"/>
-            <Button Name="ButtonKunden" Content="Kundenverwaltung" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3" Click="ButtonKunden_Click"/>
-            <Button Name="ButtonKurse" Content="Kurse" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" Click="ButtonKurse_Click"/>
-            <Button Name="ButtonKundenAdmin" Content="KundenAdmin" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="5" Click="ButtonKundenAdmin_Click"/>
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonHome" Grid.Column="0" Grid.Row="1" Click="ButtonHome_Click">
+                <StackPanel>
+                    <Image Source="\Images\home.png" Width="24"/>
+                    <TextBlock Style="{StaticResource TextBlockWhite}">Home</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonStudio" Grid.Column="0" Grid.Row="2" Click="ButtonStudio_Click">
+                <StackPanel>
+                    <Image Source="\Images\overview.png" Width="24"/>
+                    <TextBlock Style="{StaticResource TextBlockWhite}">Studioübersicht</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonKunden" Grid.Column="0" Grid.Row="3" Click="ButtonKunden_Click">
+                <StackPanel>
+                    <Image Source="\Images\group.png" Width="24"/>
+                    <TextBlock  Style="{StaticResource TextBlockWhite}">Kundenverwaltung</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonKurse" Grid.Column="0" Grid.Row="4" Click="ButtonKurse_Click">
+                <StackPanel>
+                    <Image Source="\Images\kurs.png" Width="24"/>
+                    <TextBlock  Style="{StaticResource TextBlockWhite}">Kurse</TextBlock>
+                </StackPanel>
+            </Button>
 
         </Grid>
         <Frame Name="FrameWithinGrid" Source="Pages/Home.xaml" NavigationUIVisibility="Hidden"/>
