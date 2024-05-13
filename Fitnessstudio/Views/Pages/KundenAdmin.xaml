@@ -20,23 +20,26 @@
                 <ComboBoxItem Content="Option 2"/>
                 <ComboBoxItem Content="Option 3"/>
             </ComboBox>
-            <Button Content="Neuen Kunden hinzufügen" Width="150" HorizontalAlignment="Right" Click="Button_NeuerKunde"/>
+            <Button Content="Neuen Kunden hinzufügen" Width="150" HorizontalAlignment="Right" Command="{Binding NewCommand}"/>
         </StackPanel>
         <Grid>
             <DataGrid ItemsSource="{Binding Path=Items}" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" Margin="0, 0, 100, 0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="-" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}" />
-                    <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" />
-                    <DataGridTextColumn Header="Geburtsdatum" Binding="{Binding Geburtsdatum}" />
-                    <DataGridTextColumn Header="Geschlecht" Binding="{Binding Geschlecht}" />
-                    <DataGridTextColumn Header="AnschriftId" Binding="{Binding AnschriftId}" />
+                    <DataGridTextColumn Header="-" Binding="{Binding Person.Id}" />
+                    <DataGridTextColumn Header="Vorname" Binding="{Binding Person.Vorname}" />
+                    <DataGridTextColumn Header="Nachname" Binding="{Binding Person.Nachname}" />
+                    <DataGridTextColumn Header="Geburtsdatum" Binding="{Binding Person.Geburtsdatum}" />
+                    <DataGridTextColumn Header="Geschlecht" Binding="{Binding Person.Geschlecht}" />
+                    <DataGridTextColumn Header="Adresse" Binding="{Binding Anschrift.Strasse}" />
+                    <DataGridTextColumn Header="Hausnummer" Binding="{Binding Anschrift.Hausnummer}" />
+                    <DataGridTextColumn Header="PLZ" Binding="{Binding Anschrift.Plz}" />
+                    <DataGridTextColumn Header="Ort" Binding="{Binding Anschrift.Ort}" />
                     <DataGridTemplateColumn Header="Aktionen">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Bearbeiten" Click="Button_Edit"/>
-                                    <Button Content="Löschen" Click="Button_Delete"/>
+                                    <Button Content="Bearbeiten" Command="{Binding EditCommand}"/>
+                                    <Button Content="Löschen" Command="{Binding DeleteCommand}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

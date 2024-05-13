@@ -28,24 +28,6 @@ namespace Fitnessstudio.Views.Pages
             DataContext = new KundenAdminViewModel();
         }
 
-
-        
-
-        private void Button_Edit(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Delete(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_NeuerKunde(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }
 
