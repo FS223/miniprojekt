@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Fitnessstudio;
+using Fitnessstudio.Models;
+using System;
+using System.Windows.Input;
 
-namespace Fitnessstudio.Commands
+public class DeletePersonCommand : ICommand
 {
-    public class DeleteCommand : CommandBase
+    private readonly Action<Person> _execute;
+
+    public DeletePersonCommand(Action<Person> execute)
     {
-        public DeleteCommand()
+        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+    }
+
+    public event EventHandler CanExecuteChanged;
+
+    public bool CanExecute(object parameter)
+    {
+        return true; // muss noch bearbeitet werden xd 
+    }
+
+    public void Execute(object parameter)
+    {
+        if (parameter is Person person)
         {
+            _execute(person);
         }
-
-
-        public override void Execute(object? parameter)
-        {
-            Debug.WriteLine("Delete Command");
-        }
-
-
     }
 }

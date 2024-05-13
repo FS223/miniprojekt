@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Fitnessstudio
 {
@@ -38,6 +39,12 @@ namespace Fitnessstudio
         public int? AccountId { get; set; }
         public int? KundeId { get; set; }
         public int? MitarbeiterId { get; set; }
+        public string BgColor { get; set; }
+        public string Character { get; set; }
+        public string Name { get; set; }
+        public ICommand EditCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
+
     }
 
     public class Kunde
