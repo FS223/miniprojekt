@@ -34,14 +34,11 @@ namespace Fitnessstudio.Views
         private void ButtonKurse_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Kurse.xaml", CurrentAccount);
         private void ButtonKundenAdmin_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/KundenAdmin.xaml", CurrentAccount);
 
-
-
-
-
         private void NavigateToPage(string pageUri, object parameter)
         {
             var uri = new Uri(pageUri, UriKind.Relative);
             FrameWithinGrid.Source = uri;
+        }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -52,7 +49,8 @@ namespace Fitnessstudio.Views
         {
             // Application.Current.Shutdown();
             // Verwende den Navigations-Event, um den DataContext zu setzen
-            FrameWithinGrid.Navigated += (sender, e) => {
+            FrameWithinGrid.Navigated += (sender, e) =>
+            {
                 if (e.Content is Page page)
                 {
                     if (page is KundenAdmin kundenAdminPage)
