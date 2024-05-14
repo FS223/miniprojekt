@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitnessstudio.Views"
+      xmlns:viewmodels="clr-namespace:Fitnessstudio.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="930" d:DesignWidth="1770"
       Title="Home">
@@ -76,7 +78,7 @@
                                     </Image>
 
                                     <TextBlock Foreground="White" FontSize="35" FontWeight="Bold" Margin="0,10,40,0" Width="754">
-                        <Run Text="Welcome back Riad!" />
+                        <Run Text="{Binding WelcomeText}" />
                         <Run Language="de-de" />
                                     </TextBlock>
                                     <TextBlock Text="It's good to have you back with us."

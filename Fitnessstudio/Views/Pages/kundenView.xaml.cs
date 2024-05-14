@@ -18,11 +18,13 @@ namespace Fitnessstudio.Views.Pages
     /// <summary>
     /// Interaktionslogik für kundenView.xaml
     /// </summary>
-    public partial class kundenView : Page
+    public partial class KundenView : Page
     {
-        public kundenView()
+        public KundenView()
         {
             InitializeComponent();
         }
+
+
     }
 }

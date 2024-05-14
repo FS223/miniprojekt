@@ -22,7 +22,12 @@ namespace Fitnessstudio.Views
     {
         public Home()
         {
-            //InitializeComponent();
+            InitializeComponent();
+        }
+
+        public void SetDataContext(object dataContext)
+        {
+            this.DataContext = dataContext;
         }
     }
 }
