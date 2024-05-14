@@ -1,28 +1,81 @@
-﻿using System;
+﻿using Syncfusion.UI.Xaml.Scheduler;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Npgsql;
 
 namespace Fitnessstudio.Views
 {
-    /// <summary>
-    /// Interaction logic for Page1.xaml
-    /// </summary>
     public partial class Page1 : Page
     {
         public Page1()
         {
             InitializeComponent();
+            Schedule.ViewType = SchedulerViewType.TimelineDay;
+            Schedule.TimelineViewSettings.TimeRulerFormat = "hh mm";
+
+            LoadAppointments(); // Lade Termine beim Initialisieren der Seite
+        }
+
+        private async void LoadAppointments()
+        {
+            try
+            {
+                DB db = new DB();
+
+                // Verbindung zur Datenbank herstellen
+                using (var connection = await db.GetConnection())
+                {
+                    // Prüfen, ob die Verbindung geöffnet ist
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        await connection.OpenAsync();
+                    }
+
+                    // SQL-Abfrage zum Abrufen der Termine aus der Tabelle Termin
+                    var sql = "SELECT bezeichnung, termin2.\"startZeit\", dauer, location FROM Termin2";
+
+                    // Befehl zum Ausführen der SQL-Abfrage
+                    using (var command = new NpgsqlCommand(sql, connection))
+                    {
+                        // Daten aus der Abfrage lesen
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            var scheduleAppointmentCollection = new ScheduleAppointmentCollection();
+
+                            while (await reader.ReadAsync())
+                            {
+                                // Daten aus der Datenbank lesen
+                                string bezeichnung = reader.GetString(0);
+                                DateTime startZeit = reader.GetDateTime(1);
+                                int dauerMinutes = reader.GetInt16(2);
+                                TimeSpan dauer = TimeSpan.FromMinutes(dauerMinutes);
+                                // Endzeit berechnen
+                                DateTime endZeit = startZeit.Add(dauer);
+                                string location = reader.GetString(3);
+
+                                // ScheduleAppointment erstellen und zur Sammlung hinzufügen
+                                scheduleAppointmentCollection.Add(new ScheduleAppointment()
+                                {
+                                    StartTime = startZeit,
+                                    EndTime = endZeit,
+                                    Subject = bezeichnung,
+                                    Location = location
+                                });
+                            }
+
+                            // Datenquelle für den Scheduler setzen
+                            Schedule.ItemsSource = scheduleAppointmentCollection;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Fehlerbehandlung
+                Console.WriteLine("Fehler beim Laden der Termine: " + ex.Message);
+            }
         }
     }
 }
