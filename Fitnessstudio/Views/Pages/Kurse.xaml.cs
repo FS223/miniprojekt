@@ -24,5 +24,7 @@ namespace Fitnessstudio.Views
         {
             InitializeComponent();
         }
+
+        private void KursHinufuegen_Click(object sender, RoutedEventArgs e) => NeuerKursFrame.Source = new Uri("../pages/Kursdetails.xaml", UriKind.Relative);
     }
 }

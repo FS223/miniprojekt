@@ -11,11 +11,12 @@
     <Grid>
         <StackPanel Margin="20,20,20,20">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <Button Style="{DynamicResource AddButtonStyle}">
+                <Button Style="{DynamicResource AddButtonStyle}" Click="KursHinufuegen_Click">
                     <Image Source="/Images/greenAddCircle.png" Height="25" />
                 </Button>
                 <Label Content="Kurs hinzufügen" />
             </StackPanel>
+            <Frame Name="NeuerKursFrame" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*" />
