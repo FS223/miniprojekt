@@ -70,7 +70,6 @@ namespace Fitnessstudio.Views
                 // Proceed with successful login
                 lblError.Content = "";
                 lblError.Visibility = Visibility.Hidden;
-                MessageBox.Show("Login successful!");
                 CurrentAccount = await auth.GetUserByUsernameAsync(txtUser.Text);
                 if (CurrentAccount == null)
                 {

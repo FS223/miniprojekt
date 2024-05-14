@@ -14,19 +14,7 @@
 
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5">
-            <ComboBox Width="150" Margin="0, 0, 10, 0">
-                <ComboBoxItem Content="Option 1"/>
-                <ComboBoxItem Content="Option 2"/>
-                <ComboBoxItem Content="Option 3"/>
-            </ComboBox>
-            <ComboBox Width="150" Margin="0, 0, 330, 0">
-                <ComboBoxItem Content="Option 1"/>
-                <ComboBoxItem Content="Option 2"/>
-                <ComboBoxItem Content="Option 3"/>
-            </ComboBox>
-            <Button Style="{StaticResource addButton}" Content="Neuen Kunden hinzufügen" Width="150" HorizontalAlignment="Right" Command="{Binding NewCommand}"/>
-        </StackPanel>
+        <Button Style="{StaticResource addButton}" Content="Neuen Kunden hinzufügen" Width="150" HorizontalAlignment="Right" Command="{Binding NewCommand}" Margin="5"/>
         <Grid>
             <DataGrid ItemsSource="{Binding Path=Items}" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
 

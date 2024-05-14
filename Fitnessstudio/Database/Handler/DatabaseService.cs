@@ -1,9 +1,11 @@
 ﻿using Fitnessstudio.Models;
+using Fitnessstudio.Views;
 using Npgsql;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -103,6 +105,121 @@ namespace Fitnessstudio
                 }
             }
         }
+
+        public async Task<Kunde> GetKundeByID(int id)
+        {
+            var connection = await db.GetConnection();
+            using (connection)
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
+                await using (var cmd = new NpgsqlCommand("SELECT * FROM kunde WHERE id = @p1", connection))
+                {
+                    cmd.Parameters.AddWithValue("@p1", id);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            if (!Enum.TryParse(reader.GetString(reader.GetOrdinal("mitgliedschaft")), out Mitgliedschaft mitgliedschaft))
+                            {
+                                mitgliedschaft = Mitgliedschaft.Keine;
+                            }
+                            return new Kunde {
+                                Id = reader.GetInt32(reader.GetOrdinal("id")),
+                                PersonId = reader.GetInt32(reader.GetOrdinal("personId")),
+                                Guthaben = (float)reader.GetDouble(reader.GetOrdinal("guthaben")),
+                                Iban = reader.GetString(reader.GetOrdinal("iban")),
+                                Bild = reader.IsDBNull(reader.GetOrdinal("bild")) ? null : reader.GetString(reader.GetOrdinal("bild")),
+                                Mitgliedschaft = mitgliedschaft
+                            };
+
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        public async Task<Person> GetPersonByID(int id)
+        {
+            // Get a connection from the DB instance
+            using (var conn = await db.GetConnection())
+            {
+                await using (var cmd = new NpgsqlCommand("SELECT * FROM person WHERE id = @p1", conn))
+                {
+                    cmd.Parameters.AddWithValue("@p1", id);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            Enum.TryParse(reader.GetString(reader.GetOrdinal("geschlecht")), out Geschlecht geschlecht);
+                            return new Person {
+                                Id = reader.GetInt32(reader.GetOrdinal("id")),
+                                Vorname = reader.GetString(reader.GetOrdinal("vorname")),
+                                Nachname = reader.GetString(reader.GetOrdinal("nachname")),
+                                Geburtsdatum = reader.GetDateTime(reader.GetOrdinal("geburtsdatum")),
+                                Geschlecht = geschlecht,
+                                AnschriftId = reader.GetInt32(reader.GetOrdinal("anschriftId")),
+                                // Fehlende Datenbank Spalten, dadurch Exceptions....
+                                // AccountId = reader.IsDBNull(reader.GetOrdinal("accountId")) ? null : reader.GetInt32(reader.GetOrdinal("accountId")),
+                                // KundeId = reader.IsDBNull(reader.GetOrdinal("kundeId")) ? null : reader.GetInt32(reader.GetOrdinal("kundeId")),
+                                // MitarbeiterId = reader.IsDBNull(reader.GetOrdinal("mitarbeiterId")) ? null : reader.GetInt32(reader.GetOrdinal("mitarbeiterId"))
+                            };
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<bool> UpdatePersonByID(int id, Person updatedPerson)
+        {
+            // Get a connection from the DB instance
+            using (var conn = await db.GetConnection())
+            {
+                //*
+                //  accountId = @accountId, 
+                //  kundeId = @kundeId, 
+                //  mitarbeiterId = @mitarbeiterId,
+                //*// 
+
+                await using (var cmd = new NpgsqlCommand(@"UPDATE person 
+                                                   SET vorname = @vorname, 
+                                                       nachname = @nachname, 
+                                                       geburtsdatum = @geburtsdatum, 
+                                                       geschlecht = @geschlecht, 
+                                                       anschriftId = @anschriftId,
+                                                   WHERE id = @id", conn))
+                {
+                    // Set the parameter values
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@vorname", updatedPerson.Vorname);
+                    cmd.Parameters.AddWithValue("@nachname", updatedPerson.Nachname);
+                    cmd.Parameters.AddWithValue("@geburtsdatum", updatedPerson.Geburtsdatum);
+                    cmd.Parameters.AddWithValue("@geschlecht", updatedPerson.Geschlecht.ToString());
+                    cmd.Parameters.AddWithValue("@anschriftId", updatedPerson.AnschriftId);
+                    //cmd.Parameters.AddWithValue("@accountId", (object)updatedPerson.AccountId ?? DBNull.Value);
+                    //cmd.Parameters.AddWithValue("@kundeId", (object)updatedPerson.KundeId ?? DBNull.Value);
+                    //cmd.Parameters.AddWithValue("@mitarbeiterId", (object)updatedPerson.MitarbeiterId ?? DBNull.Value);
+                    
+
+                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+
 
         public async Task<List<Account>> GetAccounts()
         {
