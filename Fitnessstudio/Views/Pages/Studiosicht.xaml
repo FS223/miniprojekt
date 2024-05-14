@@ -8,7 +8,8 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
 
-    <Grid>
+    <Grid Background="White">
         <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
     </Grid>
 </Page>
