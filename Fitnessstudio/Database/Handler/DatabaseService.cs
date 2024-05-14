@@ -257,6 +257,13 @@ namespace Fitnessstudio
             return mitarbeiter;
         }
 
+        public async Task<NpgsqlConnection> GetConnection()
+        {
+            NpgsqlConnection connection = new NpgsqlConnection("your_connection_string_here");
+            return connection;
+        }
+
+
         public async Task<List<Kurs>> GetKurse()
         {
             var kurse = new List<Kurs>();
