@@ -1,13 +1,6 @@
-﻿using Npgsql.PostgresTypes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fitnessstudio.Models
+﻿namespace Fitnessstudio
 {
-    internal class Kurs
+    public class Kurs
     {
         private int id;
         private string bezeichnung;
@@ -16,20 +9,18 @@ namespace Fitnessstudio.Models
         private int minTeilnehmer = 0;
         private int maxTeilnehmer;
         private decimal preis;
-        private int dauer;
         private List<Termin> termine;
         private List<Kunde> teilnehmer;
 
-        public Kurs(int id, string bezeichnung, string? beschreibung, int kursLeiterId, int minTeilnehmer, int maxTeilnehmer, decimal preis, int dauer, List<Termin>? termine = null, List<Kunde>? teilnehmer = null) 
-        { 
+        public Kurs(int id, string bezeichnung, string? beschreibung, int kursLeiterId, int minTeilnehmer, int maxTeilnehmer, decimal preis, List<Termin>? termine = null, List<Kunde>? teilnehmer = null)
+        {
             this.id = id;
             Bezeichnung = bezeichnung;
             Beschreibung = beschreibung;
-            kursLeiterId = kursLeiterId;
+            KursLeiterId = kursLeiterId;
             MinTeilnehmer = minTeilnehmer;
             MaxTeilnehmer = maxTeilnehmer;
             Preis = preis;
-            Dauer = dauer;
             Termine = termine;
             Teilnehmer = teilnehmer;
         }
@@ -41,48 +32,49 @@ namespace Fitnessstudio.Models
         public int MinTeilnehmer { get => minTeilnehmer; set => minTeilnehmer = value; }
         public int MaxTeilnehmer { get => maxTeilnehmer; set => maxTeilnehmer = value; }
         public decimal Preis { get => preis; set => preis = value; }
-        public int Dauer { get => dauer; set => dauer = value; }
         public List<Termin> Termine { get => termine; set => termine = value; }
         public List<Kunde> Teilnehmer { get => teilnehmer; set => teilnehmer = value; }
 
-        public void hinzufuegenTeilnehmer(Kunde teilnehmer)
+        public void HinzufuegenTeilnehmer(Kunde teilnehmer)
         {
             Teilnehmer.Add(teilnehmer);
         }
 
-        public void entfernenTeilnehmer(int kundeId)
+        public void EntfernenTeilnehmer(int kundeId)
         {
-            foreach(Kunde kunde in Teilnehmer)
+            foreach (Kunde kunde in Teilnehmer)
             {
                 if (kunde.Id == kundeId)
                 {
                     Teilnehmer.Remove(kunde);
+                    break;
                 }
             }
         }
 
-        public void entfernenTeilnehmer(Kunde kunde)
+        public void EntfernenTeilnehmer(Kunde kunde)
         {
             Teilnehmer.Remove(kunde);
         }
 
-        public void hinzufuegenTerin(Termin termin)
+        public void HinzufuegenTermin(Termin termin)
         {
             Termine.Add(termin);
         }
 
-        public void entfernenTermin(int terminId)
+        public void EntfernenTermin(int terminId)
         {
-            foreach(Termin termin in Termine)
+            foreach (Termin termin in Termine)
             {
                 if (termin.Id == terminId)
                 {
                     Termine.Remove(termin);
+                    break;
                 }
             }
         }
 
-        public void entfernenTermin(Termin termin)
+        public void EntfernenTermin(Termin termin)
         {
             Termine.Remove(termin);
         }

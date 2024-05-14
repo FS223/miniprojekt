@@ -280,18 +280,15 @@ namespace Fitnessstudio
                 {
                     while (await reader.ReadAsync())
                     {
-                        kurse.Add(new Kurs(
+                        kurse.Add(new Models.Kurs(
                             reader.GetInt32(reader.GetOrdinal("id")),
                             reader.GetString(reader.GetOrdinal("bezeichnung")),
                             reader.IsDBNull(reader.GetOrdinal("beschreibung")) ? null : reader.GetString(reader.GetOrdinal("beschreibung")),
                             reader.GetInt32(reader.GetOrdinal("kursLeiterId")),
                             reader.GetInt32(reader.GetOrdinal("minTeilnehmer")),
                             reader.GetInt32(reader.GetOrdinal("maxTeilnehmer")),
-                            reader.GetDecimal(reader.GetOrdinal("preis")),
-                            reader.GetInt32(reader.GetOrdinal("dauer"))
+                            reader.GetDecimal(reader.GetOrdinal("preis"))
                             ));
-                        
-                       
                     }
                 }
             }
