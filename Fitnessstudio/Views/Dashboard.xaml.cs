@@ -26,6 +26,7 @@ namespace Fitnessstudio.Views
         {
             InitializeComponent();
             CurrentAccount = currentAccount;
+            NavigateToPage("Pages/Home.xaml", CurrentAccount);
         }
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Home.xaml", CurrentAccount);
@@ -48,6 +49,10 @@ namespace Fitnessstudio.Views
                     else if (page is KundenVerwaltung kundenVerwaltungPage)
                     {
                         kundenVerwaltungPage.SetDataContext(new KundenVerwaltungViewModel(CurrentAccount));
+                    }
+                    else if (page is Home homePage)
+                    {
+                        homePage.SetDataContext(new HomeViewModel(CurrentAccount));
                     }
                     // Andere Pages können erst mit gültigen ViewModel hinzugefügt werden.
                 }

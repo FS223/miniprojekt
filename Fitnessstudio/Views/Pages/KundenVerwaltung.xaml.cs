@@ -24,7 +24,6 @@ namespace Fitnessstudio.Views.Pages
         public KundenVerwaltung()
         {
             InitializeComponent();
-            DataContext = new KundenVerwaltungViewModel(new Account());
         }
 
         public void SetDataContext(object dataContext)
