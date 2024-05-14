@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Fitnessstudio.Views
+namespace Fitnessstudio.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for Home.xaml
+    /// Interaktionslogik für kundenView.xaml
     /// </summary>
-    public partial class Home : Page
+    public partial class kundenView : Page
     {
-        public Home()
+        public kundenView()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }
