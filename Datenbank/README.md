@@ -27,7 +27,7 @@ Um das Datenbankmodell zu visualisieren, kann das Prisma Editor Tool verwendet w
 
 - [Prisma Editor](https://prisma-editor.vercel.app/)
 
-![Datenbankmodell](Datenbankmodell.png)
+![Datenmodell](/Datenmodell.png)
 
 ### Datenbankzugriff
 
