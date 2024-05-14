@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitnessstudio.Views.Pages"
       xmlns:viewmodels="clr-namespace:Fitnessstudio.ViewModels"
-      d:DataContext="{d:DesignInstance Type=viewmodels:KundenAdminViewModel}"
+      d:DataContext="{d:DesignInstance Type=viewmodels:KundenVerwaltungViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="KundenVerwaltung">
@@ -28,25 +28,25 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Margin="5">Vorname:</Label>
-            <TextBox Grid.Row="1" Grid.Column="0" Margin="5" />
-            <Label Grid.Row="0" Grid.Column="1" Margin="5">Vorname:</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" />
+            <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding Vorname}"/>
+            <Label Grid.Row="0" Grid.Column="1" Margin="5">Nachname:</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Nachname}"/>
 
             <Label Grid.Row="2" Grid.Column="0" Margin="5">Land:</Label>
-            <TextBox Grid.Row="3" Grid.Column="0" Margin="5" />
+            <TextBox Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding Land}"/>
             <Label Grid.Row="2" Grid.Column="1" Margin="5">Adresse:</Label>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="5" />
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding Adresse}" />
 
             <Label Grid.Row="4" Grid.Column="0" Margin="5">Iban:</Label>
-            <TextBox Grid.Row="5" Grid.Column="0" Margin="5" />
+            <TextBox Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding Iban}"/>
             <Label Grid.Row="4" Grid.Column="1" Margin="5">Geburtstag:</Label>
-            <TextBox Grid.Row="5" Grid.Column="1" Margin="5" />
+            <DatePicker Grid.Row="5" Grid.Column="1" Margin="5" Text="{Binding Geburtstag}"/>
 
             <Label Grid.Row="6" Grid.Column="0" Margin="5">Passwort:</Label>
-            <TextBox Grid.Row="7" Grid.Column="0" Margin="5" />
+            <TextBox Grid.Row="7" Grid.Column="0" Margin="5" Text="{Binding Passwort}"/>
             <Label Grid.Row="6" Grid.Column="1" Margin="5">Passwort wiederholen:</Label>
-            <TextBox Grid.Row="7" Grid.Column="1" Margin="5" />
+            <TextBox Grid.Row="7" Grid.Column="1" Margin="5" Text="{Binding WPasswort}"/>
         </Grid>
-        <Button Content="Speichern" Width="100"/>
+        <Button Content="Speichern" Width="100" Command="{Binding SaveCommand}"/>
     </StackPanel>
 </Page>
