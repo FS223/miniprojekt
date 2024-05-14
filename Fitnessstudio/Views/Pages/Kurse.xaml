@@ -9,22 +9,25 @@
       Title="Kurse">
     
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button>
+        <StackPanel Margin="20,20,20,20">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <Button Style="{DynamicResource AddButtonStyle}">
                     <Image Source="/Images/greenAddCircle.png" Height="25" />
                 </Button>
                 <Label Content="Kurs hinzufügen" />
             </StackPanel>
-            <ListView>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <Setter Property="BorderBrush" Value="DarkGray" />
-                        <Setter Property="BorderThickness" Value="1,1,1,1" />
-                        <Setter Property="HorizontalAlignment" Value="Stretch" />
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.2*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Kursname" Grid.Column="0" Margin="5,5,5,5" />
+                <Label Content="Dauer" Grid.Column="1" Margin="5,5,5,5" />
+                <Label Content="Teilnehmer" Grid.Column="2" Margin="5,5,5,5" />
+            </Grid>
+            <ListView ItemContainerStyle="{DynamicResource CustomListViewItemStyle}" AlternationCount="2">
                 <ListViewItem>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -36,7 +39,7 @@
                         <Label Content="Kursname" Grid.Column="0" Margin="5,5,5,5" />
                         <Label Content="45min" Grid.Column="1" Margin="5,5,5,5" />
                         <Label Content="8/16" Grid.Column="2" Margin="5,5,5,5" />
-                        <Button Grid.Column="3" Margin="5,5,5,5">
+                        <Button Grid.Column="3" Margin="5,5,5,5" Style="{DynamicResource DeleteButtonStyle}">
                             <Image Source="/Images/redDeleteIcon.png" Height="25"/>
                         </Button>
                     </Grid>
@@ -52,7 +55,41 @@
                         <Label Content="Kursname" Grid.Column="0" Margin="5,5,5,5" />
                         <Label Content="45min" Grid.Column="1" Margin="5,5,5,5" />
                         <Label Content="8/16" Grid.Column="2" Margin="5,5,5,5" />
-                        <Button Content="Delete" Grid.Column="3" Margin="5,5,5,5" />
+                        <Button Grid.Column="3" Margin="5,5,5,5" Style="{DynamicResource DeleteButtonStyle}">
+                            <Image Source="/Images/redDeleteIcon.png" Height="25"/>
+                        </Button>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="0.2*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Kursname" Grid.Column="0" Margin="5,5,5,5" />
+                        <Label Content="45min" Grid.Column="1" Margin="5,5,5,5" />
+                        <Label Content="8/16" Grid.Column="2" Margin="5,5,5,5" />
+                        <Button Grid.Column="3" Margin="5,5,5,5" Style="{DynamicResource DeleteButtonStyle}">
+                            <Image Source="/Images/redDeleteIcon.png" Height="25"/>
+                        </Button>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="0.2*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Kursname" Grid.Column="0" Margin="5,5,5,5" />
+                        <Label Content="45min" Grid.Column="1" Margin="5,5,5,5" />
+                        <Label Content="8/16" Grid.Column="2" Margin="5,5,5,5" />
+                        <Button Grid.Column="3" Margin="5,5,5,5" Style="{DynamicResource DeleteButtonStyle}">
+                            <Image Source="/Images/redDeleteIcon.png" Height="25"/>
+                        </Button>
                     </Grid>
                 </ListViewItem>
             </ListView>
