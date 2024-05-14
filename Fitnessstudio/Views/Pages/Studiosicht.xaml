@@ -63,7 +63,8 @@
             </syncfusion:SfScheduler.TimelineViewSettings>
 
         </syncfusion:SfScheduler>
-    <Grid Background="White">
-        <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Grid Background="White">
+            <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Page>
