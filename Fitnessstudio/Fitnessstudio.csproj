@@ -11,7 +11,11 @@
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="DotNetEnv" Version="3.0.0" />
+    <PackageReference Include="MindFusion.Pack.Wpf" Version="2024.2.0" />
     <PackageReference Include="Npgsql" Version="7.0.0" />
+    <PackageReference Include="ScottPlot.WPF" Version="4.1.74" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
     <None Remove="Images\account.png" />
     <None Remove="Images\group.png" />
     <None Remove="Images\home.png" />

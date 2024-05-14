@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fitnessstudio.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Fitnessstudio.Views
+namespace Fitnessstudio.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for Kurse.xaml
+    /// Interaktionslogik für KundenVerwaltung.xaml
     /// </summary>
-    public partial class Kurse : Page
+    public partial class KundenVerwaltung : Page
     {
-        public Kurse()
+        public KundenVerwaltung()
         {
             InitializeComponent();
+            DataContext = new KundenVerwaltungViewModel(new Account());
         }
 
-        private void KursHinufuegen_Click(object sender, RoutedEventArgs e) => NeuerKursFrame.Source = new Uri("../pages/Kursdetails.xaml", UriKind.Relative);
+        public void SetDataContext(object dataContext)
+        {
+            this.DataContext = dataContext;
+        }
     }
 }
