@@ -22,7 +22,7 @@ namespace Fitnessstudio.Views
     {
         public Home()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }

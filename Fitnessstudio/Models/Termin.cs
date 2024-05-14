@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fitnessstudio.Models
 {
-    internal class Termin
+    public class Termin
     {
         private int id;
         private string bezeichnung;

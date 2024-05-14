@@ -5,11 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitnessstudio.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Kunden">
-
-    <Grid>
-        <Label Content="Kunden"></Label>
-
-    </Grid>
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Kunden"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch">
 </Page>

@@ -27,7 +27,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 
 - **Marcel** [@AdmiralCM](https://github.com/AdmiralCM)
 - Steven [@StevoMc](https://github.com/StevoMc)
-- Maxi
+- Maxi [@Auty411](https://github.com/Auty411)
 - Nady [@Iskuzmi](https://github.com/Iskuzmi)
 
 **Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Datenbank)

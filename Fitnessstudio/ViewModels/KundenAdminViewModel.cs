@@ -1,47 +1,65 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Input;
 using Fitnessstudio.Commands;
 using Fitnessstudio.Models;
+using Npgsql;
+using Serilog;
 
 namespace Fitnessstudio.ViewModels
 {
     public class KundenAdminViewModel : BaseViewModel
     {
+        private readonly DatabaseService databaseService;
         private ObservableCollection<PersonWithAddress> items;
+
         public ObservableCollection<PersonWithAddress> Items { get { return items; } set { items = value; OnPropertyChanged(nameof(Items)); } }
 
         public ICommand DeleteCommand { get; }
         public ICommand EditCommand { get; }
         public ICommand NewCommand { get; }
 
-        public KundenAdminViewModel()
+        private Account CurrentAccount { get; set; }
+
+
+
+        public KundenAdminViewModel(Account CurrentAccount)
         {
+            databaseService = new DatabaseService();
             Items = new ObservableCollection<PersonWithAddress>();
-            GetPersonen();
-            DeleteCommand = new DeleteCommand();
+            GetPersonenWithAdress();
+            DeleteCommand = new DeletePersonCommand(databaseService.DeletePersonAsync);
             EditCommand = new EditCommand();
             NewCommand = new NewCommand();
+            this.CurrentAccount = CurrentAccount;
+            Debug.WriteLine(CurrentAccount);
         }
 
-        private async void GetPersonen()
+        private async void GetPersonenWithAdress()
         {
-            var databaseService = new DatabaseService();
-            var Personen = await databaseService.GetPersonen();
-            var auth = new Auth();
-            foreach (var person in Personen)
+            try
             {
-                var address = await databaseService.GetAnschriftByID(person.Id);
-                if (address != null)
+                var Personen = await databaseService.GetPersonen();
+                var auth = new Auth();
+                foreach (var person in Personen)
                 {
-                    PersonWithAddress kunde = new PersonWithAddress(person, address);
-                    Items.Add(kunde);
+                    var address = await databaseService.GetAnschriftByID(person.Id);
+                    if (address != null)
+                    {
+                        PersonWithAddress kunde = new PersonWithAddress(person, address);
+                        Items.Add(kunde);
+                    }
                 }
-
-
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error while fetching persons");
             }
         }
+
+        // @Riad, habe dein Code in DatabaseSevice umgelagert.
     }
 }

@@ -1,7 +1,5 @@
-﻿using Fitnessstudio.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,20 +16,13 @@ using System.Windows.Shapes;
 namespace Fitnessstudio.Views.Pages
 {
     /// <summary>
-    /// Interaktionslogik für KundenAdmin.xaml
+    /// Interaktionslogik für kundenView.xaml
     /// </summary>
-    public partial class KundenAdmin : Page
+    public partial class kundenView : Page
     {
-        public KundenAdmin()
+        public kundenView()
         {
             InitializeComponent();
         }
-
-        public void SetDataContext(object dataContext)
-        {
-            this.DataContext = dataContext;
-        }
-
     }
 }
-

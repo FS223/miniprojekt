@@ -118,7 +118,7 @@ namespace Fitnessstudio
             }
         }
 
-        private async Task<Account?> GetUserByUsernameAsync(string username)
+        public async Task<Account?> GetUserByUsernameAsync(string username)
         {
             // Get a connection from the DB instance
             using (var conn = await db.GetConnection())
