@@ -96,6 +96,7 @@
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
@@ -125,6 +126,12 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="\Images\kurs.png" Width="24"/>
                                     <TextBlock  Style="{StaticResource TextBlockWhite}">Kurse</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button IsEnabled="True" Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonAdmin" Grid.Column="1" Grid.Row="4" Click="ButtonAdmin_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="\Images\group.png" Width="24"/>
+                                    <TextBlock  Style="{StaticResource TextBlockWhite}">Admin</TextBlock>
                                 </StackPanel>
                             </Button>
                         </Grid>
