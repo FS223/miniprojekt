@@ -15,7 +15,9 @@ namespace Fitnessstudio
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow = new Dashboard() {
+            // TODO Vom Login hier speichern!
+
+            MainWindow = new LoginView(CurrentUser) {
                 //DataContext = new MainWindowViewModel()
             };
             MainWindow.Show();
