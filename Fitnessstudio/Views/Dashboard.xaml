@@ -242,11 +242,50 @@
             </Grid>
             </Grid>
                         </Border>
+        </Grid>
+        <Grid DockPanel.Dock="Left" Width="150" Background="black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonHome" Grid.Column="0" Grid.Row="1" Click="ButtonHome_Click">
+                <StackPanel>
+                    <Image Source="\Images\home.png" Width="24"/>
+                    <TextBlock Style="{StaticResource TextBlockWhite}">Home</TextBlock>
+                </StackPanel>
+            </Button>
 
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonStudio" Grid.Column="0" Grid.Row="2" Click="ButtonStudio_Click">
+                <StackPanel>
+                    <Image Source="\Images\overview.png" Width="24"/>
+                    <TextBlock Style="{StaticResource TextBlockWhite}">Studioübersicht</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonKunden" Grid.Column="0" Grid.Row="3" Click="ButtonKunden_Click">
+                <StackPanel>
+                    <Image Source="\Images\group.png" Width="24"/>
+                    <TextBlock  Style="{StaticResource TextBlockWhite}">Kundenverwaltung</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonKundenAdmin" Grid.Column="0" Grid.Row="4" Click="ButtonKundenAdmin_Click">
+                <StackPanel>
+                    <Image Source="\Images\group.png" Width="24"/>
+                    <TextBlock  Style="{StaticResource TextBlockWhite}">Adminverwaltung</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Template="{DynamicResource ButtonTemplate1}" Style="{StaticResource ButtonStyling}" Name="ButtonKurse" Grid.Column="0" Grid.Row="5" Click="ButtonKurse_Click">
+                <StackPanel>
+                    <Image Source="\Images\kurs.png" Width="24"/>
+                    <TextBlock  Style="{StaticResource TextBlockWhite}">Kurse</TextBlock>
+                </StackPanel>
+            </Button>
 
-
-                    </Grid>
-                </Border>
+        </Grid>
         <Frame Name="FrameWithinGrid" Source="Pages/Home.xaml" NavigationUIVisibility="Hidden"/>
     </DockPanel>
         </Border>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fitnessstudio.ViewModels;
+using Fitnessstudio.Views.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,33 +21,27 @@ namespace Fitnessstudio.Views
     /// </summary>
     public partial class Dashboard : Window
     {
-        public Dashboard()
+        private Account CurrentAccount;
+        public Dashboard(Account currentAccount)
         {
             InitializeComponent();
+            CurrentAccount = currentAccount;
         }
 
-        private void ButtonHome_Click(object sender, RoutedEventArgs e)
-        {
-            FrameWithinGrid.Source = new Uri("Pages/Home.xaml", UriKind.Relative);
-            Header.Content = "Home";
-        }
-        private void ButtonStudio_Click(object sender, RoutedEventArgs e)
-        {
-            FrameWithinGrid.Source = new Uri("Pages/Studiosicht.xaml", UriKind.Relative);
-            Header.Content = "Studioübersicht";
-        }
-        private void ButtonKunden_Click(object sender, RoutedEventArgs e)
-        {
-            FrameWithinGrid.Source = new Uri("Pages/Kunden.xaml", UriKind.Relative);
-            Header.Content = "Kundenverwaltung";
-        }
+        private void ButtonHome_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Home.xaml", CurrentAccount);
+        private void ButtonStudio_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Studiosicht.xaml", CurrentAccount);
+        private void ButtonKunden_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/KundenVerwaltung.xaml", CurrentAccount);
+        private void ButtonKurse_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Kurse.xaml", CurrentAccount);
+        private void ButtonKundenAdmin_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/KundenAdmin.xaml", CurrentAccount);
 
-        private void ButtonKurse_Click(object sender, RoutedEventArgs e)
-        {
-            FrameWithinGrid.Source = new Uri("Pages/Kurse.xaml", UriKind.Relative);
-            Header.Content = "Kursverwaltung";
-        }
 
+
+
+
+        private void NavigateToPage(string pageUri, object parameter)
+        {
+            var uri = new Uri(pageUri, UriKind.Relative);
+            FrameWithinGrid.Source = uri;
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -54,7 +50,22 @@ namespace Fitnessstudio.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            // Application.Current.Shutdown();
+            // Verwende den Navigations-Event, um den DataContext zu setzen
+            FrameWithinGrid.Navigated += (sender, e) => {
+                if (e.Content is Page page)
+                {
+                    if (page is KundenAdmin kundenAdminPage)
+                    {
+                        kundenAdminPage.SetDataContext(new KundenAdminViewModel(CurrentAccount));
+                    }
+                    else if (page is KundenVerwaltung kundenVerwaltungPage)
+                    {
+                        kundenVerwaltungPage.SetDataContext(new KundenVerwaltungViewModel(CurrentAccount));
+                    }
+                    // Andere Pages können erst mit gültigen ViewModel hinzugefügt werden.
+                }
+            };
         }
     }
 }

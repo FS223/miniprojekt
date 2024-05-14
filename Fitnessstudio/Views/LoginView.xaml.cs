@@ -22,8 +22,12 @@ namespace Fitnessstudio.Views
     public partial class LoginView : Window
     {
         private Auth auth;
-        public LoginView()
+
+        private Account CurrentAccount { get; set; }
+
+        public LoginView(Account CurrentAccount)
         {
+            this.CurrentAccount = CurrentAccount;
             InitializeComponent();
             auth = new Auth();
         }
@@ -67,7 +71,12 @@ namespace Fitnessstudio.Views
                 lblError.Content = "";
                 lblError.Visibility = Visibility.Hidden;
                 MessageBox.Show("Login successful!");
-                Dashboard dashboard = new Dashboard();
+                CurrentAccount = await auth.GetUserByUsernameAsync(txtUser.Text);
+                if (CurrentAccount == null)
+                {
+                    throw new Exception("Internal Error");
+                }
+                Dashboard dashboard = new Dashboard(CurrentAccount);
                 this.Visibility = Visibility.Hidden;
                 dashboard.WindowState = WindowState.Normal;
                 dashboard.Owner = this;

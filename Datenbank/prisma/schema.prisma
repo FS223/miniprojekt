@@ -11,14 +11,15 @@ generator client {
 
 // Anschriftmodell
 model anschrift {
-  id         Int      @id @unique @default(autoincrement())
-  land       String
-  plz        String
-  ort        String
-  strasse    String
-  hausnummer String
-  zusatz     String
-  person     person[]
+  id            Int            @id @unique @default(autoincrement())
+  land          String
+  plz           String
+  ort           String
+  strasse       String
+  hausnummer    String
+  zusatz        String
+  person        person[]
+  niederlassung niederlassung?
 
   @@unique([land, plz, ort, strasse, hausnummer, zusatz])
 }
@@ -30,8 +31,10 @@ model account {
   email        String @unique
   passwort     String
   rolle        rolle  @default(KUNDE)
-  person       person @relation(fields: [personId], references: [id])
+  person       person @relation(fields: [personId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   personId     Int    @unique
+
+  @@unique([benutzername, email, rolle, personId])
 }
 
 // Personmodell
@@ -52,20 +55,32 @@ model person {
 
 // Kunde
 model kunde {
-  id       Int     @id @unique @default(autoincrement())
-  person   person? @relation(fields: [personId], references: [id])
-  personId Int?    @unique
-  iban     String? @unique @db.VarChar(38)
-  bild     String?
-  kurse    kurs[]
+  id              Int             @id @unique @default(autoincrement())
+  person          person?         @relation(fields: [personId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  personId        Int?            @unique
+  iban            String          @unique @db.VarChar(38)
+  bild            String?
+  guthaben        Float           @default(0)
+  mitgliedschaft  mitgliedschaft?
+  kurse           kurs[]
+  zeitenBuchung   zeitenBuchung[]
+  niederlassung   niederlassung?  @relation(fields: [niederlassungId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  niederlassungId Int
+  messung         messung[]
+
+  @@unique([personId, iban, mitgliedschaft, niederlassungId])
 }
 
 // Mitarbeiter
 model mitarbeiter {
-  id       Int     @id @unique @default(autoincrement())
-  person   person? @relation(fields: [personId], references: [id])
-  personId Int?    @unique
-  kurse    kurs[]
+  id              Int            @id @unique @default(autoincrement())
+  person          person?        @relation(fields: [personId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  personId        Int?           @unique
+  kurse           kurs[]
+  niederlassung   niederlassung? @relation(fields: [niederlassungId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  niederlassungId Int
+
+  @@unique([personId, niederlassungId])
 }
 
 // Kursverwaltung
@@ -74,15 +89,36 @@ model kurs {
   bezeichnung   String
   beschreibung  String?
   teilnehmer    kunde[]
-  kursLeiter    mitarbeiter @relation(fields: [kursLeiterId], references: [id])
+  kursLeiter    mitarbeiter @relation(fields: [kursLeiterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   kursLeiterId  Int
   minTeilnehmer Int         @default(0)
   maxTeilnehmer Int         @default(16)
   preis         Decimal     @default(0.00)
-  dauer         Int         @default(45)
   termine       termin[]
 
-  @@unique([bezeichnung, kursLeiterId, minTeilnehmer, maxTeilnehmer, preis, dauer])
+  @@unique([bezeichnung, kursLeiterId, minTeilnehmer, maxTeilnehmer, preis])
+}
+
+// CheckIn / CheckOut
+model zeitenBuchung {
+  id       Int      @id @unique @default(autoincrement())
+  checkIn  DateTime @default(now())
+  checkOut DateTime @default(now())
+  kunde    kunde?   @relation(fields: [kundenId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  kundenId Int?
+
+  @@unique([checkIn, checkOut, kundenId])
+}
+
+model niederlassung {
+  id          Int           @id @unique @default(autoincrement())
+  name        String        @unique
+  anschrift   anschrift     @relation(fields: [anschriftId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  anschriftId Int           @unique
+  mitarbeiter mitarbeiter[]
+  kunden      kunde[]
+
+  @@unique([name, anschriftId])
 }
 
 // Terminmodell
@@ -92,8 +128,23 @@ model termin {
   beschreibung String?
   startZeit    DateTime @default(now())
   dauer        Int      @default(45)
-  kurs         kurs?    @relation(fields: [kursId], references: [id])
+  kurs         kurs?    @relation(fields: [kursId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   kursId       Int?
+
+  @@unique([bezeichnung, startZeit, kursId, dauer])
+}
+
+// Messung
+model messung {
+  id          Int      @id @unique @default(autoincrement())
+  datum       DateTime @default(now())
+  gewicht     Float
+  groesse     Float
+  fettanteil  Float
+  muskelmasse Float
+  kunde       kunde    @relation(fields: [kundeId], references: [id])
+  kundeId     Int
+  bmi         Float
 }
 
 // Geschlecht
@@ -108,4 +159,11 @@ enum rolle {
   ADMINISTRATOR
   PERSONAL
   KUNDE
+}
+
+enum mitgliedschaft {
+  BRONZE
+  SILBER
+  GOLD
+  PLATINUM
 }
