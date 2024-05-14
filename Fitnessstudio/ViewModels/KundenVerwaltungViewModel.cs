@@ -1,4 +1,6 @@
 ﻿using Fitnessstudio.Commands;
+using Fitnessstudio.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace Fitnessstudio.ViewModels
 {
     public class KundenVerwaltungViewModel : BaseViewModel
     {
+        private readonly DatabaseService databaseService;
+
         public readonly Account CurrentUser;
         private String vorname = "";
         public String Vorname { get { return vorname; } set { vorname = value; OnPropertyChanged(nameof(Vorname)); } }
@@ -39,7 +43,41 @@ namespace Fitnessstudio.ViewModels
         public KundenVerwaltungViewModel(Account currentUser)
         {
             this.CurrentUser = currentUser;
+            databaseService = new DatabaseService();
             SaveCommand = new SaveCommand(this);
+            UpdateTable();
+        }
+
+        private async void UpdateTable()
+        {
+            try
+            {
+                if (CurrentUser.Benutzername != null)
+                {
+                    var Person = await databaseService.GetPersonByID(CurrentUser.Id);
+                    var address = await databaseService.GetAnschriftByID(CurrentUser.Id);
+                    var Kunde = await databaseService.GetKundeByID(CurrentUser.Id);
+                    if (address != null)
+                    {
+                        Vorname = Person.Vorname;
+                        Nachname = Person.Nachname;
+                        Land = address.Land;
+                        Adresse = address.Strasse + " " + address.Hausnummer;
+                        Iban = Kunde.Iban;
+                        Passwort = "";
+                        WPasswort = "";
+                    }
+                }               
+                
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error while fetching persons");
+            }
+
+
+            
+
         }
     }
 }

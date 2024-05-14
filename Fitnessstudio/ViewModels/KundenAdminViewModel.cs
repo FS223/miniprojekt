@@ -22,6 +22,8 @@ namespace Fitnessstudio.ViewModels
         public ICommand EditCommand { get; }
         public ICommand NewCommand { get; }
 
+        private Account CurrentAccount { get; set; }
+
 
 
         public KundenAdminViewModel(Account CurrentAccount)
@@ -32,6 +34,7 @@ namespace Fitnessstudio.ViewModels
             DeleteCommand = new DeletePersonCommand(databaseService.DeletePersonAsync);
             EditCommand = new EditCommand();
             NewCommand = new NewCommand();
+            this.CurrentAccount = CurrentAccount;
             Debug.WriteLine(CurrentAccount);
         }
 

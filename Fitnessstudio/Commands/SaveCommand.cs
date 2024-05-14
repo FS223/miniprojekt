@@ -17,7 +17,33 @@ namespace Fitnessstudio.Commands
         }
         public override void Execute(object? parameter)
         {
-            Debug.WriteLine("Execute Save");
+            Debug.WriteLine(message: "Execute Save");
+            Update();
+
+
+        }
+
+        private async void Update()
+        {
+            var databaseService = new DatabaseService();
+            Person currentPerson = await databaseService.GetPersonByID(viewModel.CurrentUser.Id);
+            if (viewModel.CurrentUser.Rolle == Rolle.ADMINISTRATOR)
+            {
+                await databaseService.UpdatePersonByID(viewModel.CurrentUser.Id, new Person {
+                    Id = currentPerson.Id,
+                    Vorname = viewModel.Vorname,
+                    Nachname = viewModel.Nachname,
+                    Geburtsdatum = viewModel.Geburtstag,
+                    Geschlecht = currentPerson.Geschlecht, // Angenommen Geschlecht ist ein Enum
+                    AnschriftId = currentPerson.AnschriftId,    
+                });
+
+                // TODO Anschrift IBAN PASSWORT überarbeiten
+            }
+            else
+            {
+
+            }
         }
     }
 }
