@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Npgsql;
+using System.Windows.Media;
 
 namespace Fitnessstudio.Views
 {
@@ -42,6 +43,8 @@ namespace Fitnessstudio.Views
                         // Daten aus der Abfrage lesen
                         using (var reader = await command.ExecuteReaderAsync())
                         {
+                            string hexCode = "#800020";
+                            Color color = (Color)ColorConverter.ConvertFromString(hexCode);
                             var scheduleAppointmentCollection = new ScheduleAppointmentCollection();
 
                             while (await reader.ReadAsync())
@@ -61,7 +64,9 @@ namespace Fitnessstudio.Views
                                     StartTime = startZeit,
                                     EndTime = endZeit,
                                     Subject = bezeichnung,
-                                    Location = location
+                                    Location = location,
+                                    AppointmentBackground = new SolidColorBrush(color)
+
                                 });
                             }
 
