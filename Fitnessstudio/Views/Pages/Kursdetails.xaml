@@ -9,5 +9,53 @@
       Title="Kursdetails">
 
     <Grid>
+        <Grid Background="White">
+            <Grid Margin="0,0,400,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="251*"/>
+                    <ColumnDefinition Width="149*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="ID" HorizontalAlignment="Left" Margin="9,72,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
+                <Label Content="Name" HorizontalAlignment="Left" Margin="9,103,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="116"/>
+                <Label Content="Beschreibung" HorizontalAlignment="Left" Margin="9,134,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
+                <TextBox HorizontalAlignment="Left" Margin="129,72,0,0" TextWrapping="Wrap" Text="0000" VerticalAlignment="Top" Width="260" FontSize="14" RenderTransformOrigin="0.774,-0.657" Grid.ColumnSpan="2" Height="26"/>
+                <TextBox HorizontalAlignment="Left" Margin="129,103,0,0" TextWrapping="Wrap" Text="Werbung" VerticalAlignment="Top" Width="260" FontSize="14" RenderTransformOrigin="0.774,-0.657" Grid.ColumnSpan="2" Height="26"/>
+                <TextBox HorizontalAlignment="Left" Margin="129,134,0,0" TextWrapping="Wrap" Text="Hier könnte Ihre Werbung stehen." VerticalAlignment="Top" Width="260" FontSize="14" RenderTransformOrigin="0.774,-0.657" Grid.ColumnSpan="2" Height="98"/>
+                <Label Content="Kursleitung" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
+                <TextBox HorizontalAlignment="Left" Margin="129,239,0,0" TextWrapping="Wrap" Text="Max Mustermann" VerticalAlignment="Top" Width="260" FontSize="14" RenderTransformOrigin="0.774,-0.657" Grid.ColumnSpan="2" Height="26"/>
+                <Label Content="Teilnehmer" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
+                <TextBox HorizontalAlignment="Left" Margin="129,270,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="112" FontSize="14" RenderTransformOrigin="0.774,-0.657" Height="26"/>
+                <TextBox HorizontalAlignment="Left" Margin="27,270,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="112" FontSize="14" RenderTransformOrigin="0.774,-0.657" Height="26" Grid.Column="1"/>
+                <Label Content=" /" HorizontalAlignment="Left" Margin="246,270,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="27" Grid.ColumnSpan="2"/>
+                <Label Content="Dauer" HorizontalAlignment="Left" Margin="10,301,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
+                <TextBox HorizontalAlignment="Left" Margin="129,301,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="205" FontSize="14" RenderTransformOrigin="0.774,-0.657" Height="26" Grid.ColumnSpan="2"/>
+                <Label Content="min" HorizontalAlignment="Left" Margin="88,301,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="51" Grid.Column="1"/>
+                <Label Content="Preis" HorizontalAlignment="Left" Margin="10,332,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
+                <TextBox HorizontalAlignment="Left" Margin="129,332,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="205" FontSize="14" RenderTransformOrigin="0.774,-0.657" Height="26" Grid.ColumnSpan="2"/>
+                <Label Content="€" HorizontalAlignment="Left" Margin="88,332,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="51" Grid.Column="1"/>
+            </Grid>
+            <Label Content="Kurs hinzufügen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="50" Width="223" FontSize="30" FontFamily="72 Light"/>
+            <Separator HorizontalAlignment="Left" Margin="233,20,0,0" VerticalAlignment="Top" Height="30" Width="557"/>
+            <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="442,75,10,225">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="442,251,10,49">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="Termine" HorizontalAlignment="Left" Margin="442,230,0,0" VerticalAlignment="Top" Width="70"/>
+            <Label Content="Teilnehmer" HorizontalAlignment="Left" Margin="442,55,0,0" VerticalAlignment="Top" Width="70"/>
+            <Button Content="Save" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Height="50" Width="50"/>
+            <Button Content="Edit" HorizontalAlignment="Left" Margin="65,390,0,0" VerticalAlignment="Top" Height="50" Width="50"/>
+            <Button Content="Delete" HorizontalAlignment="Left" Margin="120,390,0,0" VerticalAlignment="Top" Height="50" Width="50"/>
+            <Separator HorizontalAlignment="Left" Margin="185,410,0,0" VerticalAlignment="Top" Height="30" Width="605"/>
+        </Grid>
     </Grid>
 </Page>
