@@ -14,11 +14,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pages\Kursdetails.xaml.cs">
+		<SubType>Code</SubType>
+	</Compile>
     <Compile Update="Views\Pages\KundenAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pages\KundenVerwaltung.xaml.cs">
-
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -51,6 +52,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\Kursdetails.xaml">
+		<SubType>Designer</SubType>
+	</Page>
     <Page Update="Views\Pages\KundenAdmin.xaml">
       <SubType>Designer</SubType>
     </Page>
