@@ -43,6 +43,14 @@ namespace Fitnessstudio.Views
             var uri = new Uri(pageUri, UriKind.Relative);
             FrameWithinGrid.Source = uri;
 
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            // Application.Current.Shutdown();
             // Verwende den Navigations-Event, um den DataContext zu setzen
             FrameWithinGrid.Navigated += (sender, e) => {
                 if (e.Content is Page page)
