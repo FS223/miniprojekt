@@ -25,7 +25,7 @@ namespace Fitnessstudio.Views
         }
         private void ButtonHome_Click(object sender, RoutedEventArgs e) => FrameWithinGrid.Source = new Uri("Pages/Home.xaml", UriKind.Relative);
         private void ButtonStudio_Click(object sender, RoutedEventArgs e) => FrameWithinGrid.Source = new Uri("Pages/Studiosicht.xaml", UriKind.Relative);
-        private void ButtonKunden_Click(object sender, RoutedEventArgs e) => FrameWithinGrid.Source = new Uri("Pages/Kunden.xaml", UriKind.Relative);
+        private void ButtonKunden_Click(object sender, RoutedEventArgs e) => FrameWithinGrid.Source = new Uri("Pages/KundenVerwaltung.xaml", UriKind.Relative);
         private void ButtonKurse_Click(object sender, RoutedEventArgs e) => FrameWithinGrid.Source = new Uri("Pages/Kurse.xaml", UriKind.Relative);
         private void ButtonKundenAdmin_Click(object sender, RoutedEventArgs e) => FrameWithinGrid.Source = new Uri("Pages/KundenAdmin.xaml", UriKind.Relative);
     }
