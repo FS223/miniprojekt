@@ -5,11 +5,272 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitnessstudio.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="930" d:DesignWidth="1770"
       Title="Home">
 
     <Grid>
-        <Label Content="HOME"></Label>
-        
+        <StackPanel Margin="50,50,50,50">
+            <StackPanel Orientation="Horizontal">
+                <Border Width="870"
+                Height="450"
+                Margin="0,0,0,0"
+                CornerRadius="15">
+                            <Border.Background>
+                                <LinearGradientBrush x:Name="GradientBrush" StartPoint="0,0" EndPoint="1,2">
+                                    <GradientStop x:Name="StartGradientStop" Color="#0061ff" Offset="0.0" />
+                                    <GradientStop x:Name="EndGradientStop" Color="#ff8989" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Border.Triggers>
+                                <EventTrigger RoutedEvent="Border.MouseEnter">
+                                    <BeginStoryboard Name="MouseEnterStoryboard">
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="StartGradientStop"
+                                                          Storyboard.TargetProperty="Color"
+                                                          Duration="0:0:10" AutoReverse="True">
+                                                <EasingColorKeyFrame KeyTime="0%" Value="#0061ff" />
+                                                <EasingColorKeyFrame KeyTime="50%" Value="#ff8989" />
+                                                <EasingColorKeyFrame KeyTime="100%" Value="#0061ff" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="EndGradientStop"
+                                                          Storyboard.TargetProperty="Color"
+                                                          Duration="0:0:20" AutoReverse="True">
+                                                <EasingColorKeyFrame KeyTime="0%" Value="#ff8989" />
+                                                <EasingColorKeyFrame KeyTime="50%" Value="#0061ff" />
+                                                <EasingColorKeyFrame KeyTime="70%" Value="#0061ff" />
+                                                 <EasingColorKeyFrame KeyTime="100%" Value="#ff8989" />
+
+                                    </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="Border.MouseLeave">
+                                    <StopStoryboard BeginStoryboardName="MouseEnterStoryboard" />
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="StartGradientStop"
+                                            Storyboard.TargetProperty="Color"
+                                            To="#0061ff"
+                                            Duration="0:0:0.5" />
+                                            <ColorAnimation Storyboard.TargetName="EndGradientStop"
+                                            Storyboard.TargetProperty="Color"
+                                            To="#ff8989"
+                                            Duration="0:0:0.5" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Border.Triggers>
+
+                            <Grid>
+                                <StackPanel>
+                                    <Image Height="65" Width="65" Source="C:\Users\phet.homberg\Downloads\hi.png" Margin="0,40,740,0" RenderTransformOrigin="0.5,0.5">
+                                        <Image.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform />
+                                                <SkewTransform AngleY="-0.521" />
+                                                <RotateTransform />
+                                                <TranslateTransform Y="-0.991" />
+                                            </TransformGroup>
+                                        </Image.RenderTransform>
+                                    </Image>
+
+                                    <TextBlock Foreground="White" FontSize="35" FontWeight="Bold" Margin="0,10,40,0" Width="754">
+                        <Run Text="Welcome back Riad!" />
+                        <Run Language="de-de" />
+                                    </TextBlock>
+                                    <TextBlock Text="It's good to have you back with us."
+                               Foreground="White"
+                               FontSize="18"
+                               Margin="0,8,40,0" Height="30" Width="748" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+       
+
+
+                <Border Width="775"
+                    Height="450"
+                    Margin="20,0,0,0"
+                    CornerRadius="15">
+                    <Grid>
+                        <StackPanel>
+                            <Image Height="65" Width="65" Source="C:\Users\phet.homberg\Downloads\noti.png" Margin="30,30,680,0" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform AngleY="-0.521"/>
+                                        <RotateTransform/>
+                                        <TranslateTransform Y="-0.991"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <TextBlock
+                                   Foreground="White"
+                                     FontSize="35"
+                                FontWeight="Bold"
+                                   Margin="30,10,10,0" Width="754"><Run Text="Update from Our Gym!"/></TextBlock>
+                            <TextBlock Text="We've got some exciting announcements to make!"
+                                   Foreground="White"
+                                   FontSize="20"
+                                   Margin="30,8,10,0" Height="30" Width="748">
+                            </TextBlock>
+
+                        </StackPanel>
+                    </Grid>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#508AA8" Offset="0.0"/>
+                            <GradientStop Color="#84ffc9" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                </Border>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Margin" Value="23,0,0,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+
+                    <Border Width="540"
+                    Height="340"
+                    CornerRadius="15"
+                    Margin="0">
+
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#eeaeca" Offset="0.0"/>
+                                <GradientStop Color="#94bbe9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Grid>
+                            <StackPanel>
+                                <Image Height="65" Width="65" Source="C:\Users\phet.homberg\Downloads\course final.png" Margin="10,40,435,10" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleY="-0.521"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="-0.991"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock
+                                   Foreground="White"
+                                   FontSize="35"
+                                FontWeight="Bold"
+                                   Margin="10,0,0,0" Width="500"><Run Text="My Course"/>
+                                <Run Language="de-de"/></TextBlock>
+
+                                <TextBlock  TextWrapping="Wrap" Text="Get ready to break a sweat! Your next gym class is calling."
+                                   Foreground="White"
+                                   FontSize="18"
+                                   Margin="0,8,30,0" Height="58" Width="456">
+                                </TextBlock>
+
+                            </StackPanel>
+                        </Grid>
+
+
+                    </Border>
+
+                    <Border Width="540"
+                    Height="340"
+                    CornerRadius="15">
+
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#57ebde" Offset="0.0"/>
+                                <GradientStop Color="#696eff" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Grid>
+                            <StackPanel>
+                                <Image Height="65" Width="65" Source="C:\Users\phet.homberg\Downloads\shoping 1.png" Margin="0,40,435,10" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleY="-0.521"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="-0.991"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock
+                                   Foreground="White"
+                                   FontSize="35"
+                                FontWeight="Bold"
+                                   Margin="10,0,0,0" Width="500"><Run Text="Explore Our Shop!"/>
+                                <Run Language="de-de"/></TextBlock>
+
+                                <TextBlock TextWrapping="Wrap" Text="Gear up, fuel up, and rep out! Find everything for your fitness journey."
+                                   Foreground="White"
+                                   FontSize="18"
+                                   Margin="0,8,30,0" Height="58" Width="456">
+                                </TextBlock>
+
+                            </StackPanel>
+                        </Grid>
+
+                    </Border>
+
+                    <Border Width="540"
+                    Height="340
+                        "
+                    CornerRadius="15">
+
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#FD746C" Offset="0.0"/>
+                                <GradientStop Color="#2C3E50" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Grid>
+                            <StackPanel>
+                                <Image Height="65" Width="65" Source="C:\Users\phet.homberg\Downloads\help final.png" Margin="0,40,435,10" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleY="-0.521"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="-0.991"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock
+                                   Foreground="White"
+                                   FontSize="35"
+                                FontWeight="Bold"
+                                   Margin="10,0,0,0" Width="500"><Run Text="You Need Help?"/>
+                                <Run Language="de-de"/></TextBlock>
+
+                                <TextBlock TextWrapping="Wrap" Text="Need a hand? We're here for you."
+                                   Foreground="White"
+                                   FontSize="18"
+                                   Margin="10,8,0,0" Height="30" Width="500">
+                                </TextBlock>
+
+                            </StackPanel>
+                        </Grid>
+
+
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Page>

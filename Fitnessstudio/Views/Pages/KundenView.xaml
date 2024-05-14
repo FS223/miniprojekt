@@ -5,10 +5,140 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitnessstudio.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="kundenView">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel Margin="30,30,30,30">
+        <StackPanel Orientation="Horizontal">
+            <Border Width="900"
+                    Height="500"
+                    Margin="0,0,0,0">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#0061ff" Offset="0.0"/>
+                        <GradientStop Color="#ff8989" Offset="1"/>
+
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="15"
+                                       RadiusY="15"
+                                       Rect="0,0,900,500"/>
+                </Border.Clip>
+
+                <Grid>
+                    <StackPanel>
+                        <Image Height="134" Width="194" Source="C:\Users\phet.homberg\Downloads\8291209.png" Margin="30,30,730,0" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleY="-0.521"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="-0.991"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+
+                        <TextBlock Text="Stay Fit!"
+                                   Foreground="White"
+                                   FontSize="28"
+                                   Margin="20,10,10,0" Width="818">
+                        </TextBlock>
+                        <TextBlock Text="get started now!"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   Margin="20,10,10,0" Height="30" Width="828">
+                        </TextBlock>
+                        
+                       
+
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+            <Border Width="920"
+                    Height="500"
+                    CornerRadius="10"
+                    Margin="20,0,0,0">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="Stay Fit!"
+                                   Foreground="White"
+                                   FontSize="28"
+                                   Width="860"/>
+                        <TextBlock Text="get started now!"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   Margin="20,10,10,0"/>
+
+                    </StackPanel>
+                </Grid>
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#508AA8" Offset="0.0"/>
+                        <GradientStop Color="#84ffc9" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="15"
+                                       RadiusY="15"
+                                       Rect="0,0,910,500"/>
+                </Border.Clip>
+            </Border>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Margin" Value="23,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+
+                <Border Width="600"
+                    Height="500"
+                    CornerRadius="15"
+                    Margin="0">
+
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#eeaeca" Offset="0.0"/>
+                            <GradientStop Color="#94bbe9" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+                <Border Width="600"
+                    Height="500"
+                    CornerRadius="15">
+
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#57ebde" Offset="0.0"/>
+                            <GradientStop Color="#696eff" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                </Border>
+
+                <Border Width="590"
+                    Height="500"
+                    CornerRadius="15">
+
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#f3f98a" Offset="0.0"/>
+                            <GradientStop Color="#e0a9bb" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
+    </StackPanel>
 </Page>
