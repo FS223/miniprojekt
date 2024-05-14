@@ -13,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Fitnessstudio.Views
+namespace Fitnessstudio.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for Kurse.xaml
+    /// Interaktionslogik für Kursdetails.xaml
     /// </summary>
-    public partial class Kurse : Page
+    public partial class Kursdetails : Page
     {
-        public Kurse()
+        public Kursdetails()
         {
             InitializeComponent();
         }
-
-        private void KursHinufuegen_Click(object sender, RoutedEventArgs e) => NeuerKursFrame.Source = new Uri("../pages/Kursdetails.xaml", UriKind.Relative);
     }
 }

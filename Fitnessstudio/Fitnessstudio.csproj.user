@@ -7,15 +7,24 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\Pages\Stoßzeiten.xaml.cs">
+    <Compile Update="Views\Dashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Pages\Kursdetails.xaml.cs">
+		<SubType>Code</SubType>
+	</Compile>
+    <Compile Update="Views\Pages\KundenAdmin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\KundenVerwaltung.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Pages\Stoßzeiten.xaml">
+    <Page Update="Styles\AdminGridStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\ButtonStyles.xaml">
@@ -34,9 +43,21 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dashboard.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\Kursdetails.xaml">
+		<SubType>Designer</SubType>
+	</Page>
+    <Page Update="Views\Pages\KundenAdmin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\KundenVerwaltung.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
