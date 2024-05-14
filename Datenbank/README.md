@@ -4,7 +4,7 @@
 
 - **Marcel** [@AdmiralCM](https://github.com/AdmiralCM)
 - Steven [@StevoMc](https://github.com/StevoMc)
-- Maxi
+- Maxi [@Auty411](https://github.com/Auty411)
 - Nady [@Iskuzmi](https://github.com/Iskuzmi)
 
 ## Aufgaben
