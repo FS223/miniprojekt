@@ -125,7 +125,7 @@ namespace Fitnessstudio
                         {
                             if (!Enum.TryParse(reader.GetString(reader.GetOrdinal("mitgliedschaft")), out Mitgliedschaft mitgliedschaft))
                             {
-                                mitgliedschaft = Mitgliedschaft.Keine;
+                                mitgliedschaft = Mitgliedschaft.BRONZE;
                             }
                             return new Kunde {
                                 Id = reader.GetInt32(reader.GetOrdinal("id")),
@@ -397,7 +397,7 @@ namespace Fitnessstudio
                 {
                     while (await reader.ReadAsync())
                     {
-                        kurse.Add(new Models.Kurs(
+                        kurse.Add(new Kurs(
                             reader.GetInt32(reader.GetOrdinal("id")),
                             reader.GetString(reader.GetOrdinal("bezeichnung")),
                             reader.IsDBNull(reader.GetOrdinal("beschreibung")) ? null : reader.GetString(reader.GetOrdinal("beschreibung")),
