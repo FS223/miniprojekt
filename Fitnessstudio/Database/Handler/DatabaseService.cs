@@ -1,4 +1,5 @@
-﻿using Fitnessstudio.Models;
+﻿using DotNetEnv;
+using Fitnessstudio.Models;
 using Fitnessstudio.Views;
 using Npgsql;
 using Serilog;
@@ -307,9 +308,10 @@ namespace Fitnessstudio
                             Id = reader.GetInt32(reader.GetOrdinal("id")),
                             PersonId = reader.GetInt32(reader.GetOrdinal("personId")),
                             Guthaben = reader.GetFloat(reader.GetOrdinal("guthaben")),
-                            Iban = reader.GetString(reader.GetOrdinal("iban")),
+                            Iban = reader.IsDBNull(reader.GetOrdinal("iban")) ? null : reader.GetString(reader.GetOrdinal("iban")),
                             Bild = reader.IsDBNull(reader.GetOrdinal("bild")) ? null : reader.GetString(reader.GetOrdinal("bild")),
-                            Mitgliedschaft = (Mitgliedschaft)reader.GetInt32(reader.GetOrdinal("mitgliedschaft"))
+                            Mitgliedschaft = reader.IsDBNull(reader.GetOrdinal("mitgliedschaft")) ? (Mitgliedschaft?)null : EnumHelper.ConvertIntToEnum<Mitgliedschaft>(reader.GetOrdinal("mitgliedschaft")),
+                            NiederlassungID = reader.GetInt32(reader.GetOrdinal("niederlassungId"))
                         });
                     }
                 }
@@ -466,4 +468,21 @@ namespace Fitnessstudio
             }
         }
     }
+
+    public static class EnumHelper
+    {
+        public static TEnum ConvertIntToEnum<TEnum>(int value) where TEnum : struct, Enum
+        {
+            if (Enum.IsDefined(typeof(TEnum), value))
+            {
+                return (TEnum)Enum.ToObject(typeof(TEnum), value);
+            }
+            else
+            {
+                throw new ArgumentException($"The value {value} does not correspond to any enum value in {typeof(TEnum).Name}.");
+            }
+        }
+    }
+
+
 }

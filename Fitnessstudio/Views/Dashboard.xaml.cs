@@ -30,7 +30,7 @@ namespace Fitnessstudio.Views
         }
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Home.xaml", CurrentAccount);
-        private void ButtonStudio_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Studiosicht.xaml", CurrentAccount);
+        private void ButtonStudio_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Membershipanalysis.xaml", CurrentAccount);
         private void ButtonKunden_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/KundenVerwaltung.xaml", CurrentAccount);
         private void ButtonKurse_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Kurse.xaml", CurrentAccount);
         private void ButtonAdmin_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/KundenAdmin.xaml", CurrentAccount);
