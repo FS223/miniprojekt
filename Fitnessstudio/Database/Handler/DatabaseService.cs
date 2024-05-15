@@ -1,6 +1,7 @@
 ﻿using Fitnessstudio.Models;
 using Fitnessstudio.Views;
 using Npgsql;
+using ScottPlot.Statistics.Interpolation;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Fitnessstudio
 {
@@ -499,5 +501,39 @@ namespace Fitnessstudio
                 Log.Error(ex, "Error while adding address");
             }
         }
+
+        public async Task<int> GetAnzahlLeute(DateTime currentTime)
+        {
+            string timeString = currentTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            int amount = 0;
+            var zeitenbuchung = new List<ZeitenBuchung>();
+            var connection = await db.GetConnection();
+            using (connection)
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
+                using (var command = new NpgsqlCommand("SELECT * FROM \"zeitenBuchung\" zb WHERE \"checkIn\" < '"+timeString+"' AND \"checkOut\" > '"+timeString+"'", connection))
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        amount++;
+                        //zeitenbuchung.Add(new ZeitenBuchung
+                        //{
+                        //    Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        //    CheckIn = reader.GetDateTime(reader.GetOrdinal("checkIn")),
+                        //    CheckOut = reader.GetDateTime(reader.GetOrdinal("checkOut")),
+                        //    KundeId = reader.GetInt32(reader.GetOrdinal("kundeId"))
+                        //});
+                    }
+                }
+            }
+            return amount;
+        }
+
+
+
     }
 }
