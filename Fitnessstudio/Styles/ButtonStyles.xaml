@@ -7,7 +7,7 @@
 
 
     <Style x:Key="LoginButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="#462AD8"/>
+        <Setter Property="Background" Value="#00224D"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontFamily" Value="Montserrat"/>

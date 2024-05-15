@@ -22,7 +22,7 @@
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
                     <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0.75"/>
-                    <GradientStop Color="#8A16C1" Offset="1"/>
+                    <GradientStop Color="#d6002a" Offset="1"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
             <Border.Background>
@@ -200,7 +200,7 @@
                             Click="btnLogin_Click">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#462AD8"/>
+                                <Setter Property="Background" Value="#00224D"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#28AEED"/>

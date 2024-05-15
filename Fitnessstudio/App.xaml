@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
-                <ResourceDictionary Source="Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="Styles/TextBoxStyles.xaml"/>
                 <ResourceDictionary Source="Styles/colorScheme.xaml" />
                 <ResourceDictionary Source="Styles/ListViewStyles.xaml" />
                 <ResourceDictionary Source="Styles/AdminGridStyle.xaml" />

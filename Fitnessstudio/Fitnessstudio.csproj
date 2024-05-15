@@ -20,6 +20,7 @@
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
     <PackageReference Include="Serilog" Version="3.1.1" />
     <None Remove="Images\account.png" />
+    <None Remove="Images\calendar.png" />
     <None Remove="Images\greenAddCircle.png" />
     <None Remove="Images\group.png" />
     <None Remove="Images\home.png" />
@@ -35,6 +36,7 @@
     <None Remove="Images\Landing-page\Frame 14592.png" />
     <None Remove="Images\Landing-page\Frame 14593.png" />
     <None Remove="Images\Landing-page\Group 21.png" />
+    <None Remove="Images\Landing-page\icon.png" />
     <None Remove="Images\Landing-page\Rectangle 82.png" />
     <None Remove="Images\Landing-page\Rectangle 84.png" />
     <None Remove="Images\Login\Group 21.png" />
@@ -45,6 +47,7 @@
     <None Remove="Images\settings.png" />
     <None Remove="Images\user-icon.png" />
     <Resource Include="Images\account.png" />
+    <Resource Include="Images\calendar.png" />
     <Resource Include="Images\greenAddCircle.png" />
     <Resource Include="Images\group.png" />
     <Resource Include="Images\home.png" />
@@ -59,6 +62,7 @@
     <Resource Include="Images\Landing-page\Frame 14592.png" />
     <Resource Include="Images\Landing-page\Frame 14593.png" />
     <Resource Include="Images\Landing-page\Group 21.png" />
+    <Resource Include="Images\Landing-page\icon.png" />
     <Resource Include="Images\Landing-page\Rectangle 82.png" />
     <Resource Include="Images\Landing-page\Rectangle 84.png" />
     <Resource Include="Images\Login\Group 21.png" />
