@@ -180,7 +180,7 @@
                 </StackPanel.Resources>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
 
-                    <Border x:Name="Box3" Width="400"
+                    <Border x:Name="course" Width="400"
                     Height="290"
                     CornerRadius="15"
                     Margin="0">
@@ -198,14 +198,14 @@
                                     <Storyboard RepeatBehavior="Forever">
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="StartGradientStop3"
                                                           Storyboard.TargetProperty="Color"
-                                                          Duration="0:0:10" AutoReverse="True">
+                                                          Duration="0:0:05" AutoReverse="True">
                                             <EasingColorKeyFrame KeyTime="0%" Value="#eeaeca" />
                                             <EasingColorKeyFrame KeyTime="50%" Value="#94bbe9" />
                                             <EasingColorKeyFrame KeyTime="100%" Value="#eeaeca" />
                                         </ColorAnimationUsingKeyFrames>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="EndGradientStop3"
                                                           Storyboard.TargetProperty="Color"
-                                                          Duration="0:0:20" AutoReverse="True">
+                                                          Duration="0:0:10" AutoReverse="True">
                                             <EasingColorKeyFrame KeyTime="0%" Value="#94bbe9" />
                                             <EasingColorKeyFrame KeyTime="50%" Value="#eeaeca" />
                                             <EasingColorKeyFrame KeyTime="70%" Value="#94bbe9" />
@@ -267,7 +267,8 @@
 
                     <Border Width="400"
                     Height="290"
-                    CornerRadius="15">
+                    CornerRadius="15"
+                    x:Name="account" >
 
                         <Border.Background>
                             <LinearGradientBrush x:Name="GradientBrush4" StartPoint="0,0" EndPoint="1,2">
@@ -282,14 +283,14 @@
                                     <Storyboard RepeatBehavior="Forever">
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="StartGradientStop4"
                                                           Storyboard.TargetProperty="Color"
-                                                          Duration="0:0:10" AutoReverse="True">
+                                                          Duration="0:0:05" AutoReverse="True">
                                             <EasingColorKeyFrame KeyTime="0%" Value="#57ebde" />
                                             <EasingColorKeyFrame KeyTime="50%" Value="#696eff" />
                                             <EasingColorKeyFrame KeyTime="100%" Value="#57ebde" />
                                         </ColorAnimationUsingKeyFrames>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="EndGradientStop4"
                                                           Storyboard.TargetProperty="Color"
-                                                          Duration="0:0:20" AutoReverse="True">
+                                                          Duration="0:0:10" AutoReverse="True">
                                             <EasingColorKeyFrame KeyTime="0%" Value="#696eff" />
                                             <EasingColorKeyFrame KeyTime="50%" Value="#57ebde" />
                                             <EasingColorKeyFrame KeyTime="70%" Value="#696eff" />
