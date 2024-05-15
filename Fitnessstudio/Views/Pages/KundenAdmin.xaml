@@ -9,15 +9,23 @@
       xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
       d:DataContext="{d:DesignInstance Type=viewmodels:KundenAdminViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="725" d:DesignWidth="1350"
       Title="KundenAdmin">
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-    <StackPanel>
-        <Button Style="{StaticResource addButton}" Content="Neuen Kunden hinzufügen" Width="150" HorizontalAlignment="Right" Command="{Binding NewCommand}" Margin="5"/>
-        <Grid>
-            <DataGrid ItemsSource="{Binding Path=Items}" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
-
+        <Border Grid.Row="0" HorizontalAlignment="Right" Background="Transparent" BorderThickness="1" CornerRadius="5" Padding="5"  Margin="0 10 10 10">
+            <Button Style="{StaticResource addButton}" Content="Speichern" Width="100" Command="{Binding SaveCommand}" Margin="5"/>
+        </Border>
+        <Border Grid.Row="1" Width="1325">
+            <DataGrid Grid.Row="1" ItemsSource="{Binding Path=Items}" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}"
+              ScrollViewer.VerticalScrollBarVisibility="Hidden"
+              ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                         <DataGridCheckBoxColumn.HeaderTemplate>
@@ -67,7 +75,13 @@
 
                 </DataGrid.Columns>
             </DataGrid>
-
-        </Grid>
-    </StackPanel>
+        </Border>
+            
+        <Border Grid.Row="2" HorizontalAlignment="Right" Background="Transparent" BorderThickness="1" CornerRadius="5" Padding="5" Margin="0 10 10 10">
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource pagingButton}" Content="Previous" Click="PreviousPage_Click"/>
+                <Button Style="{StaticResource pagingButton}" Content="Next" Click="NextPage_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Page>
