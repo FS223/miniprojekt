@@ -24,6 +24,7 @@ namespace Fitnessstudio.Views.Pages
     {
         Kurs kurs;
         List<TextBox> editableTB = new List<TextBox>();
+        bool existingKurs = false;
         public Kursdetails()
         {
             InitializeComponent();
@@ -38,6 +39,8 @@ namespace Fitnessstudio.Views.Pages
         {
             InitializeComponent();
             FillEditableTB();
+            existingKurs = true;
+            title.Content = "Kursdetails";
 
             KursdetailsSpeichern_btn.IsEnabled = false;
             KursdetailsBearbeiten_btn.Visibility = Visibility.Visible;
@@ -80,10 +83,25 @@ namespace Fitnessstudio.Views.Pages
             float preis = 0;
             float.TryParse(preis_tb.Text, out preis);
 
-            Kurs kurs = new Kurs(bezeichnung, beschreibung, kursleiterId, minTeilnehmer, maxTeilnehmer, preis);
-
             DatabaseService databaseService = new DatabaseService();
-            Task addKursTask = databaseService.AddKurs(kurs);
+
+            if (existingKurs)
+            {
+                kurs.Bezeichnung = bezeichnung;
+                kurs.Beschreibung = beschreibung;
+                kurs.KursLeiterId = kursleiterId;
+                kurs.MinTeilnehmer = minTeilnehmer;
+                kurs.MaxTeilnehmer = maxTeilnehmer;
+                kurs.Preis = preis;
+
+                Task editKursTask = databaseService.EditKurs(kurs);
+            }
+            else
+            {
+                Kurs kurs = new Kurs(bezeichnung, beschreibung, kursleiterId, minTeilnehmer, maxTeilnehmer, preis);
+                Task addKursTask = databaseService.AddKurs(kurs);
+            }
+
 
             CloseKursdetails();
         }

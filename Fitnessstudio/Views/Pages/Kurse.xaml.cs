@@ -94,8 +94,10 @@ namespace Fitnessstudio.Views
                         {
                             Height = 25,
                             Source = new BitmapImage(new Uri("/Images/redDeleteIcon.png", UriKind.Relative))//,
-                        }
+                        },
+                        Cursor = Cursors.Hand
                     };
+                    btn_del.Click += KursLoeschen_Click;
                     btn_del.SetResourceReference(Control.StyleProperty, "DeleteButtonStyle");
                     Grid.SetRow(btn_del, counter);
                     Grid.SetColumn(btn_del, 2);
@@ -114,9 +116,20 @@ namespace Fitnessstudio.Views
         }
 
         private void KursHinufuegen_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new Kursdetails());
-        private void KursLoeschen_Click(object sender, RoutedEventArgs e)
+        private async void KursLoeschen_Click(object sender, RoutedEventArgs e)
         {
             DatabaseService databaseService = new DatabaseService();
+            Button button = sender as Button;
+            if(button != null)
+            {
+                Grid grid = button.Parent as Grid;
+                if (grid != null)
+                {
+                    int kursId;
+                    int.TryParse(grid.Tag.ToString(), out kursId);
+                    await databaseService.DeleteKursAsync(KursAusListeSuchen(kursId));
+                }
+            }
         }
         private Kurs KursAusListeSuchen(int id)
         {

@@ -11,7 +11,7 @@
     <Grid Background="White">
         <StackPanel Margin="20,20,20,20">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <Button Style="{DynamicResource AddButtonStyle}" Click="KursHinufuegen_Click">
+                <Button Style="{DynamicResource AddButtonStyle}" Click="KursHinufuegen_Click" Cursor="Hand">
                     <Image Source="/Images/greenAddCircle.png" Height="25" />
                 </Button>
                 <Label Content="Kurs hinzufügen" />

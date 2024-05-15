@@ -5,58 +5,146 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitnessstudio.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="750" d:DesignWidth="1350"
       Title="Kursdetails">
 
-    <Grid>
-        <Grid Background="White">
-            <Grid Margin="0,0,400,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="251*"/>
-                    <ColumnDefinition Width="149*"/>
-                </Grid.ColumnDefinitions>
-                <Label Content="ID" HorizontalAlignment="Left" Margin="9,72,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
-                <Label Content="Bezeichnung" HorizontalAlignment="Left" Margin="9,103,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="116"/>
-                <Label Content="Beschreibung" HorizontalAlignment="Left" Margin="9,134,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
-                <TextBox Name="id_tb" IsEnabled="False" HorizontalAlignment="Left" Margin="129,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" FontSize="14" RenderTransformOrigin="0.774,-0.657" Grid.ColumnSpan="2" Height="26"/>
-                <TextBox Name="bezeichnung_tb" IsEnabled="False" HorizontalAlignment="Left" Margin="129,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" FontSize="14" RenderTransformOrigin="0.774,-0.657" Grid.ColumnSpan="2" Height="26"/>
-                <TextBox Name="beschreibung_tb" IsEnabled="False" HorizontalAlignment="Left" Margin="129,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" FontSize="14" RenderTransformOrigin="0.774,-0.657" Grid.ColumnSpan="2" Height="98"/>
-                <Label Content="Kursleitung" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
-                <TextBox Name="kursleiter_tb" IsEnabled="False" HorizontalAlignment="Left" Margin="129,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" FontSize="14" RenderTransformOrigin="0.774,-0.657" Grid.ColumnSpan="2" Height="26"/>
-                <Label Content="Teilnehmer" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
-                <TextBox Name="minTeilnehmer_tb" IsEnabled="False" HorizontalAlignment="Left" Margin="129,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" FontSize="14" RenderTransformOrigin="0.774,-0.657" Height="26"/>
-                <TextBox Name="maxTeilnehmer_tb" IsEnabled="False" HorizontalAlignment="Left" Margin="27,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" FontSize="14" RenderTransformOrigin="0.774,-0.657" Height="26" Grid.Column="1"/>
-                <Label Content="bis" HorizontalAlignment="Left" Margin="246,270,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="27" Grid.ColumnSpan="2"/>
-                <Label Content="Dauer" HorizontalAlignment="Left" Margin="10,301,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
-                <TextBox Name="dauer_tb" IsEnabled="False" HorizontalAlignment="Left" Margin="129,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" FontSize="14" RenderTransformOrigin="0.774,-0.657" Height="26" Grid.ColumnSpan="2"/>
-                <Label Content="min" HorizontalAlignment="Left" Margin="88,301,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="51" Grid.Column="1"/>
-                <Label Content="Preis" HorizontalAlignment="Left" Margin="10,332,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="115"/>
-                <TextBox Name="preis_tb" IsEnabled="False" HorizontalAlignment="Left" Margin="129,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" FontSize="14" RenderTransformOrigin="0.774,-0.657" Height="26" Grid.ColumnSpan="2"/>
-                <Label Content="€" HorizontalAlignment="Left" Margin="88,332,0,0" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.846,1.747" FontSize="14" FontFamily="Arial" Width="51" Grid.Column="1"/>
-            </Grid>
-            <Label Content="Kurs hinzufügen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="50" Width="223" FontSize="30" FontFamily="72 Light"/>
-            <Separator HorizontalAlignment="Left" Margin="233,20,0,0" VerticalAlignment="Top" Height="30" Width="557"/>
-            <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="442,75,10,225">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="442,251,10,49">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Label Content="Termine" HorizontalAlignment="Left" Margin="442,230,0,0" VerticalAlignment="Top" Width="70"/>
-            <Label Content="Teilnehmer" HorizontalAlignment="Left" Margin="442,55,0,0" VerticalAlignment="Top" Width="70"/>
-            <Button Name="KursdetailsSpeichern_btn" Content="Save" Click="KursdetailsSpeichern_Click" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Height="50" Width="50"/>
-            <Button Name="KursdetailsBearbeiten_btn" Visibility="Collapsed" Content="Edit" Click="KursdetailsBearbeiten_Click" HorizontalAlignment="Left" Margin="65,390,0,0" VerticalAlignment="Top" Height="50" Width="50"/>
-            <Button Name="KursdetailsLoeschen_btn" Visibility="Collapsed" Click="KursLoeschen_Click" Content="Delete" HorizontalAlignment="Left" Margin="120,390,0,0" VerticalAlignment="Top" Height="50" Width="50"/>
-            
-            <Button Content="Abbrechen" Click="KursdetailsAbbrechen_Click" HorizontalAlignment="Left" Margin="733,5,0,0" VerticalAlignment="Top"/>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.05*" />
+            </Grid.ColumnDefinitions>
+            <Label Name="title" Content="Kurs hinzufügen" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30"/>
+            <Separator Grid.Column="1" />
+            <Button Grid.Column="2" x:Name="btnClose"                          
+                                    BorderThickness="0"
+                                    Content="X"
+                                    Foreground="White"
+                                    FontSize="12"
+                                    FontFamily="Montserrat"
+                                    Cursor="Hand"
+                                    Click="KursdetailsAbbrechen_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#d6002a"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#d6002a"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18"
+                                                CornerRadius="9"
+                                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
+        <!--<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <Label Content="Kurs hinzufügen" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30"/>
+        </StackPanel>-->
+
+        <Grid Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="20,20,20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="0.7*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Content="ID" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Name="id_tb" Grid.Column="1" Grid.Row="0" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+
+                    <Label Content="Bezeichnung" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Name="bezeichnung_tb" Grid.Column="1" Grid.Row="1" IsEnabled="False" HorizontalAlignment="Stretch"  VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+
+                    <Label Content="Beschreibung" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Name="beschreibung_tb" Grid.Column="1" Grid.Row="2" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+
+                    <Label Content="Kursleitung" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox Name="kursleiter_tb" Grid.Column="1" Grid.Row="3" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+
+
+                    <Label Content="Teilnehmer" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <UniformGrid Columns="3" Grid.Row="4" Grid.Column="1"  VerticalAlignment="Center" >
+                        <TextBox Name="minTeilnehmer_tb" Grid.Column="0" IsEnabled="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"/>
+                        <Label Content="bis" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBox Name="maxTeilnehmer_tb" Grid.Column="2" IsEnabled="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"/>
+                    </UniformGrid>
+
+                    <Label Content="Dauer" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <UniformGrid Columns="2" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center">
+                        <TextBox Name="dauer_tb" Grid.Column="0" IsEnabled="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"/>
+                        <Label Content="min" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </UniformGrid>
+
+                    <Label Content="Preis" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <UniformGrid Columns="2" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center">
+                        <TextBox Name="preis_tb" Grid.Column="0" IsEnabled="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"/>
+                        <Label Content="€" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </UniformGrid>
+                </Grid>
+
+                <Grid Grid.Column="1" Margin="20,20,20,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Teilnehmer"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Termine"/>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+
+        </Grid>
+        <UniformGrid Grid.Row="2" Columns="3">
+            <Button Name="KursdetailsSpeichern_btn" Cursor="Hand" Style="{DynamicResource SaveButtonStyle}" Grid.Column="0" Margin="10,10,10,10" Click="KursdetailsSpeichern_Click" HorizontalAlignment="Center">
+                <Image Source="/Images/greenSaveIcon.png"/>
+            </Button>
+            <Button Name="KursdetailsBearbeiten_btn" Cursor="Hand" Style="{DynamicResource EditButtonStyle}" Grid.Column="1" Margin="10,10,10,10" Visibility="Collapsed" Click="KursdetailsBearbeiten_Click" HorizontalAlignment="Center">
+                <Image Source="/Images/yellowEditIcon.png" Height="50" />
+            </Button>
+            <Button Name="KursdetailsLoeschen_btn" Cursor="Hand" Style="{DynamicResource DeleteButtonStyle}" Grid.Column="2" Margin="10,10,10,10" Visibility="Collapsed" Click="KursLoeschen_Click" HorizontalAlignment="Center">
+                <Image Source="/Images/redDeleteIcon.png" Height="50" />
+            </Button>
+
+        </UniformGrid>
     </Grid>
 </Page>
