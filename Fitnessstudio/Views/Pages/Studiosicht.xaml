@@ -4,12 +4,67 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitnessstudio.Views"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
 
-    <Grid Background="White">
-        <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    <Page.Resources>
+        <DataTemplate x:Key="viewHeaderTemplate">
+            <StackPanel 
+                Background="White"    
+                Width="2000"
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch"
+                Orientation="Vertical">
+                <TextBlock 
+                    HorizontalAlignment="Left" 
+                    Margin="20,0,0,0" 
+                    Foreground="#800020"
+                    FontFamily="Arial"
+                    Text="{Binding DateText}"
+                    FontSize="25"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="Wrap" />
+                <TextBlock 
+                    HorizontalAlignment="Left"  Margin="20,0,0,0" 
+                    Foreground="#FFFFFF"
+                    FontFamily="Arial"
+                    Text="{Binding DayText}"
+                    FontSize="10"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
+    <Grid>
+        <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <syncfusion:SfScheduler
+            ItemsSource="{Binding scheduleAppointmentCollection}"
+            x:Name="Schedule" 
+            MaxHeight="200" 
+            VerticalAlignment="Bottom"
+            Margin="0,288,10,0"
+            ViewType="TimelineDay"
+            AllowedViewTypes="TimelineDay"
+            EnableReminder="False"
+            HeaderHeight="0"
+            Background="White"
+            Foreground="Red">
+
+            <!-- Konfigurieren Sie die TimelineViewSettings -->
+            <syncfusion:SfScheduler.TimelineViewSettings>
+                <syncfusion:TimelineViewSettings
+                    StartHour="6"
+                    EndHour="23"
+                    TimeIntervalSize="120"
+                    ViewHeaderTemplate="{StaticResource viewHeaderTemplate}"/>
+            </syncfusion:SfScheduler.TimelineViewSettings>
+
+        </syncfusion:SfScheduler>
+        <Grid Background="White">
+            <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Page>

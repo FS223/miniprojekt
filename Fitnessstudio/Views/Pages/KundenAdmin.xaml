@@ -30,9 +30,10 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                    <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor, TargetNullValue=Gray}">
                                         <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                     </Border>
+
 
                                     <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                                 </StackPanel>
@@ -52,16 +53,18 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}" Command="{Binding EditCommand}">
+                                    <Button Style="{StaticResource gridEditButton}" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Command="{Binding DeleteCommand }">
+                                    <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}">
                                         <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
+
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+
                 </DataGrid.Columns>
             </DataGrid>
 
