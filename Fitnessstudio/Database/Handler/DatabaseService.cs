@@ -404,7 +404,7 @@ namespace Fitnessstudio
                             reader.GetInt32(reader.GetOrdinal("kursLeiterId")),
                             reader.GetInt32(reader.GetOrdinal("minTeilnehmer")),
                             reader.GetInt32(reader.GetOrdinal("maxTeilnehmer")),
-                            reader.GetDecimal(reader.GetOrdinal("preis"))
+                            reader.GetFloat(reader.GetOrdinal("preis"))
                             ));
                     }
                 }
@@ -465,5 +465,95 @@ namespace Fitnessstudio
                 Log.Error(ex, "Error while adding address");
             }
         }
+
+        public async void DeleteKursAsync(Kurs kurs)
+        {
+            try
+            {
+                var connection = await db.GetConnection();
+                using (connection)
+                {
+                    if (connection.State == ConnectionState.Closed)
+                    {
+                        await connection.OpenAsync();
+                    }
+
+                    var command = new NpgsqlCommand("DELETE FROM kurs WHERE id = @id", connection);
+                    command.Parameters.AddWithValue("@id", kurs.Id);
+
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error while deleting kurs");
+            }
+        }
+
+        public async Task AddKurs(Kurs kurs)
+        {
+            try
+            {
+                var connection = await db.GetConnection();
+                using (connection)
+                {
+                    if (connection.State == ConnectionState.Closed)
+                    {
+                        await connection.OpenAsync();
+                    }
+
+                    var command = new NpgsqlCommand("INSERT INTO kurs (bezeichnung, beschreibung, kursLeiterId, minTeilnehmer, maxTeilnehmer, preis) VALUES (@bezeichnung, @beschreibung, @kursLeiterId, @minTeilnehmer, @maxTeilnehmer, @preis)", connection);
+                    command.Parameters.AddWithValue("@bezeichnung", kurs.Bezeichnung);
+                    command.Parameters.AddWithValue("@beschreibung", kurs.Beschreibung);
+                    command.Parameters.AddWithValue("@minTeilnehmer", kurs.MinTeilnehmer);
+
+                    command.Parameters.AddWithValue("@kursLeiterId", kurs.KursLeiterId);
+                    command.Parameters.AddWithValue("@maxTeilnehmer", kurs.MaxTeilnehmer);
+                    command.Parameters.AddWithValue("@preis", kurs.Preis);
+
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error while adding kurs");
+            }
+        }
+
+        public async Task EditKursById(Kurs updatedKurs)
+        {
+            // Get a connection from the DB instance
+            using (var conn = await db.GetConnection())
+            {
+                //*
+                //  accountId = @accountId, 
+                //  kundeId = @kundeId, 
+                //  mitarbeiterId = @mitarbeiterId,
+                //*// 
+
+                await using (var command = new NpgsqlCommand(@"UPDATE kurs 
+                                                   SET bezeichnung = @bezeichnung, 
+                                                       beschreibung = @beschreibung, 
+                                                       kursLeiterId = @kursLeiterId, 
+                                                       minTeilnehmer = @minTeilnehmer, 
+                                                       maxTeilnehmer = @maxTeilnehmer,                                                       maxTeilnehmer = @maxTeilnehmer,
+                                                       preis = @preis,
+                                                   WHERE id = @id", conn))
+                {
+                    // Set the parameter values
+                    command.Parameters.AddWithValue("@id", updatedKurs.Id);
+                    command.Parameters.AddWithValue("@bezeichnung", updatedKurs.Bezeichnung);
+                    command.Parameters.AddWithValue("@beschreibung", updatedKurs.Beschreibung);
+                    command.Parameters.AddWithValue("@kursLeiterId", updatedKurs.KursLeiterId);
+                    command.Parameters.AddWithValue("@minTeilnehmer", updatedKurs.MinTeilnehmer);
+                    command.Parameters.AddWithValue("@maxTeilnehmer", updatedKurs.MaxTeilnehmer);
+                    command.Parameters.AddWithValue("@preis", updatedKurs.Preis);
+                    
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+        }
     }
+
+    
 }

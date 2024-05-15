@@ -8,11 +8,11 @@
         private int kursLeiterId;
         private int minTeilnehmer = 0;
         private int maxTeilnehmer;
-        private decimal preis;
+        private float preis;
         private List<Termin> termine;
         private List<Kunde> teilnehmer;
 
-        public Kurs(int id, string bezeichnung, string? beschreibung, int kursLeiterId, int minTeilnehmer, int maxTeilnehmer, decimal preis, List<Termin>? termine = null, List<Kunde>? teilnehmer = null)
+        public Kurs(int id, string bezeichnung, string? beschreibung, int kursLeiterId, int minTeilnehmer, int maxTeilnehmer, float preis, List<Termin>? termine = null, List<Kunde>? teilnehmer = null)
         {
             this.id = id;
             Bezeichnung = bezeichnung;
@@ -25,13 +25,35 @@
             Teilnehmer = teilnehmer;
         }
 
+        public Kurs(string bezeichnung, string? beschreibung, int kursLeiterId, int minTeilnehmer, int maxTeilnehmer, float preis, List<Termin>? termine = null, List<Kunde>? teilnehmer = null)
+        {
+            Bezeichnung = bezeichnung;
+            Beschreibung = beschreibung;
+            KursLeiterId = kursLeiterId;
+            MinTeilnehmer = minTeilnehmer;
+            MaxTeilnehmer = maxTeilnehmer;
+            Preis = preis;
+            Termine = termine;
+            Teilnehmer = teilnehmer;
+        }
+
+        public Kurs(string bezeichnung, string? beschreibung, int kursLeiterId, int minTeilnehmer, int maxTeilnehmer, float preis)
+        {
+            Bezeichnung = bezeichnung;
+            Beschreibung = beschreibung;
+            KursLeiterId = kursLeiterId;
+            MinTeilnehmer = minTeilnehmer;
+            MaxTeilnehmer = maxTeilnehmer;
+            Preis = preis;
+        }
+
         public int Id { get => id; }
         public string Bezeichnung { get => bezeichnung; set => bezeichnung = value; }
         public string Beschreibung { get => beschreibung; set => beschreibung = value; }
         public int KursLeiterId { get => kursLeiterId; set => kursLeiterId = value; }
         public int MinTeilnehmer { get => minTeilnehmer; set => minTeilnehmer = value; }
         public int MaxTeilnehmer { get => maxTeilnehmer; set => maxTeilnehmer = value; }
-        public decimal Preis { get => preis; set => preis = value; }
+        public float Preis { get => preis; set => preis = value; }
         public List<Termin> Termine { get => termine; set => termine = value; }
         public List<Kunde> Teilnehmer { get => teilnehmer; set => teilnehmer = value; }
 
