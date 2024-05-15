@@ -55,18 +55,27 @@ namespace Fitnessstudio.ViewModels
                 if (CurrentUser.Benutzername != null)
                 {
                     var Person = await databaseService.GetPersonByID(CurrentUser.PersonId);
-                    var address = await databaseService.GetAnschriftByID(Person.AnschriftId);
-                    var Kunde = await databaseService.GetKundeByID(1);
-                    if (address != null)
+                    if (Person != null)
                     {
                         Vorname = Person.Vorname;
                         Nachname = Person.Nachname;
+                        Geburtstag = Person.Geburtsdatum;
+                    }
+                    var address = await databaseService.GetAnschriftByID(Person.AnschriftId);
+                    if (address != null)
+                    {                        
                         Land = address.Land;
                         Adresse = address.Strasse + " " + address.Hausnummer;
+                        
+                    }
+                    var Kunde = await databaseService.GetKundeByID(1); // TODO
+                    if (Kunde != null)
+                    {
                         Iban = Kunde.Iban;
                         Passwort = "";
                         WPasswort = "";
                     }
+                    
                 }               
                 
             }
