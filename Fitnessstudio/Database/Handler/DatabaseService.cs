@@ -9,6 +9,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Fitnessstudio
 {
@@ -404,7 +405,8 @@ namespace Fitnessstudio
                             reader.GetInt32(reader.GetOrdinal("kursLeiterId")),
                             reader.GetInt32(reader.GetOrdinal("minTeilnehmer")),
                             reader.GetInt32(reader.GetOrdinal("maxTeilnehmer")),
-                            reader.GetFloat(reader.GetOrdinal("preis"))
+                            //reader.GetFloat(reader.GetOrdinal("preis"))
+                            (float) 12
                             ));
                     }
                 }
@@ -502,12 +504,11 @@ namespace Fitnessstudio
                         await connection.OpenAsync();
                     }
 
-                    var command = new NpgsqlCommand("INSERT INTO kurs (bezeichnung, beschreibung, kursLeiterId, minTeilnehmer, maxTeilnehmer, preis) VALUES (@bezeichnung, @beschreibung, @kursLeiterId, @minTeilnehmer, @maxTeilnehmer, @preis)", connection);
+                    var command = new NpgsqlCommand("INSERT INTO kurs (bezeichnung, beschreibung, \"kursLeiterId\", \"minTeilnehmer\", \"maxTeilnehmer\", preis) VALUES (@bezeichnung, @beschreibung, @kursLeiterId, @minTeilnehmer, @maxTeilnehmer, @preis)", connection);
                     command.Parameters.AddWithValue("@bezeichnung", kurs.Bezeichnung);
                     command.Parameters.AddWithValue("@beschreibung", kurs.Beschreibung);
-                    command.Parameters.AddWithValue("@minTeilnehmer", kurs.MinTeilnehmer);
-
                     command.Parameters.AddWithValue("@kursLeiterId", kurs.KursLeiterId);
+                    command.Parameters.AddWithValue("@minTeilnehmer", kurs.MinTeilnehmer);
                     command.Parameters.AddWithValue("@maxTeilnehmer", kurs.MaxTeilnehmer);
                     command.Parameters.AddWithValue("@preis", kurs.Preis);
 
