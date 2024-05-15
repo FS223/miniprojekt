@@ -7,14 +7,18 @@
       xmlns:viewmodels="clr-namespace:Fitnessstudio.ViewModels"
       d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
       mc:Ignorable="d" 
+
       d:DesignHeight="697.5" d:DesignWidth="1327.5"
+
       Title="Home">
 
     <Grid>
         <StackPanel Margin="37.5,37.5,37.5,37.5">
             <StackPanel Orientation="Horizontal">
+
                 <Border Width="652.5"
                 Height="337.5"
+
                 Margin="0,0,0,0"
                 CornerRadius="11.25">
                     <Border.Background>
@@ -59,6 +63,7 @@
                                             Storyboard.TargetProperty="Color"
                                             To="#ff8989"
                                             Duration="0:0:0.5" />
+
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -79,10 +84,12 @@
 
                             <TextBlock Foreground="White" FontSize="26.25" FontWeight="Bold" Margin="0,7.5,30,0" Width="565.5">
                         <Run Text="{Binding WelcomeText}" />
+
                         <Run Language="de-de" />
                             </TextBlock>
                             <TextBlock Text="It's good to have you back with us."
                                Foreground="White"
+
                                FontSize="13.5"
                                Margin="0,6,30,0" Height="22.5" Width="561" />
                         </StackPanel>
@@ -98,6 +105,7 @@
                     <Grid>
                         <StackPanel>
                             <Image Height="48.75" Width="48.75" Source="C:\Users\phet.homberg\Downloads\noti.png" Margin="22.5,22.5,510,0" RenderTransformOrigin="0.5,0.5">
+
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
@@ -112,11 +120,13 @@
                                    Foreground="White"
                                      FontSize="26.25"
                                 FontWeight="Bold"
+
                                    Margin="22.5,7.5,7.5,0" Width="565.5"><Run Text="Update from Our Gym!"/></TextBlock>
                             <TextBlock Text="We've got some exciting announcements to make!"
                                    Foreground="White"
                                    FontSize="15"
                                    Margin="22.5,6,7.5,0" Height="22.5" Width="561">
+
                             </TextBlock>
 
                         </StackPanel>
@@ -143,6 +153,7 @@
                     <Border Width="405"
                     Height="255"
                     CornerRadius="11.25"
+
                     Margin="0">
 
                         <Border.Background>
@@ -154,7 +165,9 @@
 
                         <Grid>
                             <StackPanel>
+
                                 <Image Height="48.75" Width="48.75" Source="C:\Users\phet.homberg\Downloads\course final.png" Margin="7.5,30,326.25,7.5" RenderTransformOrigin="0.5,0.5">
+
                                     <Image.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -167,15 +180,19 @@
 
                                 <TextBlock
                                    Foreground="White"
+
                                    FontSize="26.25"
                                 FontWeight="Bold"
                                    Margin="7.5,0,0,0" Width="375"><Run Text="My Course"/>
+
                                 <Run Language="de-de"/></TextBlock>
 
                                 <TextBlock  TextWrapping="Wrap" Text="Get ready to break a sweat! Your next gym class is calling."
                                    Foreground="White"
+
                                    FontSize="13.5"
                                    Margin="0,6,22.5,0" Height="43.5" Width="342">
+
                                 </TextBlock>
 
                             </StackPanel>
@@ -184,9 +201,11 @@
 
                     </Border>
 
+
                     <Border Width="405"
                     Height="255"
                     CornerRadius="11.25">
+
 
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
@@ -197,7 +216,9 @@
 
                         <Grid>
                             <StackPanel>
+
                                 <Image Height="48.75" Width="48.75" Source="C:\Users\phet.homberg\Downloads\shoping 1.png" Margin="0,30,326.25,7.5" RenderTransformOrigin="0.5,0.5">
+
                                     <Image.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -210,21 +231,27 @@
 
                                 <TextBlock
                                    Foreground="White"
+
                                    FontSize="26.25"
                                 FontWeight="Bold"
                                    Margin="7.5,0,0,0" Width="375"><Run Text="Explore Our Shop!"/>
                                 <Run Language="de-de"/></TextBlock>
 
-                                <TextBlock TextWrapping="Wrap" Text="Gear up, fuel up, and rep out! Find everything for your fitness journey."
+
+
+                                <TextBlock TextWrapping="Wrap" Text="Keep your information up-to-date and personalize your experience."
                                    Foreground="White"
+
                                    FontSize="13.5"
                                    Margin="0,6,22.5,0" Height="43.5" Width="342">
+
                                 </TextBlock>
 
                             </StackPanel>
                         </Grid>
 
                     </Border>
+
 
                     <Border Width="405"
                     Height="255"
@@ -239,7 +266,9 @@
 
                         <Grid>
                             <StackPanel>
+
                                 <Image Height="48.75" Width="48.75" Source="C:\Users\phet.homberg\Downloads\help final.png" Margin="0,30,326.25,7.5" RenderTransformOrigin="0.5,0.5">
+
                                     <Image.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -252,15 +281,19 @@
 
                                 <TextBlock
                                    Foreground="White"
+
                                    FontSize="26.25"
                                 FontWeight="Bold"
                                    Margin="7.5,0,0,0" Width="375"><Run Text="You Need Help?"/>
+
                                 <Run Language="de-de"/></TextBlock>
 
-                                <TextBlock TextWrapping="Wrap" Text="Need a hand? We're here for you."
+                                <TextBlock TextWrapping="Wrap" Text="Gear up, fuel up, and rep out! Find everything for your fitness journey."
                                    Foreground="White"
+
                                    FontSize="13.5"
                                    Margin="7.5,6,0,0" Height="22.5" Width="375">
+
                                 </TextBlock>
 
                             </StackPanel>
