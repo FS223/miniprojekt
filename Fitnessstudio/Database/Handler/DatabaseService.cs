@@ -468,7 +468,7 @@ namespace Fitnessstudio
             }
         }
 
-        public async void DeleteKursAsync(Kurs kurs)
+        public async Task<int> DeleteKursAsync(Kurs kurs)
         {
             try
             {
@@ -483,13 +483,14 @@ namespace Fitnessstudio
                     var command = new NpgsqlCommand("DELETE FROM kurs WHERE id = @id", connection);
                     command.Parameters.AddWithValue("@id", kurs.Id);
 
-                    await command.ExecuteNonQueryAsync();
+                    return await command.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception ex)
             {
                 Log.Error(ex, "Error while deleting kurs");
             }
+            return 0;
         }
 
         public async Task AddKurs(Kurs kurs)

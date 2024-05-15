@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fitnessstudio.Views.Pages;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Fitnessstudio.Views
     /// </summary>
     public partial class Kurse : Page
     {
+        List<Kurs> _kursList = new List<Kurs>();
         public Kurse()
         {
             InitializeComponent();
@@ -41,7 +43,7 @@ namespace Fitnessstudio.Views
             //    MessageBox.Show(kurs.Bezeichnung);
             //}
             KurslisteFuellen(kursliste);
-
+            _kursList = kursliste;
         }
 
         /// <summary>
@@ -101,6 +103,8 @@ namespace Fitnessstudio.Views
                     myGrid.Children.Add(l1);
                     myGrid.Children.Add(l2);
                     myGrid.Children.Add(btn_del);
+                    myGrid.Tag = kurs.Id;
+                    myGrid.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(ListViewItem_PreviewMouseLeftButtonDown);
                     // Adds grid to the listview
                     KursListe.Items.Add(myGrid);
 
@@ -109,6 +113,39 @@ namespace Fitnessstudio.Views
             }
         }
 
-        private void KursHinufuegen_Click(object sender, RoutedEventArgs e) => NeuerKursFrame.Source = new Uri("../pages/Kursdetails.xaml", UriKind.Relative);
+        private void KursHinufuegen_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new Kursdetails());
+        private void KursLoeschen_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseService databaseService = new DatabaseService();
+        }
+        private Kurs KursAusListeSuchen(int id)
+        {
+            foreach(Kurs kurs in _kursList)
+            {
+                if (kurs.Id == id)
+                {
+                    return kurs;
+                }
+            }
+            return null;
+        }
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var grid = sender as Grid;
+            if (grid != null)
+            {
+                int kursId;
+                int.TryParse(grid.Tag.ToString(), out kursId);
+                EditKurs(KursAusListeSuchen(kursId));
+            }
+        }
+
+        private void EditKurs(Kurs kurs)
+        {
+            if(kurs != null)
+            {
+                NavigationService.Navigate(new Kursdetails(kurs));
+            }
+        }
     }
 }
