@@ -24,5 +24,7 @@ namespace Fitnessstudio.Views.Pages
         {
             InitializeComponent();
         }
+
+
     }
 }

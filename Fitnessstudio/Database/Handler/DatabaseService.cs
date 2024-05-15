@@ -89,7 +89,8 @@ namespace Fitnessstudio
                     {
                         if (await reader.ReadAsync())
                         {
-                            return new Anschrift {
+                            return new Anschrift
+                            {
                                 Id = reader.GetInt32(reader.GetOrdinal("id")),
                                 Land = reader.GetString(reader.GetOrdinal("land")),
                                 Plz = reader.GetString(reader.GetOrdinal("plz")),
@@ -129,7 +130,8 @@ namespace Fitnessstudio
                             {
                                 mitgliedschaft = Mitgliedschaft.BRONZE;
                             }
-                            return new Kunde {
+                            return new Kunde
+                            {
                                 Id = reader.GetInt32(reader.GetOrdinal("id")),
                                 PersonId = reader.GetInt32(reader.GetOrdinal("personId")),
                                 Guthaben = (float)reader.GetDouble(reader.GetOrdinal("guthaben")),
@@ -163,7 +165,8 @@ namespace Fitnessstudio
                         if (await reader.ReadAsync())
                         {
                             Enum.TryParse(reader.GetString(reader.GetOrdinal("geschlecht")), out Geschlecht geschlecht);
-                            return new Person {
+                            return new Person
+                            {
                                 Id = reader.GetInt32(reader.GetOrdinal("id")),
                                 Vorname = reader.GetString(reader.GetOrdinal("vorname")),
                                 Nachname = reader.GetString(reader.GetOrdinal("nachname")),
@@ -199,7 +202,8 @@ namespace Fitnessstudio
                         if (await reader.ReadAsync())
                         {
                             Enum.TryParse(reader.GetString(reader.GetOrdinal("rolle")), out Rolle rolle);
-                            return new Account {
+                            return new Account
+                            {
                                 Id = reader.GetInt32(reader.GetOrdinal("id")),
                                 Benutzername = reader.GetString(reader.GetOrdinal("benutzername")),
                                 Email = reader.GetString(reader.GetOrdinal("email")),
@@ -207,7 +211,7 @@ namespace Fitnessstudio
                                 Rolle = rolle,
                                 PersonId = reader.GetInt32(reader.GetOrdinal("personId"))
                             };
-                        }                        
+                        }
                         else
                         {
                             return null;
@@ -229,14 +233,14 @@ namespace Fitnessstudio
                 //*// 
 
                 await using (var cmd = new NpgsqlCommand(@"UPDATE person 
-                                                   SET vorname = @vorname, 
-                                                       nachname = @nachname, 
-                                                       geburtsdatum = @geburtsdatum, 
-                                                       geschlecht = @geschlecht, 
-                                                       anschriftId = @anschriftId,
-                                                   WHERE id = @id", conn))
+                                           SET vorname = @vorname, 
+                                               nachname = @nachname, 
+                                               geburtsdatum = @geburtsdatum, 
+                                               geschlecht = @geschlecht, 
+                                               anschriftId = @anschriftId
+                                           WHERE id = @id", conn))
+
                 {
-                    // Set the parameter values
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@vorname", updatedPerson.Vorname);
                     cmd.Parameters.AddWithValue("@nachname", updatedPerson.Nachname);
@@ -246,7 +250,7 @@ namespace Fitnessstudio
                     //cmd.Parameters.AddWithValue("@accountId", (object)updatedPerson.AccountId ?? DBNull.Value);
                     //cmd.Parameters.AddWithValue("@kundeId", (object)updatedPerson.KundeId ?? DBNull.Value);
                     //cmd.Parameters.AddWithValue("@mitarbeiterId", (object)updatedPerson.MitarbeiterId ?? DBNull.Value);
-                    
+
 
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
                     return rowsAffected > 0;
@@ -285,7 +289,7 @@ namespace Fitnessstudio
             return accounts;
         }
 
-        public async Task<List<Person>> GetPersonen()
+        public async Task<List<Person>> GetPersonen(int currentPage, int itemsPerPage)
         {
             var persons = new List<Person>();
             var connection = await db.GetConnection();
@@ -320,6 +324,9 @@ namespace Fitnessstudio
             }
             return persons;
         }
+
+
+
 
         public async Task<List<Kunde>> GetKunden()
         {
@@ -514,7 +521,7 @@ namespace Fitnessstudio
                 {
                     await connection.OpenAsync();
                 }
-                using (var command = new NpgsqlCommand("SELECT * FROM \"zeitenBuchung\" zb WHERE \"checkIn\" < '"+timeString+"' AND \"checkOut\" > '"+timeString+"'", connection))
+                using (var command = new NpgsqlCommand("SELECT * FROM \"zeitenBuchung\" zb WHERE \"checkIn\" < '" + timeString + "' AND \"checkOut\" > '" + timeString + "'", connection))
                 using (var reader = await command.ExecuteReaderAsync())
                 {
                     while (await reader.ReadAsync())
