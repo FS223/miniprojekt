@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Fitnessstudio.Commands;
 using Fitnessstudio.Models;
+using Fitnessstudio.Views;
 using Npgsql;
 using Serilog;
 
@@ -22,24 +23,27 @@ namespace Fitnessstudio.ViewModels
         public ICommand EditCommand { get; }
         public ICommand NewCommand { get; }
 
-        private Account CurrentAccount { get; set; }
+        public Account CurrentAccount { get; set; }
+        public readonly Dashboard dashboard;
 
 
 
-        public KundenAdminViewModel(Account CurrentAccount)
+        public KundenAdminViewModel(Account CurrentAccount, Dashboard dashboard)
         {
+            this.CurrentAccount = CurrentAccount;
+            this.dashboard = dashboard;
             databaseService = new DatabaseService();
             Items = new ObservableCollection<PersonWithAddress>();
             GetPersonenWithAdress();
-            DeleteCommand = new DeletePersonCommand(databaseService.DeletePersonAsync);
-            EditCommand = new EditCommand();
+            DeleteCommand = new DeletePersonCommand(this);
+            EditCommand = new EditCommand(this);
             NewCommand = new NewCommand();
-            this.CurrentAccount = CurrentAccount;
             Debug.WriteLine(CurrentAccount);
         }
 
-        private async void GetPersonenWithAdress()
+        public async void GetPersonenWithAdress()
         {
+            Items.Clear();
             try
             {
                 var Personen = await databaseService.GetPersonen();

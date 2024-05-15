@@ -53,10 +53,10 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}">
+                                    <Button CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Style="{StaticResource gridEditButton}" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}">
+                                    <Button CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}" >
                                         <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
 
