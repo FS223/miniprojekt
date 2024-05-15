@@ -68,7 +68,7 @@
         <Label Grid.Column="10" x:Name="TimeFuture1" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Grid.Column="12" x:Name="TimeFuture2" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Grid.Column="14" x:Name="TimeFuture3" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
-        <WpfPlot x:Name="Timeplot" />
+        <WpfPlot x:Name="Timeplot" Background="Black"/>
         
         
     </Grid>
