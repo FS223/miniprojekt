@@ -134,14 +134,14 @@
                                 <Storyboard RepeatBehavior="Forever">
                                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="StartGradientStop2"
                                                           Storyboard.TargetProperty="Color"
-                                                          Duration="0:0:10" AutoReverse="True">
+                                                          Duration="0:0:05" AutoReverse="True">
                                         <EasingColorKeyFrame KeyTime="0%" Value="#508AA8" />
                                         <EasingColorKeyFrame KeyTime="50%" Value="#84ffc9" />
                                         <EasingColorKeyFrame KeyTime="100%" Value="#508AA8" />
                                     </ColorAnimationUsingKeyFrames>
                                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="EndGradientStop2"
                                                           Storyboard.TargetProperty="Color"
-                                                          Duration="0:0:20" AutoReverse="True">
+                                                          Duration="0:0:10" AutoReverse="True">
                                         <EasingColorKeyFrame KeyTime="0%" Value="#84ffc9" />
                                         <EasingColorKeyFrame KeyTime="50%" Value="#508AA8" />
                                         <EasingColorKeyFrame KeyTime="70%" Value="#508AA8" />
@@ -311,7 +311,7 @@
                                         <ColorAnimation Storyboard.TargetName="EndGradientStop4"
                                             Storyboard.TargetProperty="Color"
                                             To="#696eff"
-                                            Duration="0:0:0.5" />
+                                            Duration="0:0:0.10" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
