@@ -41,6 +41,9 @@ namespace Fitnessstudio
         /// </summary>
         private async void PlotBarChart()
         {
+            double maxCapacity = 20;
+
+            System.Drawing.Color backgroundcolor = System.Drawing.Color.FromArgb(19,15,15);
 
             // Aktuelle Zeit bestimmen und entsprechend im 2 Stunden Rahmen +- den Bereich festlegen
             string currentHourS = DateTime.Now.ToString("HH");
@@ -69,8 +72,9 @@ namespace Fitnessstudio
 
             DateTime currentDateTime = DateTime.Parse(currentHour + ":" + currentMinute);
             
-            DateTime startTime = currentDateTime.AddHours(-2); // Start um 8 Uhr morgens
-            DateTime endTime = currentDateTime.AddHours(2); // Endet um 20 Uhr
+            DateTime startTime = currentDateTime.AddHours(-2); // Anfangzeit ist 2 Stunden vorm aktuellen Zeitpunkt
+            DateTime endTime = currentDateTime.AddHours(2); // Endzeit ist 2,5 Stunden nach eigentlichem Intervall
+            endTime = endTime.AddMinutes(30);
             TimeSpan interval = TimeSpan.FromMinutes(30); // Halbstündiges Intervall
 
             var times = Enumerable.Range(0, (int)((endTime - startTime).TotalMinutes / interval.TotalMinutes))
@@ -80,13 +84,13 @@ namespace Fitnessstudio
 
             // Berechne die Anzahl der anwesenden Personen für jedes Intervall
             double[] peoplePresent = new double[times.Length];
-            for (int i = 0; i < times.Length-4; i++)
+            for (int i = 0; i < times.Length; i++)
             {
                 DatabaseService Db = new DatabaseService();
                 peoplePresent[i] = await Db.GetAnzahlLeute(times[i]);
             }
 
-            double maxCapacity = 10;
+            
             
             // Erstelle den Bar Plot
             var plt = Timeplot.Plot;
@@ -96,14 +100,14 @@ namespace Fitnessstudio
             bars.BorderLineWidth = 1;
             plt.XTicks(times.Select(time => time.ToString("HH:mm")).ToArray());
             plt.XLabel("Zeit");
-            plt.YLabel("Auslastung (%)");
+            plt.YLabel("Anzahl Personen");
             plt.Title("Halbstündliche Auslastung");
             // Setze die y-Achse von 0 bis 100%
             plt.SetAxisLimits(yMin: 0, yMax: maxCapacity);
 
             #region Styles
 
-            plt.Style(System.Drawing.Color.Black, System.Drawing.Color.Black, System.Drawing.Color.White, System.Drawing.Color.White); //Styles
+            plt.Style(backgroundcolor, System.Drawing.Color.FromArgb(19, 15, 15), System.Drawing.Color.White, System.Drawing.Color.White); //Styles
             bars.Color = System.Drawing.Color.White; // Style der Säulen an sich
 
             #endregion

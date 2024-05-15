@@ -63,8 +63,9 @@
             </syncfusion:SfScheduler.TimelineViewSettings>
 
         </syncfusion:SfScheduler>
-        <Grid Background="White">
+        <Grid Background="#191515">
             <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Frame Name="FrameWithinGrid" Source="Stoßzeiten.xaml" NavigationUIVisibility="Hidden" Margin="29,31,536,282"/>
         </Grid>
     </Grid>
 </Page>
