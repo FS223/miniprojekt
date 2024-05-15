@@ -29,5 +29,6 @@ namespace Fitnessstudio.Views
         {
             this.DataContext = dataContext;
         }
+
     }
 }

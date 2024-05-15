@@ -119,12 +119,54 @@
 
                         </StackPanel>
                     </Grid>
+
+
                     <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#508AA8" Offset="0.0"/>
-                            <GradientStop Color="#84ffc9" Offset="1"/>
+                        <LinearGradientBrush x:Name="GradientBrush2" StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop x:Name="StartGradientStop2" Color="#508AA8" Offset="0.0" />
+                            <GradientStop x:Name="EndGradientStop2" Color="#84ffc9" Offset="1" />
                         </LinearGradientBrush>
                     </Border.Background>
+
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="Border.MouseEnter">
+                            <BeginStoryboard Name="MouseEnterStoryboard2">
+                                <Storyboard RepeatBehavior="Forever">
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="StartGradientStop2"
+                                                          Storyboard.TargetProperty="Color"
+                                                          Duration="0:0:10" AutoReverse="True">
+                                        <EasingColorKeyFrame KeyTime="0%" Value="#508AA8" />
+                                        <EasingColorKeyFrame KeyTime="50%" Value="#84ffc9" />
+                                        <EasingColorKeyFrame KeyTime="100%" Value="#508AA8" />
+                                    </ColorAnimationUsingKeyFrames>
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="EndGradientStop2"
+                                                          Storyboard.TargetProperty="Color"
+                                                          Duration="0:0:20" AutoReverse="True">
+                                        <EasingColorKeyFrame KeyTime="0%" Value="#84ffc9" />
+                                        <EasingColorKeyFrame KeyTime="50%" Value="#508AA8" />
+                                        <EasingColorKeyFrame KeyTime="70%" Value="#508AA8" />
+                                        <EasingColorKeyFrame KeyTime="100%" Value="#84ffc9" />
+
+                                    </ColorAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Border.MouseLeave">
+                            <StopStoryboard BeginStoryboardName="MouseEnterStoryboard2" />
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="StartGradientStop2"
+                                            Storyboard.TargetProperty="Color"
+                                            To="#508AA8"
+                                            Duration="0:0:0.5" />
+                                    <ColorAnimation Storyboard.TargetName="EndGradientStop2"
+                                            Storyboard.TargetProperty="Color"
+                                            To="#84ffc9"
+                                            Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
 
                 </Border>
 
@@ -138,7 +180,7 @@
                 </StackPanel.Resources>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
 
-                    <Border Width="400"
+                    <Border x:Name="Box3" Width="400"
                     Height="290"
                     CornerRadius="15"
                     Margin="0">
@@ -178,8 +220,6 @@
 
                             </StackPanel>
                         </Grid>
-
-
                     </Border>
 
                     <Border Width="400"
