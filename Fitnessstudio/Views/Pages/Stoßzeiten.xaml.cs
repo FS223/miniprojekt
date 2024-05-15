@@ -26,7 +26,10 @@ namespace Fitnessstudio
         public Stoßzeiten()
         {
             InitializeComponent();
+            Timeplot.RightClicked -= Timeplot.DefaultRightClickEvent;
             PlotBarChart();
+            Timeplot.Configuration.Pan = false;
+            Timeplot.Configuration.Zoom = false;
             //string currentTime = DateTime.Now.ToString("HH:mm");
             //DateTime timeOpen = new(1985, 09, 24, 9, 30, 0); // 9:30 AM
             //DateTime timeClose = new(1985, 09, 24, 16, 0, 0); // 4:00 PM
@@ -65,8 +68,32 @@ namespace Fitnessstudio
         {
 
             // Simuliere Check-In und Check-Out Daten
-            DateTime startTime = DateTime.Now.Date.AddHours(8); // Start um 8 Uhr morgens
-            DateTime endTime = startTime.AddHours(12); // Endet um 20 Uhr
+            string currentHourS = DateTime.Now.ToString("HH");
+            string currentMinuteS = DateTime.Now.ToString("mm");
+            int currentMinute = Convert.ToInt32(currentMinuteS);
+            int currentHour = Convert.ToInt32(currentHourS);
+            switch (Math.Round(Convert.ToDouble(currentMinute) / 15))
+            {
+                case 0:
+                    currentMinute = 0; break;
+                case 1:
+                    currentMinute = 15; break;
+                case 2:
+                    currentMinute = 30; break;
+                case 3:
+                    currentMinute = 45; break;
+                case 4:
+                    currentMinute = 0;
+                    currentHour += 1;
+                    break;
+                default:
+                    break;
+            }
+
+            DateTime currentDateTime = DateTime.Parse(currentHour + ":" + currentMinute);
+
+            DateTime startTime = currentDateTime.AddHours(-2); // Start um 8 Uhr morgens
+            DateTime endTime = currentDateTime.AddHours(2); // Endet um 20 Uhr
             TimeSpan interval = TimeSpan.FromMinutes(30); // Halbstündiges Intervall
 
             var times = Enumerable.Range(0, (int)((endTime - startTime).TotalMinutes / interval.TotalMinutes))
@@ -88,6 +115,10 @@ namespace Fitnessstudio
                 {
                     currentPeople = 0;
                 }
+                if (currentPeople > 100)
+                {
+                    currentPeople = 99;
+                }
                 peoplePresent[i] = currentPeople;
             }
 
@@ -99,6 +130,9 @@ namespace Fitnessstudio
             var plt = Timeplot.Plot;
             plt.Clear();
             plt.AddBar(utilization);
+            plt.Style(System.Drawing.Color.Black, System.Drawing.Color.Black, System.Drawing.Color.White,System.Drawing.Color.White);
+            var bars = plt.AddBar(utilization);
+            bars.BorderLineWidth = 1;
             plt.XTicks(times.Select(time => time.ToString("HH:mm")).ToArray());
             plt.XLabel("Zeit");
             plt.YLabel("Auslastung (%)");
