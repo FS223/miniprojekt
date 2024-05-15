@@ -14,7 +14,7 @@ namespace Fitnessstudio.ViewModels
     {
         private readonly DatabaseService databaseService;
 
-        public readonly Account CurrentUser;
+        public Account CurrentUser;
         private String vorname = "";
         public String Vorname { get { return vorname; } set { vorname = value; OnPropertyChanged(nameof(Vorname)); } }
 
@@ -54,9 +54,9 @@ namespace Fitnessstudio.ViewModels
             {
                 if (CurrentUser.Benutzername != null)
                 {
-                    var Person = await databaseService.GetPersonByID(CurrentUser.Id);
-                    var address = await databaseService.GetAnschriftByID(CurrentUser.Id);
-                    var Kunde = await databaseService.GetKundeByID(CurrentUser.Id);
+                    var Person = await databaseService.GetPersonByID(CurrentUser.PersonId);
+                    var address = await databaseService.GetAnschriftByID(Person.AnschriftId);
+                    var Kunde = await databaseService.GetKundeByID(1);
                     if (address != null)
                     {
                         Vorname = Person.Vorname;
@@ -73,10 +73,7 @@ namespace Fitnessstudio.ViewModels
             catch (Exception ex)
             {
                 Log.Error(ex, "Error while fetching persons");
-            }
-
-
-            
+            }           
 
         }
     }

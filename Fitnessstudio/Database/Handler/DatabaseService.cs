@@ -185,6 +185,38 @@ namespace Fitnessstudio
             }
         }
 
+        public async Task<Account> GetAccountById(int id)
+        {
+            // Get a connection from the DB instance
+            using (var conn = await db.GetConnection())
+            {
+                await using (var cmd = new NpgsqlCommand("SELECT * FROM account WHERE id = @p1", conn))
+                {
+                    cmd.Parameters.AddWithValue("@p1", id);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            Enum.TryParse(reader.GetString(reader.GetOrdinal("rolle")), out Rolle rolle);
+                            return new Account {
+                                Id = reader.GetInt32(reader.GetOrdinal("id")),
+                                Benutzername = reader.GetString(reader.GetOrdinal("benutzername")),
+                                Email = reader.GetString(reader.GetOrdinal("email")),
+                                Passwort = reader.GetString(reader.GetOrdinal("passwort")),
+                                Rolle = rolle,
+                                PersonId = reader.GetInt32(reader.GetOrdinal("personId"))
+                            };
+                        }                        
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+
         public async Task<bool> UpdatePersonByID(int id, Person updatedPerson)
         {
             // Get a connection from the DB instance
@@ -428,8 +460,10 @@ namespace Fitnessstudio
 
                     var command = new NpgsqlCommand("DELETE FROM person WHERE id = @id", connection);
                     command.Parameters.AddWithValue("@id", person.Id);
-
                     await command.ExecuteNonQueryAsync();
+                    var command2 = new NpgsqlCommand("DELETE FROM messung WHERE id = @id", connection);
+                    command2.Parameters.AddWithValue("@id", person.Id);
+                    await command2.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception ex)

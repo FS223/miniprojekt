@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace Fitnessstudio.Views.Pages
 {
     /// <summary>
-    /// Interaktionslogik für kundenView.xaml
+    /// Interaktionslogik für membershipanalysis.xaml
     /// </summary>
-    public partial class KundenView : Page
+    public partial class membershipanalysis : Page
     {
-        public KundenView()
+        public membershipanalysis()
         {
             InitializeComponent();
         }
-
-
     }
 }
