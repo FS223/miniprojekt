@@ -40,5 +40,10 @@ namespace Fitnessstudio.Views.Pages
             viewModel.PreviousPage();
             UpdateDataGrid();
         }
+
+        private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
