@@ -522,38 +522,39 @@ namespace Fitnessstudio
             }
         }
 
-        public async Task EditKursById(Kurs updatedKurs)
+        public async Task EditKurs(Kurs updatedKurs)
         {
-            // Get a connection from the DB instance
-            using (var conn = await db.GetConnection())
+            try
             {
-                //*
-                //  accountId = @accountId, 
-                //  kundeId = @kundeId, 
-                //  mitarbeiterId = @mitarbeiterId,
-                //*// 
-
-                await using (var command = new NpgsqlCommand(@"UPDATE kurs 
-                                                   SET bezeichnung = @bezeichnung, 
-                                                       beschreibung = @beschreibung, 
-                                                       kursLeiterId = @kursLeiterId, 
-                                                       minTeilnehmer = @minTeilnehmer, 
-                                                       maxTeilnehmer = @maxTeilnehmer,                                                       maxTeilnehmer = @maxTeilnehmer,
-                                                       preis = @preis,
-                                                   WHERE id = @id", conn))
+                // Get a connection from the DB instance
+                using (var conn = await db.GetConnection())
                 {
-                    // Set the parameter values
-                    command.Parameters.AddWithValue("@id", updatedKurs.Id);
-                    command.Parameters.AddWithValue("@bezeichnung", updatedKurs.Bezeichnung);
-                    command.Parameters.AddWithValue("@beschreibung", updatedKurs.Beschreibung);
-                    command.Parameters.AddWithValue("@kursLeiterId", updatedKurs.KursLeiterId);
-                    command.Parameters.AddWithValue("@minTeilnehmer", updatedKurs.MinTeilnehmer);
-                    command.Parameters.AddWithValue("@maxTeilnehmer", updatedKurs.MaxTeilnehmer);
-                    command.Parameters.AddWithValue("@preis", updatedKurs.Preis);
-                    
-                    await command.ExecuteNonQueryAsync();
+                    //*
+                    //  accountId = @accountId, 
+                    //  kundeId = @kundeId, 
+                    //  mitarbeiterId = @mitarbeiterId,
+                    //*// 
+
+                    await using (var command = new NpgsqlCommand("UPDATE kurs SET bezeichnung = @bezeichnung, beschreibung = @beschreibung, \"kursLeiterId\" = @kursLeiterId, \"minTeilnehmer\" = @minTeilnehmer, \"maxTeilnehmer\" = @maxTeilnehmer, preis = @preis WHERE id = @id", conn))
+                    {
+                        // Set the parameter values
+                        command.Parameters.AddWithValue("@id", updatedKurs.Id);
+                        command.Parameters.AddWithValue("@bezeichnung", updatedKurs.Bezeichnung);
+                        command.Parameters.AddWithValue("@beschreibung", updatedKurs.Beschreibung);
+                        command.Parameters.AddWithValue("@kursLeiterId", updatedKurs.KursLeiterId);
+                        command.Parameters.AddWithValue("@minTeilnehmer", updatedKurs.MinTeilnehmer);
+                        command.Parameters.AddWithValue("@maxTeilnehmer", updatedKurs.MaxTeilnehmer);
+                        command.Parameters.AddWithValue("@preis", updatedKurs.Preis);
+
+                        await command.ExecuteNonQueryAsync();
+                    }
                 }
             }
+            catch
+            {
+                Log.Error("Error while editing kurs");
+            }
+            
         }
     }
 
