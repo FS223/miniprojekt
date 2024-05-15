@@ -39,7 +39,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="White">
+    <Grid Background="Black">
         <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <syncfusion:SfScheduler
             ItemsSource="{Binding scheduleAppointmentCollection}"
@@ -62,5 +62,6 @@
                     ViewHeaderTemplate="{StaticResource viewHeaderTemplate}"/>
             </syncfusion:SfScheduler.TimelineViewSettings>
         </syncfusion:SfScheduler>
+        <Frame Name="FrameWithinGrid" Source="Stoßzeiten.xaml" NavigationUIVisibility="Hidden" Margin="10,13,577,317"/>
     </Grid>
 </Page>

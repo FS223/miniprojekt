@@ -502,7 +502,12 @@ namespace Fitnessstudio
             }
         }
 
-        public async Task<int> GetAnzahlLeute(DateTime currentTime)
+        /// <summary>
+        /// Ermittelt die aktuelle Anzahl an Personen zu einer bestimmten Uhrzeit
+        /// </summary>
+        /// <param name="currentTime"></param>
+        /// <returns>Anzahl anwesender Personen</returns>
+        public async Task<int> GetAktuelleAnzahlLeute(DateTime currentTime)
         {
             string timeString = currentTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
             int amount = 0;
@@ -520,6 +525,36 @@ namespace Fitnessstudio
                     while (await reader.ReadAsync())
                     {
                         amount++;
+                    }
+                }
+            }
+            return amount;
+        }
+
+
+        /// <summary>
+        /// To be Added
+        /// </summary>
+        /// <param name="currentTime"></param>
+        /// <returns></returns>
+        public async Task<int> GetGeplanteAnzahlLeute(DateTime currentTime)
+        {
+            string timeString = currentTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            int amount = 0;
+            var zeitenbuchung = new List<ZeitenBuchung>();
+            var connection = await db.GetConnection();
+            using (connection)
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
+                using (var command = new NpgsqlCommand("SELECT * FROM \"zeitenBuchung\" zb WHERE \"checkIn\" < '" + timeString + "' AND \"checkOut\" > '" + timeString + "'", connection))
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        amount++;
                         //zeitenbuchung.Add(new ZeitenBuchung
                         //{
                         //    Id = reader.GetInt32(reader.GetOrdinal("id")),
@@ -532,8 +567,6 @@ namespace Fitnessstudio
             }
             return amount;
         }
-
-
 
     }
 }

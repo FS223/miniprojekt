@@ -20,6 +20,7 @@
     <None Remove="Images\account.png" />
     <None Remove="Images\greenAddCircle.png" />
     <None Remove="Images\group.png" />
+    <None Remove="Images\gui-refresh.png" />
     <None Remove="Images\home.png" />
     <None Remove="Images\IconHome\account.png" />
     <None Remove="Images\IconHome\course.png" />
@@ -45,6 +46,7 @@
     <Resource Include="Images\account.png" />
     <Resource Include="Images\greenAddCircle.png" />
     <Resource Include="Images\group.png" />
+    <Resource Include="Images\gui-refresh.png" />
     <Resource Include="Images\home.png" />
     <Resource Include="Images\IconHome\account.png" />
     <Resource Include="Images\IconHome\course.png" />
