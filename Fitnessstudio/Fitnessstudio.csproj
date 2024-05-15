@@ -21,6 +21,11 @@
     <None Remove="Images\greenAddCircle.png" />
     <None Remove="Images\group.png" />
     <None Remove="Images\home.png" />
+    <None Remove="Images\IconHome\account.png" />
+    <None Remove="Images\IconHome\course.png" />
+    <None Remove="Images\IconHome\noti.png" />
+    <None Remove="Images\IconHome\shop.png" />
+    <None Remove="Images\IconHome\welcome.png" />
     <None Remove="Images\key-icon.png" />
     <None Remove="Images\kurs.png" />
     <None Remove="Images\Landing-page\Frame 14588.png" />
@@ -41,6 +46,11 @@
     <Resource Include="Images\greenAddCircle.png" />
     <Resource Include="Images\group.png" />
     <Resource Include="Images\home.png" />
+    <Resource Include="Images\IconHome\account.png" />
+    <Resource Include="Images\IconHome\course.png" />
+    <Resource Include="Images\IconHome\noti.png" />
+    <Resource Include="Images\IconHome\shop.png" />
+    <Resource Include="Images\IconHome\welcome.png" />
     <Resource Include="Images\kurs.png" />
     <Resource Include="Images\Landing-page\Frame 14588.png" />
     <Resource Include="Images\Landing-page\Frame 14591.png" />
