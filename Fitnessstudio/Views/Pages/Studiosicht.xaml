@@ -39,32 +39,33 @@
     </Page.Resources>
 
     <Grid>
-        <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <syncfusion:SfScheduler
-            ItemsSource="{Binding scheduleAppointmentCollection}"
-            x:Name="Schedule" 
-            MaxHeight="200" 
-            VerticalAlignment="Bottom"
-            Margin="0,288,10,0"
-            ViewType="TimelineDay"
-            AllowedViewTypes="TimelineDay"
-            EnableReminder="False"
-            HeaderHeight="0"
-            Background="White"
-            Foreground="Red">
-
-            <!-- Konfigurieren Sie die TimelineViewSettings -->
-            <syncfusion:SfScheduler.TimelineViewSettings>
-                <syncfusion:TimelineViewSettings
-                    StartHour="6"
-                    EndHour="23"
-                    TimeIntervalSize="120"
-                    ViewHeaderTemplate="{StaticResource viewHeaderTemplate}"/>
-            </syncfusion:SfScheduler.TimelineViewSettings>
-
-        </syncfusion:SfScheduler>
+        
         <Grid Background="White">
             <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+            <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <syncfusion:SfScheduler
+    ItemsSource="{Binding scheduleAppointmentCollection}"
+    x:Name="Schedule" 
+    MaxHeight="200" 
+    VerticalAlignment="Bottom"
+    Margin="0,288,10,0"
+    ViewType="TimelineDay"
+    AllowedViewTypes="TimelineDay"
+    EnableReminder="False"
+    HeaderHeight="0"
+    Background="White"
+    Foreground="Red">
+
+                <!-- Konfigurieren Sie die TimelineViewSettings -->
+                <syncfusion:SfScheduler.TimelineViewSettings>
+                    <syncfusion:TimelineViewSettings
+            StartHour="6"
+            EndHour="23"
+            TimeIntervalSize="120"
+            ViewHeaderTemplate="{StaticResource viewHeaderTemplate}"/>
+                </syncfusion:SfScheduler.TimelineViewSettings>
+            </syncfusion:SfScheduler>
         </Grid>
     </Grid>
 </Page>
