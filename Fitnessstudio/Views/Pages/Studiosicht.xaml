@@ -62,6 +62,7 @@
                     ViewHeaderTemplate="{StaticResource viewHeaderTemplate}"/>
             </syncfusion:SfScheduler.TimelineViewSettings>
         </syncfusion:SfScheduler>
-        <Frame Name="FrameWithinGrid" Source="Stoßzeiten.xaml" NavigationUIVisibility="Hidden" Margin="10,13,577,317"/>
+        <Frame Name="FrameWithinGrid" Source="Stoßzeiten.xaml" NavigationUIVisibility="Hidden" Margin="10,13,577,317" Panel.ZIndex="10"/>
+        <Frame Name="FrameWithinGrid1" Source="membershipanalysis.xaml" NavigationUIVisibility="Hidden" Margin="577,0,10,330"/>
     </Grid>
 </Page>

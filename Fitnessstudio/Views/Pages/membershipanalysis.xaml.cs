@@ -1,5 +1,6 @@
 ﻿using MindFusion.Mapping;
 using ScottPlot;
+using ScottPlot.Plottable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace Fitnessstudio.Views.Pages
         {
             InitializeComponent();
             getKundenforChart();
+            WpfPlot1.Configuration.Pan = false;
+            WpfPlot1.Configuration.Zoom = false;
         }
 
         public  async void getKundenforChart()
