@@ -69,9 +69,11 @@ namespace Fitnessstudio
 
             DateTime currentDateTime = DateTime.Parse(currentHour + ":" + currentMinute);
             
+
             DateTime startTime = currentDateTime.AddHours(-2); // Setzt den Start auf 2 Stunden vor der aktuellen Zeit
             DateTime endTime = currentDateTime.AddHours(2);
             endTime = endTime.AddMinutes(30);// Setzt die EndTime auf 2,5h nach der aktuellen Zeit
+
             TimeSpan interval = TimeSpan.FromMinutes(30); // Halbstündiges Intervall
 
             var times = Enumerable.Range(0, (int)((endTime - startTime).TotalMinutes / interval.TotalMinutes))
@@ -97,14 +99,15 @@ namespace Fitnessstudio
             bars.BorderLineWidth = 1;
             plt.XTicks(times.Select(time => time.ToString("HH:mm")).ToArray());
             plt.XLabel("Zeit");
-            plt.YLabel("Auslastung (%)");
+            plt.YLabel("Anzahl Personen");
             plt.Title("Halbstündliche Auslastung");
             // Setze die y-Achse von 0 bis 100%
             plt.SetAxisLimits(yMin: 0, yMax: maxCapacity);
 
             #region Styles
 
-            plt.Style(System.Drawing.Color.Black, System.Drawing.Color.Black, System.Drawing.Color.White, System.Drawing.Color.White,null,System.Drawing.Color.White); //Styles
+            plt.Style(System.Drawing.Color.Black, System.Drawing.Color.Black, System.Drawing.Color.White, System.Drawing.Color.White,null,System.Drawing.Color.White); //Styles            
+
             bars.Color = System.Drawing.Color.White; // Style der Säulen an sich
 
             #endregion

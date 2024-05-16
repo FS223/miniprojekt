@@ -7,46 +7,132 @@
       xmlns:viewmodels="clr-namespace:Fitnessstudio.ViewModels"
       d:DataContext="{d:DesignInstance Type=viewmodels:KundenVerwaltungViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="725" d:DesignWidth="1350"
       Title="KundenVerwaltung">
-    <StackPanel>
+
+    <Border Background="Transparent" Margin="20" CornerRadius="10" BorderBrush="Transparent" BorderThickness="2">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*" />
-                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+ 
+            <Border Grid.Column="0" Margin="5" BorderThickness="2" CornerRadius="20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#ff8989" Offset="0.0" />
+                        <GradientStop Color="#FF204E" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+        
+                <Border CornerRadius="50" BorderThickness="0">
+                    <Image Source="/Images/Landing-page/Rectangle 82.png" Width="500" />
+                </Border>
 
-            <Label Grid.Row="0" Grid.Column="0" Margin="5">Vorname:</Label>
-            <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding Vorname}"/>
-            <Label Grid.Row="0" Grid.Column="1" Margin="5">Nachname:</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Nachname}"/>
+            </Border>
 
-            <Label Grid.Row="2" Grid.Column="0" Margin="5">Land:</Label>
-            <TextBox Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding Land}"/>
-            <Label Grid.Row="2" Grid.Column="1" Margin="5">Adresse:</Label>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding Adresse}" />
 
-            <Label Grid.Row="4" Grid.Column="0" Margin="5">Iban:</Label>
-            <TextBox Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding Iban}"/>
-            <Label Grid.Row="4" Grid.Column="1" Margin="5">Geburtstag:</Label>
-            <DatePicker Grid.Row="5" Grid.Column="1" Margin="5" Text="{Binding Geburtstag}"/>
+            <Border Grid.Column="1" Margin="5,0,5,5"  BorderThickness="2" CornerRadius="20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#FF204E" Offset="0.0" />
+                        <GradientStop Color="#ff8989" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
 
-            <Label Grid.Row="6" Grid.Column="0" Margin="5">Passwort:</Label>
-            <TextBox Grid.Row="7" Grid.Column="0" Margin="5" Text="{Binding Passwort}"/>
-            <Label Grid.Row="6" Grid.Column="1" Margin="5">Passwort wiederholen:</Label>
-            <TextBox Grid.Row="7" Grid.Column="1" Margin="5" Text="{Binding WPasswort}"/>
+                <StackPanel HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Labels und Textboxen hier einfügen -->
+                        <Border Grid.Row="0" Grid.Column="0" Margin="5"  BorderThickness="1" CornerRadius="10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+
+                                    <GradientStop Color="#ff8989" Offset="0.0" />
+                                    <GradientStop Color="#FF204E" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel>
+                                <Label Content="Vorname:" FontSize="16" FontWeight="Bold" FontFamily="Global Sans Serif"/>
+                                <TextBox Text="{Binding Vorname, Mode=TwoWay}" Style="{StaticResource InputTextBoxStyle}" Margin="5" Background="Transparent" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="16"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" Margin="5"  BorderThickness="1" CornerRadius="10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                    <GradientStop Color="#ff8989" Offset="0.0" />
+                                    <GradientStop Color="#FF204E" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel>
+                                <Label Content="Nachname:" FontSize="16" FontWeight="Bold" FontFamily="Global Sans Serif"/>
+                                <TextBox Text="{Binding Nachname, Mode=TwoWay}" Style="{StaticResource InputTextBoxStyle}" Margin="5" Background="Transparent" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="16"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  BorderThickness="1" CornerRadius="10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                    <GradientStop Color="#ff8989" Offset="0.0" />
+                                    <GradientStop Color="#FF204E" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel>
+                                <Label Content="Land:" FontSize="16" FontFamily="Global Sans Serif" FontWeight="Bold"/>
+                                <TextBox Text="{Binding Land, Mode=TwoWay}" Style="{StaticResource InputTextBoxStyle}" Margin="5" Background="Transparent" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="16"/>
+                                <Label Content="Adresse:" FontSize="16" FontWeight="Bold" FontFamily="Global Sans Serif"/>
+                                <TextBox Text="{Binding Adresse, Mode=TwoWay}" Style="{StaticResource InputTextBoxStyle}" Margin="5" Background="Transparent" FontFamily="Global Sans Serif" FontSize="16" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  BorderThickness="1" CornerRadius="10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                    <GradientStop Color="#ff8989" Offset="0.0" />
+                                    <GradientStop Color="#FF204E" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel>
+                                <Label Content="Iban:" FontSize="16" FontFamily="Global Sans Serif" FontWeight="Bold"/>
+                                <TextBox Text="{Binding Iban, Mode=TwoWay}" Style="{StaticResource InputTextBoxStyle}" Margin="5" Background="Transparent" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="16"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  BorderThickness="1" CornerRadius="10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                    <GradientStop Color="#ff8989" Offset="0.0" />
+                                    <GradientStop Color="#FF204E" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel>
+                                <Label Content="Geburtstag:" FontSize="16" FontFamily="Global Sans Serif" FontWeight="Bold"/>
+                                <Border CornerRadius="5">
+                                    <DatePicker  Background="Transparent" SelectedDate="{Binding Geburtstag, Mode=TwoWay}" Style="{StaticResource DatePickerStyle}" Margin="5" Opacity="0.2"/>
+                                </Border>
+                                <Label Content="Passwort:" FontSize="16" FontFamily="Global Sans Serif" FontWeight="Bold"/>
+                                <TextBox Text="{Binding Passwort, Mode=TwoWay}" Style="{StaticResource InputTextBoxStyle}" Margin="5" Background="Transparent" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="16"/>
+                                <Label Content="Passwort wiederholen:" FontSize="16" FontFamily="Global Sans Serif" FontWeight="Bold"/>
+                                <TextBox Text="{Binding WPasswort, Mode=TwoWay}" Style="{StaticResource InputTextBoxStyle}" Margin="5" Background="Transparent" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="16"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <Button Content="Speichern" Width="170" Command="{Binding SaveCommand}" Style="{StaticResource LoginButtonStyle}" Margin="5"/>
+                </StackPanel>
+            </Border>
+
         </Grid>
-        <Button Content="Speichern" Width="100" Command="{Binding SaveCommand}"/>
-    </StackPanel>
+    </Border>
 </Page>
