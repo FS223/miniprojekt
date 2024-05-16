@@ -15,15 +15,21 @@
     <PackageReference Include="Npgsql" Version="7.0.0" />
     <PackageReference Include="Serilog" Version="3.1.1" />
     <None Remove="Images\account.png" />
+    <None Remove="Images\greenAddCircle.png" />
+    <None Remove="Images\greenSaveIcon.png" />
     <None Remove="Images\group.png" />
     <None Remove="Images\home.png" />
     <None Remove="Images\key-icon.png" />
     <None Remove="Images\kurs.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\overview.png" />
+    <None Remove="Images\redDeleteIcon.png" />
     <None Remove="Images\settings.png" />
     <None Remove="Images\user-icon.png" />
+    <None Remove="Images\yellowEditIcon.png" />
     <Resource Include="Images\account.png" />
+    <Resource Include="Images\greenAddCircle.png" />
+    <Resource Include="Images\greenSaveIcon.png" />
     <Resource Include="Images\group.png" />
     <Resource Include="Images\home.png" />
     <Resource Include="Images\kurs.png" />
@@ -31,8 +37,10 @@
     <Resource Include="Images\key-icon.png" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\overview.png" />
+    <Resource Include="Images\redDeleteIcon.png" />
     <Resource Include="Images\settings.png" />
     <Resource Include="Images\user-icon.png" />
+    <Resource Include="Images\yellowEditIcon.png" />
   </ItemGroup>
 
 </Project>
