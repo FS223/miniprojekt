@@ -306,9 +306,6 @@ namespace Fitnessstudio
                 {
                     while (await reader.ReadAsync())
                     {
-                        Trace.WriteLine(reader.GetString(reader.GetOrdinal("mitgliedschaft")));
-                        MessageBox.Show(reader.GetString(reader.GetOrdinal("mitgliedschaft")));
-                        Trace.WriteLine(reader.GetString(reader.GetOrdinal("mitgliedschaft")));
                         kunden.Add(new Kunde
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("id")),
