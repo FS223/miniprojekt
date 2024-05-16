@@ -14,7 +14,7 @@ namespace Fitnessstudio.ViewModels
     {
         private readonly DatabaseService databaseService;
 
-        public readonly Account CurrentUser;
+        public Account CurrentUser;
         private String vorname = "";
         public String Vorname { get { return vorname; } set { vorname = value; OnPropertyChanged(nameof(Vorname)); } }
 
@@ -54,29 +54,35 @@ namespace Fitnessstudio.ViewModels
             {
                 if (CurrentUser.Benutzername != null)
                 {
-                    var Person = await databaseService.GetPersonByID(CurrentUser.Id);
-                    var address = await databaseService.GetAnschriftByID(CurrentUser.Id);
-                    var Kunde = await databaseService.GetKundeByID(CurrentUser.Id);
-                    if (address != null)
+                    var Person = await databaseService.GetPersonByID(CurrentUser.PersonId);
+                    if (Person != null)
                     {
                         Vorname = Person.Vorname;
                         Nachname = Person.Nachname;
+                        Geburtstag = Person.Geburtsdatum;
+                    }
+                    var address = await databaseService.GetAnschriftByID(Person.AnschriftId);
+                    if (address != null)
+                    {                        
                         Land = address.Land;
                         Adresse = address.Strasse + " " + address.Hausnummer;
+                        
+                    }
+                    var Kunde = await databaseService.GetKundeByID(1); // TODO
+                    if (Kunde != null)
+                    {
                         Iban = Kunde.Iban;
                         Passwort = "";
                         WPasswort = "";
                     }
+                    
                 }               
                 
             }
             catch (Exception ex)
             {
                 Log.Error(ex, "Error while fetching persons");
-            }
-
-
-            
+            }           
 
         }
     }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Fitnessstudio.Commands;
 using Fitnessstudio.Models;
+using Fitnessstudio.Views;
 using Npgsql;
 using Serilog;
 
@@ -15,34 +15,43 @@ namespace Fitnessstudio.ViewModels
     {
         private readonly DatabaseService databaseService;
         private ObservableCollection<PersonWithAddress> items;
+        private int currentPage = 1;
+        private int itemsPerPage = 10; 
 
-        public ObservableCollection<PersonWithAddress> Items { get { return items; } set { items = value; OnPropertyChanged(nameof(Items)); } }
+        public ObservableCollection<PersonWithAddress> Items
+        {
+            get { return items; }
+            set { items = value; OnPropertyChanged(nameof(Items)); }
+        }
 
         public ICommand DeleteCommand { get; }
         public ICommand EditCommand { get; }
         public ICommand NewCommand { get; }
 
-        private Account CurrentAccount { get; set; }
+        public Account CurrentAccount { get; set; }
+        public readonly Dashboard dashboard;
 
-
-
-        public KundenAdminViewModel(Account CurrentAccount)
+        public KundenAdminViewModel(Account CurrentAccount, Dashboard dashboard)
         {
+            this.CurrentAccount = CurrentAccount;
+            this.dashboard = dashboard;
             databaseService = new DatabaseService();
             Items = new ObservableCollection<PersonWithAddress>();
             GetPersonenWithAdress();
-            DeleteCommand = new DeletePersonCommand(databaseService.DeletePersonAsync);
-            EditCommand = new EditCommand();
+            DeleteCommand = new DeletePersonCommand(this);
+            EditCommand = new EditCommand(this);
             NewCommand = new NewCommand();
-            this.CurrentAccount = CurrentAccount;
             Debug.WriteLine(CurrentAccount);
         }
 
-        private async void GetPersonenWithAdress()
+        public async void GetPersonenWithAdress()
         {
+            Items.Clear();
             try
             {
-                var Personen = await databaseService.GetPersonen();
+                var currentPage = 1; 
+                var itemsPerPage = 10; 
+                var Personen = await databaseService.GetPersonen(currentPage, itemsPerPage);
                 var auth = new Auth();
                 foreach (var person in Personen)
                 {
@@ -60,6 +69,20 @@ namespace Fitnessstudio.ViewModels
             }
         }
 
-        // @Riad, habe dein Code in DatabaseSevice umgelagert.
+
+        public void NextPage()
+        {
+            currentPage++;
+            GetPersonenWithAdress();
+        }
+
+        public void PreviousPage()
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                GetPersonenWithAdress();
+            }
+        }
     }
 }

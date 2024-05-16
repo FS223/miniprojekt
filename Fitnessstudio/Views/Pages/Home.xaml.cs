@@ -1,3 +1,4 @@
+using Fitnessstudio.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,25 @@ namespace Fitnessstudio.Views
         public Home()
         {
             InitializeComponent();
+            course.MouseLeftButtonDown += navigateToCourse;
+            account.MouseLeftButtonDown += navigateToAccount;
+
         }
 
         public void SetDataContext(object dataContext)
         {
             this.DataContext = dataContext;
         }
+
+        private void navigateToCourse(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Kurse());
+        }
+        private void navigateToAccount(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new KundenVerwaltung());
+        }
+
+
     }
 }

@@ -35,7 +35,7 @@ namespace Fitnessstudio.Views
         private void ButtonKurse_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/Kurse.xaml", CurrentAccount);
         private void ButtonAdmin_Click(object sender, RoutedEventArgs e) => NavigateToPage("Pages/KundenAdmin.xaml", CurrentAccount);
 
-        private void NavigateToPage(string pageUri, object parameter)
+        public void NavigateToPage(string pageUri, object parameter)
         {
             var uri = new Uri(pageUri, UriKind.Relative);
             FrameWithinGrid.Source = uri;
@@ -44,11 +44,18 @@ namespace Fitnessstudio.Views
                 {
                     if (page is KundenAdmin kundenAdminPage)
                     {
-                        kundenAdminPage.SetDataContext(new KundenAdminViewModel(CurrentAccount));
+                        kundenAdminPage.SetDataContext(new KundenAdminViewModel(CurrentAccount, this));
                     }
                     else if (page is KundenVerwaltung kundenVerwaltungPage)
                     {
-                        kundenVerwaltungPage.SetDataContext(new KundenVerwaltungViewModel(CurrentAccount));
+                        if (parameter is Account selectedUser)
+                        {
+                            kundenVerwaltungPage.SetDataContext(new KundenVerwaltungViewModel(selectedUser));
+                        }
+                        else
+                        {
+                            kundenVerwaltungPage.SetDataContext(new KundenVerwaltungViewModel(CurrentAccount));
+                        }
                     }
                     else if (page is Home homePage)
                     {

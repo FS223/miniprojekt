@@ -9,9 +9,10 @@
     <Color x:Key="primaryBackColor2">#FF204E</Color>
     <Color x:Key="secondaryBackColor1">#A0153E</Color>
     <Color x:Key="secondaryBackColor2">#00224D</Color>
+    <Color x:Key="TableBackgroundColor">#191515</Color>
 
     <!--Window Border Colors-->
-    <Color x:Key="winBorderColor1">#FF0000</Color>
+    <Color x:Key="winBorderColor1">#000000</Color>
     <Color x:Key="winBorderColor2">#8B0000</Color>
     <Color x:Key="winBorderColor3">#000000</Color>
 

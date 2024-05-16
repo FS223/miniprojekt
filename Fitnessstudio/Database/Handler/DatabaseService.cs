@@ -3,6 +3,7 @@ using Fitnessstudio.Models;
 using Fitnessstudio.Views;
 using Npgsql;
 using ScottPlot.Renderable;
+using ScottPlot.Statistics.Interpolation;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace Fitnessstudio
 {
@@ -91,7 +93,8 @@ namespace Fitnessstudio
                     {
                         if (await reader.ReadAsync())
                         {
-                            return new Anschrift {
+                            return new Anschrift
+                            {
                                 Id = reader.GetInt32(reader.GetOrdinal("id")),
                                 Land = reader.GetString(reader.GetOrdinal("land")),
                                 Plz = reader.GetString(reader.GetOrdinal("plz")),
@@ -131,7 +134,8 @@ namespace Fitnessstudio
                             {
                                 mitgliedschaft = Mitgliedschaft.BRONZE;
                             }
-                            return new Kunde {
+                            return new Kunde
+                            {
                                 Id = reader.GetInt32(reader.GetOrdinal("id")),
                                 PersonId = reader.GetInt32(reader.GetOrdinal("personId")),
                                 Guthaben = (float)reader.GetDouble(reader.GetOrdinal("guthaben")),
@@ -165,7 +169,8 @@ namespace Fitnessstudio
                         if (await reader.ReadAsync())
                         {
                             Enum.TryParse(reader.GetString(reader.GetOrdinal("geschlecht")), out Geschlecht geschlecht);
-                            return new Person {
+                            return new Person
+                            {
                                 Id = reader.GetInt32(reader.GetOrdinal("id")),
                                 Vorname = reader.GetString(reader.GetOrdinal("vorname")),
                                 Nachname = reader.GetString(reader.GetOrdinal("nachname")),
@@ -176,6 +181,39 @@ namespace Fitnessstudio
                                 // AccountId = reader.IsDBNull(reader.GetOrdinal("accountId")) ? null : reader.GetInt32(reader.GetOrdinal("accountId")),
                                 // KundeId = reader.IsDBNull(reader.GetOrdinal("kundeId")) ? null : reader.GetInt32(reader.GetOrdinal("kundeId")),
                                 // MitarbeiterId = reader.IsDBNull(reader.GetOrdinal("mitarbeiterId")) ? null : reader.GetInt32(reader.GetOrdinal("mitarbeiterId"))
+                            };
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<Account> GetAccountById(int id)
+        {
+            // Get a connection from the DB instance
+            using (var conn = await db.GetConnection())
+            {
+                await using (var cmd = new NpgsqlCommand("SELECT * FROM account WHERE id = @p1", conn))
+                {
+                    cmd.Parameters.AddWithValue("@p1", id);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            Enum.TryParse(reader.GetString(reader.GetOrdinal("rolle")), out Rolle rolle);
+                            return new Account
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("id")),
+                                Benutzername = reader.GetString(reader.GetOrdinal("benutzername")),
+                                Email = reader.GetString(reader.GetOrdinal("email")),
+                                Passwort = reader.GetString(reader.GetOrdinal("passwort")),
+                                Rolle = rolle,
+                                PersonId = reader.GetInt32(reader.GetOrdinal("personId"))
                             };
                         }
                         else
@@ -199,14 +237,14 @@ namespace Fitnessstudio
                 //*// 
 
                 await using (var cmd = new NpgsqlCommand(@"UPDATE person 
-                                                   SET vorname = @vorname, 
-                                                       nachname = @nachname, 
-                                                       geburtsdatum = @geburtsdatum, 
-                                                       geschlecht = @geschlecht, 
-                                                       anschriftId = @anschriftId,
-                                                   WHERE id = @id", conn))
+                                           SET vorname = @vorname, 
+                                               nachname = @nachname, 
+                                               geburtsdatum = @geburtsdatum, 
+                                               geschlecht = @geschlecht, 
+                                               anschriftId = @anschriftId
+                                           WHERE id = @id", conn))
+
                 {
-                    // Set the parameter values
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@vorname", updatedPerson.Vorname);
                     cmd.Parameters.AddWithValue("@nachname", updatedPerson.Nachname);
@@ -216,7 +254,7 @@ namespace Fitnessstudio
                     //cmd.Parameters.AddWithValue("@accountId", (object)updatedPerson.AccountId ?? DBNull.Value);
                     //cmd.Parameters.AddWithValue("@kundeId", (object)updatedPerson.KundeId ?? DBNull.Value);
                     //cmd.Parameters.AddWithValue("@mitarbeiterId", (object)updatedPerson.MitarbeiterId ?? DBNull.Value);
-                    
+
 
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
                     return rowsAffected > 0;
@@ -255,7 +293,7 @@ namespace Fitnessstudio
             return accounts;
         }
 
-        public async Task<List<Person>> GetPersonen()
+        public async Task<List<Person>> GetPersonen(int currentPage, int itemsPerPage)
         {
             var persons = new List<Person>();
             var connection = await db.GetConnection();
@@ -290,6 +328,9 @@ namespace Fitnessstudio
             }
             return persons;
         }
+
+
+
 
         public async Task<List<Kunde>> GetKunden()
         {
@@ -431,8 +472,10 @@ namespace Fitnessstudio
 
                     var command = new NpgsqlCommand("DELETE FROM person WHERE id = @id", connection);
                     command.Parameters.AddWithValue("@id", person.Id);
-
                     await command.ExecuteNonQueryAsync();
+                    var command2 = new NpgsqlCommand("DELETE FROM messung WHERE id = @id", connection);
+                    command2.Parameters.AddWithValue("@id", person.Id);
+                    await command2.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception ex)
@@ -470,6 +513,73 @@ namespace Fitnessstudio
                 Log.Error(ex, "Error while adding address");
             }
         }
+
+        /// <summary>
+        /// Ermittelt die aktuelle Anzahl an Personen zu einer bestimmten Uhrzeit
+        /// </summary>
+        /// <param name="currentTime"></param>
+        /// <returns>Anzahl anwesender Personen</returns>
+        public async Task<int> GetAktuelleAnzahlLeute(DateTime currentTime)
+        {
+            string timeString = currentTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            int amount = 0;
+            var zeitenbuchung = new List<ZeitenBuchung>();
+            var connection = await db.GetConnection();
+            using (connection)
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
+                using (var command = new NpgsqlCommand("SELECT * FROM \"zeitenBuchung\" zb WHERE \"checkIn\" < '" + timeString + "' AND \"checkOut\" > '" + timeString + "'", connection))
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        amount++;
+                    }
+                }
+            }
+            return amount;
+        }
+
+
+        /// <summary>
+        /// To be Added
+        /// </summary>
+        /// <param name="currentTime"></param>
+        /// <returns></returns>
+        public async Task<int> GetGeplanteAnzahlLeute(DateTime currentTime)
+        {
+            string timeString = currentTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            int amount = 0;
+            var zeitenbuchung = new List<ZeitenBuchung>();
+            var connection = await db.GetConnection();
+            using (connection)
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await connection.OpenAsync();
+                }
+                using (var command = new NpgsqlCommand("SELECT * FROM \"zeitenBuchung\" zb WHERE \"checkIn\" < '" + timeString + "' AND \"checkOut\" > '" + timeString + "'", connection))
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        amount++;
+                        //zeitenbuchung.Add(new ZeitenBuchung
+                        //{
+                        //    Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        //    CheckIn = reader.GetDateTime(reader.GetOrdinal("checkIn")),
+                        //    CheckOut = reader.GetDateTime(reader.GetOrdinal("checkOut")),
+                        //    KundeId = reader.GetInt32(reader.GetOrdinal("kundeId"))
+                        //});
+                    }
+                }
+            }
+            return amount;
+        }
+
     }
 
     public static class EnumHelper

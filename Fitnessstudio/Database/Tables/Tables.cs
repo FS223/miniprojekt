@@ -88,7 +88,7 @@ namespace Fitnessstudio
         public int Id { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
-        public Kunde Kunde { get; set; }
+        public int KundeId { get; set; }
     }
 
     public class Niederlassung

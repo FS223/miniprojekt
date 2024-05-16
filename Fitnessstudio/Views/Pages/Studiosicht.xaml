@@ -27,7 +27,8 @@
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="Wrap" />
                 <TextBlock 
-                    HorizontalAlignment="Left"  Margin="20,0,0,0" 
+                    HorizontalAlignment="Left"  
+                    Margin="20,0,0,0" 
                     Foreground="#FFFFFF"
                     FontFamily="Arial"
                     Text="{Binding DayText}"
@@ -38,7 +39,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid>
+    <Grid Background="Black">
         <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <syncfusion:SfScheduler
             ItemsSource="{Binding scheduleAppointmentCollection}"
@@ -52,8 +53,7 @@
             HeaderHeight="0"
             Background="White"
             Foreground="Red">
-
-            <!-- Konfigurieren Sie die TimelineViewSettings -->
+                <!-- Konfigurieren Sie die TimelineViewSettings -->
             <syncfusion:SfScheduler.TimelineViewSettings>
                 <syncfusion:TimelineViewSettings
                     StartHour="6"
@@ -61,10 +61,7 @@
                     TimeIntervalSize="120"
                     ViewHeaderTemplate="{StaticResource viewHeaderTemplate}"/>
             </syncfusion:SfScheduler.TimelineViewSettings>
-
         </syncfusion:SfScheduler>
-        <Grid Background="White">
-            <Label Content="Studioübersicht" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        </Grid>
+        <Frame Name="FrameWithinGrid" Source="Stoßzeiten.xaml" NavigationUIVisibility="Hidden" Margin="10,13,577,317"/>
     </Grid>
 </Page>
