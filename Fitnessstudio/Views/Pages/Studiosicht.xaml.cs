@@ -62,8 +62,8 @@ namespace Fitnessstudio.Views
                                 {
                                     StartTime = startZeit,
                                     EndTime = endZeit,
-                                    Subject = bezeichnung,
-                                    Location = "Unser Kraftklub",
+                                    Subject = bezeichnung + "\nPaderborn",
+                                    Location = "Paderborn",
                                     AppointmentBackground = new SolidColorBrush(color)
 
                                 });
