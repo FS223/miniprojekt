@@ -35,7 +35,7 @@ namespace Fitnessstudio.Views
                     }
 
                     // SQL-Abfrage zum Abrufen der Termine aus der Tabelle Termin
-                    var sql = "SELECT bezeichnung, termin2.\"startZeit\", dauer, location FROM Termin2";
+                    var sql = "SELECT bezeichnung, termin.\"startZeit\", dauer FROM termin";
 
                     // Befehl zum Ausführen der SQL-Abfrage
                     using (var command = new NpgsqlCommand(sql, connection))
@@ -43,7 +43,7 @@ namespace Fitnessstudio.Views
                         // Daten aus der Abfrage lesen
                         using (var reader = await command.ExecuteReaderAsync())
                         {
-                            string hexCode = "#800020";
+                            string hexCode = "#d8042c";
                             Color color = (Color)ColorConverter.ConvertFromString(hexCode);
                             var scheduleAppointmentCollection = new ScheduleAppointmentCollection();
 
@@ -56,7 +56,6 @@ namespace Fitnessstudio.Views
                                 TimeSpan dauer = TimeSpan.FromMinutes(dauerMinutes);
                                 // Endzeit berechnen
                                 DateTime endZeit = startZeit.Add(dauer);
-                                string location = reader.GetString(3);
 
                                 // ScheduleAppointment erstellen und zur Sammlung hinzufügen
                                 scheduleAppointmentCollection.Add(new ScheduleAppointment()
@@ -64,7 +63,7 @@ namespace Fitnessstudio.Views
                                     StartTime = startZeit,
                                     EndTime = endZeit,
                                     Subject = bezeichnung,
-                                    Location = location,
+                                    Location = "Unser Kraftklub",
                                     AppointmentBackground = new SolidColorBrush(color)
 
                                 });
