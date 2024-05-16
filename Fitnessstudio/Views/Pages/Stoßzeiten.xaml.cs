@@ -1,4 +1,5 @@
-﻿using ScottPlot;
+﻿using MindFusion.Text;
+using ScottPlot;
 using ScottPlot.WPF;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Fitnessstudio
         /// <summary>
         /// Generieren von dem Bar Plot
         /// </summary>
-        private async void PlotBarChart()
+        public async void PlotBarChart()
         {
             double maxCapacity = 20;
             // Aktuelle Zeit bestimmen und entsprechend im 2 Stunden Rahmen +- den Bereich festlegen
@@ -118,7 +119,14 @@ namespace Fitnessstudio
 
         }
 
-       
+        private void UpdateTimeplot_Click(object sender, RoutedEventArgs e)
+        {
+            Timeplot.Plot.Clear();
+            PlotBarChart();
+            Timeplot.Refresh();
+
+            
+        }
     }
 }
 
