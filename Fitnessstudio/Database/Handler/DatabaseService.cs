@@ -1,15 +1,19 @@
-﻿using Fitnessstudio.Models;
+﻿using DotNetEnv;
+using Fitnessstudio.Models;
 using Fitnessstudio.Views;
 using Npgsql;
+using ScottPlot.Renderable;
 using ScottPlot.Statistics.Interpolation;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Markup;
 
 namespace Fitnessstudio
@@ -348,9 +352,10 @@ namespace Fitnessstudio
                             Id = reader.GetInt32(reader.GetOrdinal("id")),
                             PersonId = reader.GetInt32(reader.GetOrdinal("personId")),
                             Guthaben = reader.GetFloat(reader.GetOrdinal("guthaben")),
-                            Iban = reader.GetString(reader.GetOrdinal("iban")),
+                            Iban = reader.IsDBNull(reader.GetOrdinal("iban")) ? null : reader.GetString(reader.GetOrdinal("iban")),
                             Bild = reader.IsDBNull(reader.GetOrdinal("bild")) ? null : reader.GetString(reader.GetOrdinal("bild")),
-                            Mitgliedschaft = (Mitgliedschaft)reader.GetInt32(reader.GetOrdinal("mitgliedschaft"))
+                            Mitgliedschaft = reader.IsDBNull(reader.GetOrdinal("mitgliedschaft")) ? (Mitgliedschaft?)null : EnumHelper.ConvertStringToEnum(reader.GetString(reader.GetOrdinal("mitgliedschaft"))),
+                            NiederlassungID = reader.GetInt32(reader.GetOrdinal("niederlassungId"))
                         });
                     }
                 }
@@ -576,4 +581,40 @@ namespace Fitnessstudio
         }
 
     }
+
+    public static class EnumHelper
+    {
+        public static TEnum ConvertIntToEnum<TEnum>(int value) where TEnum : struct, Enum
+        {
+            if (Enum.IsDefined(typeof(TEnum), value))
+            {
+                return (TEnum)Enum.ToObject(typeof(TEnum), value);
+            }
+            else
+            {
+                throw new ArgumentException($"The value {value} does not correspond to any enum value in {typeof(TEnum).Name}.");
+            }
+        }
+
+
+        public static Mitgliedschaft ConvertStringToEnum(string s)
+        {
+            switch (s.ToLower())
+            {
+                case "bronze":
+                    return Mitgliedschaft.BRONZE;
+                case "silber":
+                    return Mitgliedschaft.SILBER;
+                case "gold":
+                    return Mitgliedschaft.GOLD;
+                case "platinum":
+                    return Mitgliedschaft.PLATINUM;
+                default:
+                    throw new ArgumentException("Invalid string: " + s);
+            }
+        }
+
+    }
+
+
 }

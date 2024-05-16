@@ -55,11 +55,12 @@ namespace Fitnessstudio
         public float Guthaben { get; set; }
         public string Iban { get; set; }
         public string Bild { get; set; }
-        public Mitgliedschaft Mitgliedschaft { get; set; }
+        public Mitgliedschaft? Mitgliedschaft { get; set; }
         public List<Kurs> Kurse { get; set; }
         public List<ZeitenBuchung> ZeitenBuchung { get; set; }
         public Niederlassung Niederlassung { get; set; }
         public List<Messung> Messung { get; set; }
+        public int NiederlassungID { get; set; }
     }
 
     public class Messung
@@ -126,10 +127,10 @@ namespace Fitnessstudio
 
     public enum Mitgliedschaft
     {
-        BRONZE,
-        SILBER,
-        GOLD,
-        PLATINUM
+        BRONZE = 2,
+        SILBER = 3 ,
+        GOLD = 4,
+        PLATINUM = 5
     }
 
 }
