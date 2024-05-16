@@ -9,20 +9,23 @@
       d:DesignHeight="725" d:DesignWidth="1350"
       Title="Stoßzeiten">
 
-    <Grid Background="White">
+    <Grid Background="Black">
 
-        <WpfPlot x:Name="Timeplot" />
-        <Rectangle HorizontalAlignment="Left" Margin="690,34,0,0" Stroke="Red" Width="1" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="10" Height="645" VerticalAlignment="Top">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
+        <WpfPlot x:Name="Timeplot" Margin="0,82,10,0" />
 
+        <Button HorizontalAlignment="Left" Margin="50,22,0,0" VerticalAlignment="Top" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Button.Resources>
+            <Button.Content>
+                <Image Source="/Images/gui-refresh.png" Margin="5"></Image>
+                
+            </Button.Content>
+
+
+</Button>
 
     </Grid>
 
