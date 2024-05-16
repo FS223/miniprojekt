@@ -106,7 +106,7 @@ namespace Fitnessstudio.Views
                     myGrid.Children.Add(l2);
                     myGrid.Children.Add(btn_del);
                     myGrid.Tag = kurs.Id;
-                    myGrid.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(ListViewItem_PreviewMouseLeftButtonDown);
+                    myGrid.MouseLeftButtonDown += new MouseButtonEventHandler(ListViewItem_MouseLeftButtonDown);
                     // Adds grid to the listview
                     KursListe.Items.Add(myGrid);
 
@@ -142,7 +142,7 @@ namespace Fitnessstudio.Views
             }
             return null;
         }
-        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ListViewItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var grid = sender as Grid;
             if (grid != null)
