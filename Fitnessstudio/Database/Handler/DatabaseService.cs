@@ -405,8 +405,8 @@ namespace Fitnessstudio
                             reader.GetInt32(reader.GetOrdinal("kursLeiterId")),
                             reader.GetInt32(reader.GetOrdinal("minTeilnehmer")),
                             reader.GetInt32(reader.GetOrdinal("maxTeilnehmer")),
-                            //reader.GetFloat(reader.GetOrdinal("preis"))
-                            (float) 12
+                            reader.GetFloat(reader.GetOrdinal("preis"))
+                            //(float) 12
                             ));
                     }
                 }
