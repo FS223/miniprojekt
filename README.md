@@ -31,6 +31,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Nady [@Iskuzmi](https://github.com/Iskuzmi)
 
 **Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Datenbank)
+
 **Präsentation:** [Link](https://github.com/FS223/miniprojekt/blob/main/Pr%C3%A4sentationen/Datenbank.pptx)
 
 ### Kundenverwaltung
@@ -41,6 +42,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Robert
 
 **Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Kundenverwaltung)
+
 **Präsentation:** [Link](https://github.com/FS223/miniprojekt/blob/main/Pr%C3%A4sentationen/Kundenverwaltung.pptx)
 
 ### Auswertung Nutzerdaten
@@ -51,6 +53,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Daniel
 
 **Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Auswertung-Nutzerdaten)
+
 **Präsentation:** [Link](https://github.com/FS223/miniprojekt/blob/main/Pr%C3%A4sentationen/Datenverarbeitung.pptx)
 
 ### Kursverwaltung
@@ -61,6 +64,7 @@ Das Projekt soll in Gruppen zu je drei/vier Personen durchgeführt werden.
 - Dominik
 
 **Dokumentation:** [Pflichtenheft](https://github.com/FS223/miniprojekt/wiki/Kursverwaltung)
+
 **Präsentation:** [Link](https://github.com/FS223/miniprojekt/blob/main/Pr%C3%A4sentationen/Kursverwaltung.pptx)
 
 ---
